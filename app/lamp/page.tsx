@@ -13,13 +13,13 @@ export default function LampPage() {
     <>
       <Lamp
         titleAs="h1"
-        heading="The front desk, reimagined."
-        lede="Just say, “Hey Genie.” The lamp is white, 3D-printed, and shaped like the classic genie lamp, with a Google Nest Mini seated inside. Guests talk. They don’t download another app or hunt for a phone number."
+        heading="The hotel telephone, replaced."
+        lede="The glossy white lamp from the print bed, on the nightstand where the room phone used to sit. A Nest Mini is inside. Guests say “Hey Genie.” They don’t pick up a handset or download an app."
       />
       <Section className="pt-0">
         <div className="grid gap-4 md:grid-cols-3">
           {[
-            ["In the room", "Wi-Fi, parking, the hot tub, a restaurant, a late checkout. The property guide, out loud."],
+            ["On the nightstand", "It occupies the spot reserved for the hotel telephone. Wi-Fi, parking, the hot tub, a restaurant, a late checkout — out loud."],
             ["Same rules", "A voice request is meant to follow the same policies as a text. “Send maintenance” should become a task, not a novelty."],
             ["No second product", "The lamp is the physical edge of the operating layer. It is not a separate chatbot with a different brain."],
           ].map(([title, body]) => (

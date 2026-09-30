@@ -15,7 +15,7 @@ export function AskGenie({ heading = "Don’t learn another dashboard. Just ask 
       <Eyebrow>Agentic interface</Eyebrow>
       <Display className="mt-4 max-w-3xl">{heading}</Display>
       <Lede className="mt-5">
-        Genie should understand the person’s role, portfolio, and permissions, then return only what they are allowed to see or do.
+        The same chat is how every stakeholder works. Open a new chat, ask Genie to act or to explain, and it answers inside that person’s permissions. Integrations, properties, calendar, and reservations stay available beside the conversation.
       </Lede>
       <div className="mt-8 grid gap-4 lg:grid-cols-[0.9fr_1.1fr]">
         <div className="flex flex-col gap-2">

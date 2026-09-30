@@ -6,8 +6,8 @@ import { Display, Eyebrow, Lede, SampleNote } from "@/components/site/section"
 import { cn } from "@/lib/utils"
 
 export function Lamp({
-  heading = "Meet the concierge guests already know how to use.",
-  lede = "Just say, “Hey Genie.” A white 3D-printed lamp, in the shape you already know, with a Google Nest Mini inside. No extra app, and no phone number to hunt down.",
+  heading = "The hotel telephone, replaced.",
+  lede = "A glossy white 3D-printed genie lamp sits on the nightstand, with a Google Nest Mini inside. Guests say “Hey Genie” instead of picking up a handset. No extra app.",
   titleAs = "h2",
 }: {
   heading?: string
@@ -42,7 +42,7 @@ export function Lamp({
           <Eyebrow>The Genie Lamp</Eyebrow>
           <Display as={titleAs} className="mt-4">{heading}</Display>
           <Lede className="mt-5">{lede}</Lede>
-          <p className="mt-4 text-sm text-white">Put Genie in every room.</p>
+          <p className="mt-4 text-sm text-white">It takes the place of the room phone. Put one in every room.</p>
           <div className="mt-8 flex flex-wrap gap-2">
             {LAMP_LINES.map((item, itemIndex) => (
               <button
@@ -84,17 +84,29 @@ export function Lamp({
           ref={stage}
           onMouseMove={move}
           onMouseLeave={() => setTilt({ x: 0, y: 0 })}
-          className="flex min-h-[520px] items-center justify-center"
+          className="relative min-h-[560px] overflow-hidden rounded-[28px] border border-white/10 bg-[#1c140f]"
           style={{ perspective: "1200px" }}
         >
+          <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_60%_42%,rgba(255,214,170,0.28),transparent_58%)]" />
+          <div className="absolute top-0 bottom-[28%] left-0 w-[34%] bg-[#3a2a1e]" />
+          <div className="absolute bottom-0 left-0 h-[42%] w-[38%] rounded-tr-[28px] bg-[#f4efe8]" />
+          <div className="absolute bottom-[30%] left-[7%] h-14 w-[24%] rounded-xl bg-[#e7d7c6]" />
+          <div className="absolute right-0 bottom-0 left-[30%] h-[30%] bg-gradient-to-b from-[#a56b3d] to-[#4e3018]" />
+          <div className="absolute right-[8%] bottom-[31%] left-[36%] h-px bg-[#e7c39a]/40" />
+          <div className="absolute bottom-[46%] left-[6%] hidden max-w-[8.5rem] rounded-md bg-[#f7f1e8] px-2 py-1 text-[10px] leading-snug text-[#3a2a1e] shadow-sm sm:block">
+            No phone. Say Hey Genie.
+          </div>
           <div
-            className="relative w-[min(100%,520px)] transition-transform duration-200 ease-out"
+            className="absolute bottom-[22%] left-[54%] w-[min(52%,230px)] transition-transform duration-200 ease-out"
             style={{
-              transform: `rotateX(${(-tilt.y * 10).toFixed(2)}deg) rotateY(${(tilt.x * 14).toFixed(2)}deg)`,
+              transform: `translateX(-50%) rotateX(${(-tilt.y * 8).toFixed(2)}deg) rotateY(${(tilt.x * 10).toFixed(2)}deg)`,
             }}
           >
             <LampArt speaking={phase === "reply"} />
           </div>
+          <p className="absolute right-4 bottom-3 left-4 text-center text-xs text-[#f6e7d4]">
+            The nightstand, where the hotel telephone used to sit.
+          </p>
         </div>
       </div>
     </section>
@@ -102,90 +114,46 @@ export function Lamp({
 }
 
 export function LampArt({ speaking = false }: { speaking?: boolean }) {
-  const shell =
-    "M250 150c18-28 70-32 96-8 8 8 10 14 6 22-18 6-46 14-62 28 36 8 92 18 132 8 48-12 92-48 132-78 18-14 42-8 40 16-4 36-28 78-70 104 22 18 34 48 28 82-10 52-58 92-118 100-78 10-168-8-196-62-22-42-8-78 18-104-16-22-22-52-6-78 10-16 8-22 0-30z"
   return (
-    <svg viewBox="0 0 640 460" className="w-full overflow-visible" role="img" aria-label="A white 3D-printed genie lamp with a Nest Mini inside">
+    <svg viewBox="0 0 360 480" className="w-full overflow-visible" role="img" aria-label="A glossy white genie lamp with a footed base, a handled body, a pointed spout, and a vented lid">
       <defs>
-        <linearGradient id="white-shell" x1="0" y1="0" x2="1" y2="1">
+        <linearGradient id="glaze" x1="0" y1="0" x2="1" y2="1">
           <stop offset="0" stopColor="#ffffff" />
-          <stop offset="0.45" stopColor="#f3f5f8" />
-          <stop offset="1" stopColor="#d5dbe6" />
+          <stop offset="0.42" stopColor="#f4f6fa" />
+          <stop offset="1" stopColor="#c9d2e0" />
         </linearGradient>
-        <linearGradient id="nest-fabric" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0" stopColor="#c5c9d1" />
-          <stop offset="1" stopColor="#8d939c" />
-        </linearGradient>
-        <clipPath id="shell-clip">
-          <path d={shell} />
-        </clipPath>
-        <filter id="soft-shadow" x="-20%" y="-20%" width="140%" height="140%">
-          <feGaussianBlur stdDeviation="6" />
-        </filter>
+        <radialGradient id="glint" cx="30%" cy="28%" r="55%">
+          <stop offset="0" stopColor="#ffffff" />
+          <stop offset="0.4" stopColor="#ffffff" stopOpacity="0.2" />
+          <stop offset="1" stopColor="#ffffff" stopOpacity="0" />
+        </radialGradient>
       </defs>
-      <ellipse cx="330" cy="400" rx="170" ry="16" fill="#02040a" opacity="0.55" filter="url(#soft-shadow)" />
-      <path
-        d="M188 214c-62 8-78 78-28 112"
-        fill="none"
-        stroke="#f7f8fb"
-        strokeWidth="28"
-        strokeLinecap="round"
-      />
-      <path
-        d="M196 226c-42 8-50 52-16 74"
-        fill="none"
-        stroke="#e7ebf2"
-        strokeWidth="8"
-        strokeLinecap="round"
-      />
-      <path d={shell} fill="url(#white-shell)" />
-      <path d={shell} fill="none" stroke="#ffffff" strokeWidth="2" />
-      <g clipPath="url(#shell-clip)" opacity="0.28">
-        {Array.from({ length: 14 }).map((_, index) => (
-          <line
-            key={index}
-            x1="140"
-            x2="620"
-            y1={170 + index * 14}
-            y2={170 + index * 14}
-            stroke="#8ea0b8"
-            strokeWidth="1"
-          />
-        ))}
-      </g>
-      <path
-        d="M430 168c48-28 110-62 148-86 16-10 28 8 18 22-28 36-78 72-140 96"
-        fill="none"
-        stroke="#f7f8fb"
-        strokeWidth="34"
-        strokeLinecap="round"
-      />
-      <path
-        d="M560 92c28-22 48-6 36 16"
-        fill="none"
-        stroke="#f4f6fa"
-        strokeWidth="18"
-        strokeLinecap="round"
-      />
-      <ellipse cx="300" cy="268" rx="78" ry="48" fill="#121820" />
-      <ellipse cx="300" cy="274" rx="58" ry="28" fill="#e8eaee" />
-      <ellipse cx="300" cy="266" rx="50" ry="22" fill="url(#nest-fabric)" />
-      {Array.from({ length: 4 }).map((_, index) => {
-        const angle = (index / 4) * Math.PI * 2 - Math.PI / 2
-        return (
-          <circle
-            key={index}
-            cx={300 + Math.cos(angle) * 28}
-            cy={266 + Math.sin(angle) * 12}
-            r={speaking ? 3.2 : 2.4}
-            fill={speaking ? "#8fd7ff" : "#f4fbff"}
-            className={speaking ? "pulse-glow" : undefined}
-          />
-        )
-      })}
-      <ellipse cx="292" cy="258" rx="16" ry="6" fill="#ffffff" opacity="0.35" />
-      <ellipse cx="292" cy="168" rx="54" ry="16" fill="#f7f8fb" />
-      <ellipse cx="292" cy="154" rx="12" ry="10" fill="#ffffff" />
+      <ellipse cx="168" cy="452" rx="78" ry="14" fill="url(#glaze)" stroke="#d5dce8" />
+      <path d="M118 446c-2-52 16-86 50-92 34 6 52 40 50 92" fill="url(#glaze)" stroke="#d5dce8" />
+      {Array.from({ length: 6 }).map((_, index) => (
+        <line key={index} x1={132 + index * 12} y1="440" x2={146 + index * 8} y2="368" stroke="#ffffff" strokeOpacity="0.7" />
+      ))}
+      <ellipse cx="168" cy="300" rx="108" ry="78" fill="url(#glaze)" stroke="#d7deea" />
+      <ellipse cx="140" cy="276" rx="42" ry="26" fill="url(#glint)" />
+      <path d="M78 286c-42 4-52 62-8 84" fill="none" stroke="url(#glaze)" strokeWidth="16" strokeLinecap="round" />
+      <path d="M82 298c-24 6-28 36-4 48" fill="none" stroke="#ffffff" strokeWidth="3" strokeLinecap="round" />
+      <path d="M250 268c40-6 78 10 96 36 8 12-4 20-16 14-22-18-52-30-84-32z" fill="url(#glaze)" stroke="#d7deea" />
+      <path d="M330 292c22-36 40-78 28-118-4-10 8-16 16-8 18 36 8 96-20 140-8 12-22 6-24-14z" fill="url(#glaze)" stroke="#e7edf5" />
+      <ellipse cx="168" cy="214" rx="78" ry="36" fill="url(#glaze)" stroke="#d7deea" />
+      {[
+        [118, 214],
+        [143, 206],
+        [168, 202],
+        [193, 206],
+        [218, 214],
+      ].map(([x, y]) => (
+        <ellipse key={`${x}-${y}`} cx={x} cy={y} rx="9" ry="14" fill="#24180f" />
+      ))}
+      <ellipse cx="168" cy="204" rx="7" ry="5" fill="#b7bcc6" />
+      <circle cx="165" cy="203" r={speaking ? 2 : 1.4} fill={speaking ? "#9adfff" : "#f7fbff"} className={speaking ? "pulse-glow" : undefined} />
+      <circle cx="171" cy="203" r={speaking ? 2 : 1.4} fill={speaking ? "#9adfff" : "#f7fbff"} className={speaking ? "pulse-glow" : undefined} />
+      <path d="M168 168c-14 0-22 22-10 48h20c12-26 4-48-10-48z" fill="url(#glaze)" stroke="#e7edf5" />
+      <path d="M164 146c0 8 2 16 4 20 2-6 4-14 4-22-2-4-8-2-8 2z" fill="#ffffff" />
     </svg>
   )
 }
