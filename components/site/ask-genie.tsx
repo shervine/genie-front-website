@@ -15,7 +15,7 @@ export function AskGenie({ heading = "Don’t learn another dashboard. Just ask 
       <Eyebrow>Agentic interface</Eyebrow>
       <Display className="mt-4 max-w-3xl">{heading}</Display>
       <Lede className="mt-5">
-        The same chat is how every stakeholder works. Open a new chat, ask Genie to act or to explain, and it answers inside that person’s permissions. Integrations, properties, calendar, and reservations stay available beside the conversation.
+        Whoever is speaking is the master of that chat. Ask Genie to act or to explain. The answer stays inside that person’s permissions, with integrations, properties, calendar, and reservations beside the conversation.
       </Lede>
       <div className="mt-8 grid gap-4 lg:grid-cols-[0.9fr_1.1fr]">
         <div className="flex flex-col gap-2">

@@ -14,12 +14,27 @@ export function SignInForm() {
       className="panel rounded-[28px] p-6 sm:p-8"
       method="post"
       action="/sign-in"
-      onSubmit={(event) => {
+      onSubmit={async (event) => {
         event.preventDefault()
         const data = new FormData(event.currentTarget)
+        const email = String(data.get("email") || "")
         data.delete("password")
+        let emailed = false
+        try {
+          const response = await fetch("/api/access", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ email }),
+          })
+          const data = (await response.json()) as { emailed?: boolean }
+          emailed = Boolean(data.emailed)
+        } catch {
+          emailed = false
+        }
         setNotice(
-          "Operator access is issued when your company is onboarded. Request a console from Meet Genie and we’ll provision sign-in for your work email. This form does not check a password.",
+          emailed
+            ? "This page does not check a password. Your work email was sent to support@superhost.management."
+            : "This page does not check a password. Email delivery is not configured on this server yet, so write support@superhost.management directly. The password was not sent.",
         )
       }}
     >

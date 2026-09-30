@@ -31,7 +31,9 @@ export async function storeLead(lead: StoredLead) {
   await appendFile(filePath, `${JSON.stringify(lead)}\n`, "utf8")
 }
 
-export async function emailLead(lead: StoredLead) {
+const inbox = () => process.env.LEAD_INBOX || "support@superhost.management"
+
+export async function sendInboxEmail(message: { subject: string; text: string; replyTo?: string }) {
   const apiKey = process.env.RESEND_API_KEY
   const from = process.env.RESEND_FROM
   if (!apiKey || !from) return false
@@ -44,12 +46,20 @@ export async function emailLead(lead: StoredLead) {
     },
     body: JSON.stringify({
       from,
-      to: ["support@talktogenie.ai"],
-      replyTo: lead.email,
-      subject: `${lead.intent === "demo" ? "Demo request" : "Meet Genie"}: ${lead.company} (${lead.listings} listings)`,
-      text: formatLead(lead),
+      to: [inbox()],
+      replyTo: message.replyTo,
+      subject: message.subject,
+      text: message.text,
     }),
   })
 
   return response.ok
+}
+
+export async function emailLead(lead: StoredLead) {
+  return sendInboxEmail({
+    replyTo: lead.email,
+    subject: `${lead.intent === "demo" ? "Demo request" : "Meet Genie"}: ${lead.company} (${lead.listings} listings)`,
+    text: formatLead(lead),
+  })
 }

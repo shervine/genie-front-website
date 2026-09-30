@@ -24,14 +24,15 @@ npm run build
 
 Meet Genie submissions are validated and appended to `data/leads.jsonl` (gitignored).
 
-To also email `support@talktogenie.ai`, set both variables in `.env.local`:
+Meet Genie and sign-in requests are addressed to `support@superhost.management`. To actually send them, set these in `.env.local` on the host:
 
 ```bash
 RESEND_API_KEY=re_xxxxxxxx
 RESEND_FROM="TalkToGenie <onboarding@your-verified-domain>"
+LEAD_INBOX=support@superhost.management
 ```
 
-`RESEND_FROM` must be a sender Resend has verified. If either variable is missing, the lead is stored and the visitor still sees a confirmation. The form does not invent a calendar booking; demo requests are followed up by email.
+`RESEND_FROM` must be a sender Resend has verified. If the key or sender is missing, the Meet Genie lead is still stored and the visitor still sees a confirmation, but no email goes out. The form does not invent a calendar booking. Sign-in never sends the password.
 
 ## Pricing shown on the site
 

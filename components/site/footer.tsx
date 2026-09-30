@@ -11,11 +11,11 @@ export function SiteFooter() {
             TalkToGenie.ai
           </Link>
           <p className="mt-4 max-w-md text-sm leading-relaxed text-mist">
-            The autonomous operating layer for hospitality. Connect the stack you already use, set your policies, and let Genie do the work.
+            The autonomous operating layer for hospitality. Connect the stack, set the rules, and make the wish.
           </p>
           <p className="mt-4 text-sm text-mist">
-            <a className="text-white underline-offset-4 hover:underline" href="mailto:support@talktogenie.ai">
-              support@talktogenie.ai
+            <a className="text-white underline-offset-4 hover:underline" href="mailto:support@superhost.management">
+              support@superhost.management
             </a>
           </p>
         </div>

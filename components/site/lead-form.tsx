@@ -42,6 +42,7 @@ export function LeadForm({
   const [message, setMessage] = useState("")
   const [pending, setPending] = useState(false)
   const [done, setDone] = useState(false)
+  const [emailed, setEmailed] = useState(false)
 
   async function onSubmit(event: React.FormEvent) {
     event.preventDefault()
@@ -75,17 +76,19 @@ export function LeadForm({
       })
       const data = (await response.json()) as {
         ok?: boolean
+        emailed?: boolean
         message?: string
         fieldErrors?: FieldErrors
       }
       if (!response.ok || !data.ok) {
         setErrors(data.fieldErrors ?? {})
-        setMessage(data.message || "We couldn’t send that. Email support@talktogenie.ai.")
+        setMessage(data.message || "We couldn’t send that. Email support@superhost.management.")
         return
       }
+      setEmailed(Boolean(data.emailed))
       setDone(true)
     } catch {
-      setMessage("We couldn’t reach the server. Email support@talktogenie.ai and include your portfolio size.")
+      setMessage("We couldn’t reach the server. Email support@superhost.management and include your portfolio size.")
     } finally {
       setPending(false)
     }
@@ -97,17 +100,17 @@ export function LeadForm({
         <div>
           <Eyebrow>{intent === "demo" ? "Book a demo" : "Onboarding"}</Eyebrow>
           <Display as={titleAs} className="mt-4">
-            Meet your new AI operations team.
+            Tell me the wish.
           </Display>
           <Lede className="mt-5">
             {intent === "demo"
-              ? "Tell us how you operate. We’ll reply by email to find a time. A calendar isn’t connected on this site."
-              : "Tell us how you operate. Connect the stack, configure Genie, and begin onboarding from there."}
+              ? "Tell me how the operation runs. I’ll have the team reply to find a time. A calendar isn’t connected on this page."
+              : "Tell me the shape of the company. I’ll take the wish to the team, and onboarding starts from there."}
           </Lede>
           <ol className="mt-8 space-y-4 text-sm text-mist">
-            <li className="text-white">1. We read the shape of the operation.</li>
-            <li>2. We reply to your work email.</li>
-            <li>3. You connect systems and set the policies Genie is allowed to execute.</li>
+            <li className="text-white">1. I read how you operate.</li>
+            <li>2. The team replies to your work email.</li>
+            <li>3. You connect the stack, and I start granting the work you allow.</li>
           </ol>
         </div>
 
@@ -116,6 +119,11 @@ export function LeadForm({
             <p className="font-display text-4xl text-white">Your wish has been received. 🧞‍♂️</p>
             <p className="mt-4 text-mist">
               We’ll reply to {email} about {company}.
+            </p>
+            <p className="mt-3 text-sm text-mist">
+              {emailed
+                ? "Sent to support@superhost.management."
+                : "Email delivery is not configured on this server yet. Write support@superhost.management directly so the wish is not waiting on a missing mail key."}
             </p>
             {intent === "demo" ? (
               <p className="mt-3 text-sm text-mist">
@@ -219,7 +227,7 @@ export function LeadForm({
               {pending ? "Sending…" : "Meet Genie"}
             </Button>
             <p className="mt-3 text-xs leading-relaxed text-[#8ea0c3]">
-              This sends your details to the TalkToGenie team at support@talktogenie.ai so we can follow up. It does not create an account.
+              This sends your wish to support@superhost.management so the team can follow up. It does not create an account.
             </p>
           </form>
         )}

@@ -23,7 +23,7 @@ export async function POST(request: Request) {
     return Response.json(
       {
         ok: false,
-        message: "Please wait a few minutes, or email support@talktogenie.ai.",
+        message: "Please wait a few minutes, or email support@superhost.management.",
       },
       { status: 429 },
     )
@@ -70,7 +70,7 @@ export async function POST(request: Request) {
     return Response.json(
       {
         ok: false,
-        message: "We couldn’t store that. Email support@talktogenie.ai and we’ll take it from there.",
+        message: "We couldn’t store that. Email support@superhost.management and we’ll take it from there.",
       },
       { status: 500 },
     )

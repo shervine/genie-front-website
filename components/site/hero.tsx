@@ -37,7 +37,7 @@ export function Hero() {
             <span className="text-shimmer mt-1 block italic">On Autopilot.</span>
           </h1>
           <p className="mt-6 max-w-xl text-base leading-relaxed text-mist sm:text-lg">
-            Connect your hospitality stack, define your policies, and let Genie handle guest communication, operations, tasks, upsells, and reservation reconciliation — automatically.
+            Connect the stack and set the rules. Then make a wish. Genie grants the messages, the tasks, the upsells, and the money on every reservation.
           </p>
           <div className="mt-8 flex flex-col gap-3 sm:flex-row">
             <Link href="/meet" className={buttonVariants({ className: "h-12 rounded-full px-6 text-sm" })}>
@@ -54,7 +54,7 @@ export function Hero() {
             </Link>
           </div>
           <div className="mt-8 flex flex-wrap gap-2 text-xs text-[#d5def3]">
-            {["Connect your stack", "Set your policies", "Genie does the work"].map((item) => (
+            {["Connect your stack", "Set your rules", "Make a wish"].map((item) => (
               <span key={item} className="rounded-full border border-white/10 bg-white/5 px-3 py-1.5">
                 {item}
               </span>
