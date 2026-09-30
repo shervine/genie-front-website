@@ -114,8 +114,13 @@ export function GenieWorkspace() {
             </button>
           ))}
         </div>
-        <button type="button" onClick={startNew} className="shrink-0 text-[13px] text-ink hover:text-[#123848]">
-          New chat
+        <button
+          type="button"
+          onClick={startNew}
+          aria-label="New chat"
+          className="grid size-11 shrink-0 place-items-center rounded-full bg-[#e8c56a] text-2xl leading-none font-medium text-[#123848] shadow-[0_8px_20px_rgba(201,150,46,0.35)]"
+        >
+          +
         </button>
       </div>
 
@@ -136,7 +141,6 @@ export function GenieWorkspace() {
               aria-pressed={chatId === item.id}
             >
               <span className="block truncate text-[13px] text-ink">{item.title}</span>
-              <span className="block truncate text-[11px] text-mist">{item.role}</span>
             </button>
           ))}
         </div>
@@ -165,9 +169,14 @@ export function GenieWorkspace() {
                 </div>
               ) : (
                 <>
-                  <p className="ml-auto max-w-[85%] rounded-3xl bg-[#fff1c9] px-4 py-2.5 text-sm leading-relaxed text-ink">
-                    {fresh?.ask ?? saved?.ask}
-                  </p>
+                  <div className="ml-auto max-w-[85%]">
+                    {saved && !fresh ? (
+                      <p className="mb-1 text-right text-[11px] tracking-[0.14em] text-glow uppercase">{saved.role}</p>
+                    ) : null}
+                    <p className="rounded-3xl bg-[#fff1c9] px-4 py-2.5 text-sm leading-relaxed text-ink">
+                      {fresh?.ask ?? saved?.ask}
+                    </p>
+                  </div>
                   <div>
                     <p className="text-[13px] text-[#b8860b]">Genie · {activeApp.note}</p>
                     {saved && !fresh ? (

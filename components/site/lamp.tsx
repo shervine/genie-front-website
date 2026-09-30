@@ -8,7 +8,7 @@ import { cn } from "@/lib/utils"
 
 export function Lamp({
   heading = "The hotel telephone, replaced.",
-  lede = "A shiny genie lamp sits on the bedside table between two queen beds. Guests say “Hey Genie” instead of picking up a handset. No extra app.",
+  lede = "Say “Hey Genie.” A live concierge answers in the room: knowledgeable, connected to your APIs, and ready to act. With the guest’s card on file and their say-so, a wish can become a DoorDash order, an Amazon delivery, or an Instacart run.",
   titleAs = "h2",
 }: {
   heading?: string
@@ -33,7 +33,9 @@ export function Lamp({
           <Eyebrow>The Genie Lamp</Eyebrow>
           <Display as={titleAs} className="mt-4">{heading}</Display>
           <Lede className="mt-5">{lede}</Lede>
-          <p className="mt-4 text-sm text-ink">Between the beds, where the room phone used to sit. Put one in every room.</p>
+          <p className="mt-4 text-sm text-ink">
+            One lamp between two queen beds, where the hotel phone used to sit. Another on the kitchen counter of a house. Same trigger. Same concierge.
+          </p>
           <div className="mt-8 flex flex-wrap gap-2">
             {LAMP_LINES.map((item, itemIndex) => (
               <button
@@ -71,19 +73,24 @@ export function Lamp({
           <SampleNote className="mt-4" />
         </div>
 
-        <figure className="relative overflow-hidden rounded-[28px] border border-[#d4af37]/35 shadow-[0_24px_60px_rgba(18,56,72,0.12)]">
+        <div className="flex flex-col gap-4">
           <Image
             src="/hotel-bedside-lamp.jpg"
             alt="A shiny genie lamp glowing on the nightstand between two queen beds in a hotel room"
             width={1280}
             height={720}
-            className="h-auto w-full"
+            className="h-auto w-full rounded-[28px] border border-[#d4af37]/35 shadow-[0_24px_60px_rgba(18,56,72,0.12)]"
             sizes="(min-width: 1024px) 640px, 100vw"
           />
-          <figcaption className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-[#123848]/75 to-transparent px-4 pt-16 pb-4 text-sm text-white">
-            Between two queen beds, where the hotel telephone used to sit.
-          </figcaption>
-        </figure>
+          <Image
+            src="/airbnb-kitchen-lamp.jpg"
+            alt="The same shiny genie lamp on the kitchen counter of a larger vacation house"
+            width={1280}
+            height={720}
+            className="h-auto w-full rounded-[28px] border border-[#d4af37]/35 shadow-[0_24px_60px_rgba(18,56,72,0.12)]"
+            sizes="(min-width: 1024px) 640px, 100vw"
+          />
+        </div>
       </div>
     </section>
   )

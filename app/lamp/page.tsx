@@ -14,12 +14,12 @@ export default function LampPage() {
       <Lamp
         titleAs="h1"
         heading="The hotel telephone, replaced."
-        lede="The shiny genie lamp on the bedside table, between two queen beds. Guests say “Hey Genie.” They don’t pick up a handset or download an app."
+        lede="Say “Hey Genie.” The lamp is a live concierge: knowledgeable, tied into your APIs, and able to act. With the guest’s card on file and their say-so, a prompt can order from DoorDash, Amazon, or Instacart."
       />
       <Section className="pt-0">
         <div className="grid gap-4 md:grid-cols-3">
           {[
-            ["Between the beds", "One nightstand, two queen beds, and the lamp where the hotel telephone used to be. Wi-Fi, parking, the hot tub, a late checkout — out loud."],
+            ["Two kinds of stay", "Between two queen beds in a hotel, or on the kitchen counter of a house. Say “Hey Genie,” and the same concierge answers."],
             ["Same rules", "A voice request is meant to follow the same policies as a text. “Send maintenance” should become a task, not a novelty."],
             ["No second product", "The lamp is the physical edge of the operating layer. It is not a separate chatbot with a different brain."],
           ].map(([title, body]) => (

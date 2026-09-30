@@ -24,15 +24,19 @@ npm run build
 
 Meet Genie submissions are validated and appended to `data/leads.jsonl` (gitignored).
 
-Meet Genie and sign-in requests are addressed to `support@superhost.management`. To actually send them, set these in `.env.local` on the host:
+Every Meet Genie and sign-in submission is stored as a row in `data/submissions.json` (and appended to `data/leads.jsonl`). Both files are gitignored.
+
+A copy is also emailed to `support@superhost.management` through Amazon SES, from `support@mench.com`, when these are set in `.env.local`:
 
 ```bash
-RESEND_API_KEY=re_xxxxxxxx
-RESEND_FROM="TalkToGenie <onboarding@your-verified-domain>"
+AWS_ACCESS_KEY_ID=
+AWS_SECRET_ACCESS_KEY=
+AWS_REGION=us-west-2
+SES_FROM=support@mench.com
 LEAD_INBOX=support@superhost.management
 ```
 
-`RESEND_FROM` must be a sender Resend has verified. If the key or sender is missing, the Meet Genie lead is still stored and the visitor still sees a confirmation, but no email goes out. The form does not invent a calendar booking. Sign-in never sends the password.
+The sender must be verified in that SES region. Sign-in never sends the password. If mail credentials are missing, the row is still stored and the visitor is told to write the inbox directly.
 
 ## Pricing shown on the site
 

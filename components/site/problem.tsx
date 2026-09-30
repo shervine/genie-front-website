@@ -20,7 +20,7 @@ export function Problem() {
     <Section id="problem">
       <Eyebrow>The problem</Eyebrow>
       <Display className="mt-4 max-w-4xl">
-        Your hospitality business shouldn’t require 20 dashboards to operate.
+        Every Message Answered. Task Done. Dollar Tracked.
       </Display>
       <Lede className="mt-5">
         The problem isn’t a lack of software. It is fragmentation. Data, teams, and money live in different places, and people spend the day moving them by hand.
@@ -53,7 +53,7 @@ export function Problem() {
           )}
           aria-pressed={layered}
         >
-          Systems → Genie → Actions
+          With Genie
         </button>
       </div>
 

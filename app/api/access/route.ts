@@ -1,4 +1,4 @@
-import { sendInboxEmail } from "@/lib/lead-store"
+import { sendInboxEmail, storeRow } from "@/lib/lead-store"
 
 export const runtime = "nodejs"
 
@@ -18,7 +18,8 @@ export async function POST(request: Request) {
     return Response.json({ ok: false, message: "Add a work email." }, { status: 400 })
   }
 
-  const text = [`Access request`, `Email: ${clean}`, `Submitted: ${new Date().toISOString()}`].join("\n")
+  const createdAt = new Date().toISOString()
+  const text = [`Access request`, `Email: ${clean}`, `Submitted: ${createdAt}`].join("\n")
   let emailed = false
   try {
     emailed = await sendInboxEmail({
@@ -28,6 +29,15 @@ export async function POST(request: Request) {
     })
   } catch {
     emailed = false
+  }
+  const row = { id: crypto.randomUUID(), type: "sign-in", email: clean, createdAt, emailed }
+  try {
+    await storeRow(row)
+  } catch {
+    return Response.json(
+      { ok: false, emailed, message: "We couldn’t store that. Email support@superhost.management." },
+      { status: 500 },
+    )
   }
 
   console.info(`access request emailed=${emailed}`)
