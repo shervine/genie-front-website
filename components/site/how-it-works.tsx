@@ -40,8 +40,8 @@ export function HowItWorks({ intro = true }: { intro?: boolean }) {
       <ol className="mt-10 grid gap-4 md:grid-cols-3">
         {STEPS.map((step) => (
           <li key={step.n} className="panel rounded-[24px] p-6">
-            <p className="font-display text-3xl text-[#b7dcff]">{step.n}</p>
-            <h3 className="mt-4 text-xl text-white">{step.title}</h3>
+            <p className="font-display text-3xl text-[#b8860b]">{step.n}</p>
+            <h3 className="mt-4 text-xl text-ink">{step.title}</h3>
             <p className="mt-2 text-sm leading-relaxed text-mist">{step.body}</p>
           </li>
         ))}
@@ -50,7 +50,7 @@ export function HowItWorks({ intro = true }: { intro?: boolean }) {
       <div className="mt-14">
         <div className="flex flex-wrap items-end justify-between gap-4">
           <div>
-            <h3 className="font-display text-3xl text-white sm:text-4xl">Observe → Copilot → Autopilot</h3>
+            <h3 className="font-display text-3xl text-ink sm:text-4xl">Observe → Copilot → Autopilot</h3>
             <p className="mt-3 max-w-2xl text-sm leading-relaxed text-mist">
               Enterprise teams don’t have to flip the whole company to autonomous on day one. Set the mode at the company, a department, a workflow, or a single policy.
             </p>
@@ -64,7 +64,7 @@ export function HowItWorks({ intro = true }: { intro?: boolean }) {
               onClick={() => setMode(item.id)}
               className={cn(
                 "rounded-full px-4 py-2 text-sm",
-                mode === item.id ? "bg-white text-[#08111f]" : "border border-white/15 text-mist",
+                mode === item.id ? "bg-[#e8c56a] text-[#123848]" : "border border-[#2eafd0]/30 text-mist",
               )}
               aria-pressed={mode === item.id}
             >
@@ -80,7 +80,7 @@ export function HowItWorks({ intro = true }: { intro?: boolean }) {
               onClick={() => setScope(item)}
               className={cn(
                 "rounded-full px-3 py-1.5 text-xs tracking-wide uppercase",
-                scope === item ? "bg-[#16324a] text-white" : "text-mist hover:text-white",
+                scope === item ? "bg-[#d7f0f8] text-ink" : "text-mist hover:text-[#123848]",
               )}
               aria-pressed={scope === item}
             >
@@ -92,7 +92,7 @@ export function HowItWorks({ intro = true }: { intro?: boolean }) {
           <p className="text-xs tracking-[0.18em] text-glow uppercase">
             {scope} · {activeMode.label}
           </p>
-          <p className="mt-3 max-w-2xl text-lg text-white">{activeMode.body}</p>
+          <p className="mt-3 max-w-2xl text-lg text-ink">{activeMode.body}</p>
           <p className="mt-3 text-sm text-mist">
             {scope === "Policy" && mode === "autopilot"
               ? "Example: refunds under $100 execute. Refunds over $100 stay on Copilot."
@@ -105,7 +105,7 @@ export function HowItWorks({ intro = true }: { intro?: boolean }) {
 
       <div className="mt-14" onMouseEnter={() => setPaused(true)} onMouseLeave={() => setPaused(false)}>
         <div className="flex items-center justify-between gap-3">
-          <h3 className="font-display text-3xl text-white sm:text-4xl">A night on Autopilot</h3>
+          <h3 className="font-display text-3xl text-ink sm:text-4xl">A night on Autopilot</h3>
           <SimBadge />
         </div>
         <div className="mt-6 grid gap-4 lg:grid-cols-[240px_1fr]">
@@ -117,27 +117,27 @@ export function HowItWorks({ intro = true }: { intro?: boolean }) {
                 onClick={() => setEventId(item.id)}
                 className={cn(
                   "min-w-44 rounded-2xl border px-4 py-3 text-left lg:min-w-0",
-                  event.id === item.id ? "border-[#8ec8ff]/50 bg-[#10203a]" : "border-white/10 hover:border-white/25",
+                  event.id === item.id ? "border-[#e0b15a] bg-[#e7f4fa]" : "border-[#d4af37]/35 hover:border-[#2eafd0]/50",
                 )}
                 aria-pressed={event.id === item.id}
               >
                 <span className="block text-[11px] tracking-[0.16em] text-glow uppercase">{item.kind}</span>
-                <span className="mt-1 block text-sm text-white">{item.title}</span>
+                <span className="mt-1 block text-sm text-ink">{item.title}</span>
               </button>
             ))}
           </div>
           <div className="panel rounded-[24px] p-6">
             <p className="text-sm text-mist">{event.source}</p>
-            <p className="mt-2 text-2xl text-white">{event.title}</p>
+            <p className="mt-2 text-2xl text-ink">{event.title}</p>
             <ol className="mt-5 space-y-3">
               {event.steps.map((step, index) => (
-                <li key={step} className="flex gap-3 text-sm text-[#d5def3]">
-                  <span className="font-display text-[#8ec8ff]">{index + 1}</span>
+                <li key={step} className="flex gap-3 text-sm text-ink">
+                  <span className="font-display text-[#0e7f9c]">{index + 1}</span>
                   <span>{step}</span>
                 </li>
               ))}
             </ol>
-            <p className="mt-5 rounded-2xl bg-white/5 px-4 py-3 text-sm text-white">{event.outcome}</p>
+            <p className="mt-5 rounded-2xl bg-white/80 px-4 py-3 text-sm text-ink">{event.outcome}</p>
           </div>
         </div>
       </div>

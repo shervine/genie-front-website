@@ -46,25 +46,25 @@ export function Reconciliation() {
           <div className="flex items-center justify-between gap-3">
             <div>
               <p className="text-xs tracking-[0.16em] text-glow uppercase">Matched</p>
-              <h3 className="mt-1 text-lg text-white">BK-10482 · Villa Sol · Booking.com</h3>
+              <h3 className="mt-1 text-lg text-ink">BK-10482 · Villa Sol · Booking.com</h3>
             </div>
             <SimBadge />
           </div>
           <dl className="mt-5 space-y-2">
             {RECON_LINES.slice(0, count).map(([label, value]) => (
-              <div key={label} className="flex items-center justify-between gap-4 border-b border-white/8 pb-2 text-sm">
+              <div key={label} className="flex items-center justify-between gap-4 border-b border-[#2eafd0]/20 pb-2 text-sm">
                 <dt className="text-mist">{label}</dt>
-                <dd className="text-white">{value}</dd>
+                <dd className="text-ink">{value}</dd>
               </div>
             ))}
           </dl>
           {count >= RECON_LINES.length ? (
-            <p className="mt-4 text-sm text-[#9be7cf]">Reconciled</p>
+            <p className="mt-4 text-sm text-[#0f7a4a]">Reconciled</p>
           ) : null}
         </article>
-        <article className="rounded-[28px] border border-[#d5ccff]/30 bg-[#141226] p-6">
-          <p className="text-xs tracking-[0.16em] text-[#d5ccff] uppercase">Exception</p>
-          <h3 className="mt-1 text-lg text-white">AB-2291 · Unit 214 · Airbnb</h3>
+        <article className="rounded-[28px] border border-[#e0b15a]/50 bg-[#fff6e8] p-6">
+          <p className="text-xs tracking-[0.16em] text-[#b8860b] uppercase">Exception</p>
+          <h3 className="mt-1 text-lg text-ink">AB-2291 · Unit 214 · Airbnb</h3>
           <dl className="mt-5 space-y-2 text-sm">
             <Row label="Expected payout" value="$2,480" />
             <Row label="Actual payout" value="$2,110" />
@@ -85,9 +85,9 @@ export function Reconciliation() {
 
 function Row({ label, value }: { label: string; value: string }) {
   return (
-    <div className="flex items-center justify-between gap-4 border-b border-white/10 pb-2">
+    <div className="flex items-center justify-between gap-4 border-b border-[#d4af37]/35 pb-2">
       <dt className="text-mist">{label}</dt>
-      <dd className="text-white">{value}</dd>
+      <dd className="text-ink">{value}</dd>
     </div>
   )
 }

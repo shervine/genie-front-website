@@ -29,7 +29,7 @@ export function AskGenie({ heading = "Don’t learn another dashboard. Just ask 
               }}
               className={cn(
                 "rounded-2xl border px-4 py-3 text-left text-sm",
-                item.id === prompt.id ? "border-[#8ec8ff]/50 bg-[#10203a] text-white" : "border-white/10 text-mist hover:border-white/25 hover:text-white",
+                item.id === prompt.id ? "border-[#e0b15a] bg-[#e7f4fa] text-ink" : "border-[#d4af37]/35 text-mist hover:border-[#2eafd0]/50 hover:text-[#123848]",
               )}
               aria-pressed={item.id === prompt.id}
             >
@@ -42,16 +42,16 @@ export function AskGenie({ heading = "Don’t learn another dashboard. Just ask 
             <p className="text-xs tracking-[0.16em] text-glow uppercase">{prompt.role} · sample permissions</p>
             <SimBadge />
           </div>
-          <div className="mt-5 ml-auto max-w-md rounded-2xl bg-white px-4 py-3 text-sm text-[#08111f]">
+          <div className="mt-5 ml-auto max-w-md rounded-2xl bg-[#fff1c9] px-4 py-3 text-sm text-[#123848]">
             {prompt.prompt}
           </div>
-          <div className="mt-3 max-w-xl rounded-2xl bg-[#123049] px-4 py-4 text-sm leading-relaxed text-white">
+          <div className="mt-3 max-w-xl rounded-2xl bg-[#e5f6fb] px-4 py-4 text-sm leading-relaxed text-ink">
             {prompt.summary}
             <dl className="mt-4 space-y-2">
               {prompt.rows.map(([label, value]) => (
-                <div key={label} className="flex items-start justify-between gap-4 border-t border-white/10 pt-2">
-                  <dt className="text-[#d5e8ff]">{label}</dt>
-                  <dd className="text-right text-white">{value}</dd>
+                <div key={label} className="flex items-start justify-between gap-4 border-t border-[#d4af37]/35 pt-2">
+                  <dt className="text-[#0e6f86]">{label}</dt>
+                  <dd className="text-right text-ink">{value}</dd>
                 </div>
               ))}
             </dl>
@@ -62,12 +62,12 @@ export function AskGenie({ heading = "Don’t learn another dashboard. Just ask 
               <button
                 type="button"
                 onClick={() => setSent(true)}
-                className="rounded-full bg-white px-4 py-2 text-sm text-[#08111f]"
+                className="rounded-full bg-[#e8c56a] px-4 py-2 text-sm text-[#123848]"
               >
                 {prompt.action}
               </button>
               {sent ? (
-                <p className="mt-3 text-sm text-white">
+                <p className="mt-3 text-sm text-ink">
                   6 offers queued in this sample. No messages were sent from this website.
                 </p>
               ) : null}

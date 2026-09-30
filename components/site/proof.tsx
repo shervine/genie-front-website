@@ -16,10 +16,10 @@ export function Proof() {
       <Lede className="mt-5">
         When operators are live, this is where verified results belong. Not before.
       </Lede>
-      <ul className="mt-8 divide-y divide-white/10 rounded-[28px] border border-white/10">
+      <ul className="mt-8 divide-y divide-white/10 rounded-[28px] border border-[#d4af37]/35">
         {METRICS.map((metric) => (
           <li key={metric} className="flex flex-col gap-1 px-5 py-4 sm:flex-row sm:items-center sm:justify-between">
-            <span className="text-white">{metric}</span>
+            <span className="text-ink">{metric}</span>
             <span className="text-sm text-mist">Published with the operator</span>
           </li>
         ))}

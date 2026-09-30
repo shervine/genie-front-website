@@ -45,7 +45,7 @@ export function Display({
   return (
     <Tag
       className={cn(
-        "font-display text-[clamp(2.4rem,5vw,4.4rem)] leading-[0.98] font-bold tracking-[-0.035em] text-white",
+        "font-display text-[clamp(2.4rem,5vw,4.4rem)] leading-[0.98] font-bold tracking-[-0.035em] text-ink",
         className,
       )}
     >
@@ -64,7 +64,7 @@ export function Lede({ children, className }: { children: React.ReactNode; class
 
 export function SampleNote({ className }: { className?: string }) {
   return (
-    <p className={cn("text-xs leading-relaxed text-[#8ea0c3]", className)}>
+    <p className={cn("text-xs leading-relaxed text-mist", className)}>
       Harbor & Co. is a fictional portfolio used to show the interaction. It is not a customer, and these figures are not results.
     </p>
   )
@@ -72,7 +72,7 @@ export function SampleNote({ className }: { className?: string }) {
 
 export function SimBadge() {
   return (
-    <span className="rounded-full border border-white/15 bg-white/5 px-2 py-0.5 text-[10px] font-medium tracking-[0.16em] text-white/70 uppercase">
+    <span className="rounded-full border border-[#2eafd0]/30 bg-white/80 px-2 py-0.5 text-[10px] font-medium tracking-[0.16em] text-ink/70 uppercase">
       Simulation
     </span>
   )

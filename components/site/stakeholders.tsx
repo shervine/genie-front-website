@@ -24,11 +24,11 @@ export function Stakeholders() {
             onClick={() => setId(item.id)}
             className={cn(
               "rounded-[22px] border px-4 py-4 text-left",
-              item.id === person.id ? "border-[#8ec8ff]/50 bg-[#10203a]" : "border-white/10 hover:border-white/25",
+              item.id === person.id ? "border-[#e0b15a] bg-[#e7f4fa]" : "border-[#d4af37]/35 hover:border-[#2eafd0]/50",
             )}
             aria-pressed={item.id === person.id}
           >
-            <span className="block text-base text-white">{item.label}</span>
+            <span className="block text-base text-ink">{item.label}</span>
             <span className="mt-1 block text-sm text-mist">{item.line}</span>
           </button>
         ))}
@@ -38,12 +38,12 @@ export function Stakeholders() {
           <p className="text-sm text-glow">{person.label}</p>
           <SimBadge />
         </div>
-        <p className="mt-4 max-w-xl rounded-2xl bg-white px-4 py-3 text-sm text-[#08111f]">{person.ask}</p>
-        <p className="mt-3 max-w-2xl rounded-2xl bg-[#123049] px-4 py-3 text-sm leading-relaxed text-white">
+        <p className="mt-4 max-w-xl rounded-2xl bg-[#fff1c9] px-4 py-3 text-sm text-[#123848]">{person.ask}</p>
+        <p className="mt-3 max-w-2xl rounded-2xl bg-[#e5f6fb] px-4 py-3 text-sm leading-relaxed text-ink">
           {person.answer}
         </p>
         <p className="mt-4 text-sm text-mist">
-          <span className="text-white">Permissions. </span>
+          <span className="text-ink">Permissions. </span>
           {person.sees}
         </p>
       </div>

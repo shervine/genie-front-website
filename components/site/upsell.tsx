@@ -22,7 +22,7 @@ export function Upsell() {
       <div className="panel mt-10 grid gap-6 rounded-[28px] p-6 lg:grid-cols-[1.1fr_0.9fr]">
         <div>
           <div className="flex items-center justify-between">
-            <p className="text-sm text-white">Early check-in · Unit 214</p>
+            <p className="text-sm text-ink">Early check-in · Unit 214</p>
             <SimBadge />
           </div>
           <div className="mt-4 space-y-3">
@@ -30,7 +30,7 @@ export function Upsell() {
               <p
                 key={line.text}
                 className={`rise max-w-lg rounded-2xl px-4 py-3 text-sm leading-relaxed ${
-                  line.from === "Genie" ? "bg-[#123049] text-white" : "bg-white text-[#08111f]"
+                  line.from === "Genie" ? "bg-[#e5f6fb] text-ink" : "bg-[#e8c56a] text-[#123848]"
                 }`}
                 style={{ animationDelay: `${index * 450}ms` }}
               >
@@ -46,7 +46,7 @@ export function Upsell() {
             {UPSELL_STEPS.map((item, index) => (
               <li
                 key={item}
-                className="rise rounded-2xl border border-[#7ee0c6]/40 px-4 py-3 text-sm text-white"
+                className="rise rounded-2xl border border-[#2eafd0] px-4 py-3 text-sm text-ink"
                 style={{ animationDelay: `${(LINES.length + index) * 450}ms` }}
               >
                 ✓ {item}

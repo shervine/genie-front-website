@@ -54,7 +54,7 @@ export function SignInForm() {
       {notice ? <p className="mt-4 text-sm leading-relaxed text-mist">{notice}</p> : null}
       <p className="mt-4 text-sm text-mist">
         New operator?{" "}
-        <Link href="/meet" className="text-white underline-offset-4 hover:underline">
+        <Link href="/meet" className="text-ink underline-offset-4 hover:underline">
           Meet Genie
         </Link>
       </p>

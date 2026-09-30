@@ -18,7 +18,7 @@ export default function NotFound() {
           href="/meet"
           className={buttonVariants({
             variant: "outline",
-            className: "h-11 rounded-full border-white/15 px-5 text-white hover:bg-white/10 hover:text-white",
+            className: "h-11 rounded-full border-[#2eafd0]/30 px-5 text-ink hover:bg-[#fff4d6] hover:text-[#123848]",
           })}
         >
           Meet Genie

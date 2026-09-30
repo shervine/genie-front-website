@@ -33,24 +33,24 @@ export function Pricing({
         {PRICING_BANDS.map((item) => (
           <article key={item.id} className="panel flex flex-col rounded-[28px] p-6">
             <p className="text-sm text-mist">{item.label}</p>
-            <p className="mt-6 font-display text-5xl text-white">
+            <p className="mt-6 font-display text-5xl text-ink">
               {usd(item.price)}
             </p>
-            <p className="mt-2 text-sm text-[#d7ecff]">per listing / month</p>
+            <p className="mt-2 text-sm text-[#0e6f86]">per listing / month</p>
             <p className="mt-4 text-sm leading-relaxed text-mist">{item.detail}</p>
           </article>
         ))}
       </div>
-      <div className="mt-4 rounded-[28px] border border-white/10 px-6 py-5">
-        <p className="text-white">2,000+ listings? Talk to us about enterprise pricing.</p>
-        <Link href="/meet?intent=demo" className="mt-3 inline-flex text-sm text-[#b7dcff] underline-offset-4 hover:underline">
+      <div className="mt-4 rounded-[28px] border border-[#d4af37]/35 px-6 py-5">
+        <p className="text-ink">2,000+ listings? Talk to us about enterprise pricing.</p>
+        <Link href="/meet?intent=demo" className="mt-3 inline-flex text-sm text-[#b8860b] underline-offset-4 hover:underline">
           Start that conversation
         </Link>
       </div>
 
       {detailed ? (
         <div className="panel mt-8 rounded-[28px] p-6">
-          <h3 className="text-xl text-white">Estimate the published rate</h3>
+          <h3 className="text-xl text-ink">Estimate the published rate</h3>
           <div className="mt-4 grid gap-4 sm:max-w-xs">
             <Label htmlFor="listing-count">Number of listings</Label>
             <Input
@@ -63,12 +63,12 @@ export function Pricing({
           </div>
           {monthly && band && rate ? (
             <div className="mt-5">
-              <p className="font-display text-4xl text-white">{usd(monthly)}<span className="text-lg text-mist"> / month</span></p>
+              <p className="font-display text-4xl text-ink">{usd(monthly)}<span className="text-lg text-mist"> / month</span></p>
               <p className="mt-2 text-sm text-mist">
                 {count.toLocaleString("en-US")} listings in the {band.label.toLowerCase()} band at {usd(rate)} each.
               </p>
               {enterprise ? (
-                <p className="mt-2 text-sm text-[#d5ccff]">
+                <p className="mt-2 text-sm text-[#b8860b]">
                   Portfolios of 2,000 or more are priced in conversation. This figure uses the published 101+ rate and is not an enterprise quote.
                 </p>
               ) : null}
@@ -79,7 +79,7 @@ export function Pricing({
         </div>
       ) : (
         <p className="mt-4 text-sm text-mist">
-          <Link href="/pricing" className="text-[#b7dcff] underline-offset-4 hover:underline">
+          <Link href="/pricing" className="text-[#b8860b] underline-offset-4 hover:underline">
             Estimate a portfolio, or model an operating scenario
           </Link>
         </p>

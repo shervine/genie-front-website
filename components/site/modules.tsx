@@ -24,7 +24,7 @@ export function Modules() {
             onClick={() => setActive(item.id)}
             className={cn(
               "rounded-full px-4 py-2 text-sm whitespace-nowrap",
-              active === item.id ? "bg-white text-[#08111f]" : "border border-white/15 text-mist",
+              active === item.id ? "bg-[#e8c56a] text-[#123848]" : "border border-[#2eafd0]/30 text-mist",
             )}
             aria-pressed={active === item.id}
           >
@@ -34,7 +34,7 @@ export function Modules() {
       </div>
       <div className="panel mt-4 rounded-[28px] p-6 sm:p-8">
         <div className="flex items-start justify-between gap-4">
-          <p className="max-w-2xl text-lg text-white">{activeModule.kicker}</p>
+          <p className="max-w-2xl text-lg text-ink">{activeModule.kicker}</p>
           <SimBadge />
         </div>
         <div key={activeModule.id} className="mt-6 space-y-3">
@@ -44,10 +44,10 @@ export function Modules() {
               className={cn(
                 "rise max-w-2xl rounded-2xl px-4 py-3 text-sm leading-relaxed",
                 line.from === "Genie"
-                  ? "bg-[#123049] text-white"
+                  ? "bg-[#e5f6fb] text-ink"
                   : line.from === "System"
-                    ? "border border-[#8ec8ff]/30 text-[#d7f4ff]"
-                    : "bg-white/6 text-[#e7eefc]",
+                    ? "border border-[#7ec8e3] text-ink"
+                    : "bg-[#e7f6fb] text-ink",
               )}
               style={{ animationDelay: `${index * 220}ms` }}
             >

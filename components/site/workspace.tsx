@@ -95,7 +95,7 @@ export function GenieWorkspace() {
   }
 
   return (
-    <div className="overflow-hidden rounded-3xl border border-white/10 bg-[#0c0e13] shadow-[0_24px_80px_rgba(0,0,0,0.35)]">
+    <div className="overflow-hidden rounded-3xl border border-[#d4af37]/35 bg-white shadow-[0_24px_60px_rgba(18,56,72,0.12)]">
       <div className="flex items-center gap-3 px-3 py-2.5 sm:px-4">
         <div className="flex min-w-0 flex-1 items-center gap-0.5 overflow-x-auto" role="tablist" aria-label="Fixed apps">
           {APPS.map((item) => (
@@ -107,20 +107,20 @@ export function GenieWorkspace() {
               onClick={() => setApp(item.id)}
               className={cn(
                 "shrink-0 rounded-md px-2 py-1 text-[13px]",
-                app === item.id ? "text-white" : "text-[#8b95a8] hover:text-white",
+                app === item.id ? "text-ink" : "text-mist hover:text-[#123848]",
               )}
             >
               {item.label}
             </button>
           ))}
         </div>
-        <button type="button" onClick={startNew} className="shrink-0 text-[13px] text-[#c5cedf] hover:text-white">
+        <button type="button" onClick={startNew} className="shrink-0 text-[13px] text-ink hover:text-[#123848]">
           New chat
         </button>
       </div>
 
       <div className="grid md:grid-cols-[148px_1fr]">
-        <div className="flex gap-1 overflow-x-auto border-t border-white/8 px-2 py-2 md:flex-col md:border-t-0 md:border-r md:px-2 md:py-3">
+        <div className="flex gap-1 overflow-x-auto border-t border-[#2eafd0]/20 px-2 py-2 md:flex-col md:border-t-0 md:border-r md:px-2 md:py-3">
           {CHATS.map((item) => (
             <button
               key={item.id}
@@ -131,23 +131,23 @@ export function GenieWorkspace() {
               }}
               className={cn(
                 "min-w-32 rounded-lg px-2.5 py-2 text-left md:min-w-0",
-                chatId === item.id ? "bg-white/8" : "hover:bg-white/5",
+                chatId === item.id ? "bg-[#e7f6fb]" : "hover:bg-[#e7f7fb]",
               )}
               aria-pressed={chatId === item.id}
             >
-              <span className="block truncate text-[13px] text-[#e8edf7]">{item.title}</span>
-              <span className="block truncate text-[11px] text-[#8b95a8]">{item.role}</span>
+              <span className="block truncate text-[13px] text-ink">{item.title}</span>
+              <span className="block truncate text-[11px] text-mist">{item.role}</span>
             </button>
           ))}
         </div>
 
-        <div className="flex min-h-[430px] flex-col border-t border-white/8 md:border-t-0">
+        <div className="flex min-h-[430px] flex-col border-t border-[#2eafd0]/20 md:border-t-0">
           <div className="flex flex-1 flex-col justify-end px-4 py-6 sm:px-8">
             <div className="mx-auto flex w-full max-w-lg flex-col gap-6">
               {isNew && !fresh ? (
                 <div>
-                  <p className="font-display text-3xl font-bold text-white">What is your wish?</p>
-                  <p className="mt-2 text-sm leading-relaxed text-[#9aa6bd]">
+                  <p className="font-display text-3xl font-bold text-ink">What is your wish?</p>
+                  <p className="mt-2 text-sm leading-relaxed text-mist">
                     You are the master of this chat. Ask me to do the work, or ask me what happened.
                   </p>
                   <div className="mt-6 flex flex-col gap-2">
@@ -156,7 +156,7 @@ export function GenieWorkspace() {
                         key={item}
                         type="button"
                         onClick={() => ask(item)}
-                        className="rounded-2xl px-1 py-1.5 text-left text-sm text-[#d5def3] hover:text-white"
+                        className="rounded-2xl px-1 py-1.5 text-left text-sm text-ink hover:text-[#123848]"
                       >
                         {item}
                       </button>
@@ -165,23 +165,23 @@ export function GenieWorkspace() {
                 </div>
               ) : (
                 <>
-                  <p className="ml-auto max-w-[85%] rounded-3xl bg-white/10 px-4 py-2.5 text-sm leading-relaxed text-white">
+                  <p className="ml-auto max-w-[85%] rounded-3xl bg-[#fff1c9] px-4 py-2.5 text-sm leading-relaxed text-ink">
                     {fresh?.ask ?? saved?.ask}
                   </p>
                   <div>
-                    <p className="text-[13px] text-[#9ec9ff]">Genie · {activeApp.note}</p>
+                    <p className="text-[13px] text-[#b8860b]">Genie · {activeApp.note}</p>
                     {saved && !fresh ? (
                       <ul className="mt-2 space-y-1">
                         {saved.steps.map((step) => (
-                          <li key={step} className="text-xs text-[#8b95a8]">
+                          <li key={step} className="text-xs text-mist">
                             {step}
                           </li>
                         ))}
                       </ul>
                     ) : (
-                      <p className="mt-2 text-xs text-[#8b95a8]">Read the wish · Checked your rules</p>
+                      <p className="mt-2 text-xs text-mist">Read the wish · Checked your rules</p>
                     )}
-                    <p className="mt-3 text-sm leading-relaxed text-[#f4f7ff]">{fresh?.reply ?? saved?.reply}</p>
+                    <p className="mt-3 text-sm leading-relaxed text-ink">{fresh?.reply ?? saved?.reply}</p>
                   </div>
                 </>
               )}
@@ -195,7 +195,7 @@ export function GenieWorkspace() {
               ask(draft)
             }}
           >
-            <div className="mx-auto flex w-full max-w-lg items-end gap-2 rounded-3xl border border-white/10 bg-[#141820] px-4 py-2.5">
+            <div className="mx-auto flex w-full max-w-lg items-end gap-2 rounded-3xl border border-[#d4af37]/35 bg-[#f4fbfe] px-4 py-2.5">
               <label className="sr-only" htmlFor="genie-ask">
                 Message Genie
               </label>
@@ -211,12 +211,12 @@ export function GenieWorkspace() {
                   }
                 }}
                 placeholder="Message Genie"
-                className="max-h-28 min-h-7 w-full resize-none bg-transparent py-1 text-sm text-white outline-none placeholder:text-[#8b95a8]"
+                className="max-h-28 min-h-7 w-full resize-none bg-transparent py-1 text-sm text-ink outline-none placeholder:text-mist"
               />
               <button
                 type="submit"
                 aria-label="Send"
-                className="mb-0.5 grid size-8 shrink-0 place-items-center rounded-full bg-white text-[#08111f]"
+                className="mb-0.5 grid size-8 shrink-0 place-items-center rounded-full bg-[#e8c56a] text-[#123848]"
               >
                 <ArrowUp className="size-4" />
               </button>

@@ -25,7 +25,7 @@ export function Analytics() {
             onClick={() => setId(question.id)}
             className={cn(
               "rounded-full px-4 py-2 text-left text-sm",
-              question.id === item.id ? "bg-white text-[#08111f]" : "border border-white/15 text-mist",
+              question.id === item.id ? "bg-[#e8c56a] text-[#123848]" : "border border-[#2eafd0]/30 text-mist",
             )}
             aria-pressed={question.id === item.id}
           >
@@ -35,18 +35,18 @@ export function Analytics() {
       </div>
       <div className="panel mt-4 rounded-[28px] p-6">
         <div className="flex items-center justify-between gap-3">
-          <p className="text-lg text-white">{item.q}</p>
+          <p className="text-lg text-ink">{item.q}</p>
           <SimBadge />
         </div>
         <p className="mt-4 max-w-3xl text-sm leading-relaxed text-mist">{item.a}</p>
         <div className="mt-6 space-y-3">
           {item.points.map(([label, value], index) => (
             <div key={label}>
-              <div className="flex items-center justify-between text-sm text-white">
+              <div className="flex items-center justify-between text-sm text-ink">
                 <span>{label}</span>
                 <span className="text-mist">{value}</span>
               </div>
-              <div className="mt-2 h-1.5 rounded-full bg-white/10">
+              <div className="mt-2 h-1.5 rounded-full bg-[#e7f6fb]">
                 <div
                   className="h-1.5 rounded-full bg-gradient-to-r from-[#6d8dff] to-[#8fd7ff]"
                   style={{ width: `${100 - index * (60 / max)}%` }}

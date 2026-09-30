@@ -69,19 +69,19 @@ export function Roi() {
             <Metric label="Illustrated labor capacity" value={usd(model.laborValue)} detail={`${model.shifted.toFixed(1)} hours × ${usd(model.hourly)}`} />
             <Metric label="Illustrated upsell lift" value={usd(model.upsellValue)} detail={`${lift}% of ${usd(model.upsellRevenue)}`} />
           </div>
-          <div className="mt-4 rounded-2xl bg-white/5 p-4">
+          <div className="mt-4 rounded-2xl bg-white/80 p-4">
             <p className="text-sm text-mist">Combined illustration / month</p>
-            <p className="mt-1 font-display text-4xl text-white">{usd(model.laborValue + model.upsellValue)}</p>
+            <p className="mt-1 font-display text-4xl text-ink">{usd(model.laborValue + model.upsellValue)}</p>
           </div>
-          <div className="mt-4 rounded-2xl border border-white/10 p-4">
+          <div className="mt-4 rounded-2xl border border-[#d4af37]/35 p-4">
             <p className="text-sm text-mist">Published subscription at this listing count</p>
-            <p className="mt-1 text-2xl text-white">
+            <p className="mt-1 text-2xl text-ink">
               {model.subscription && model.rate
                 ? `${usd(model.subscription)} / month`
                 : "Enter a listing count"}
             </p>
             {model.rate ? (
-              <p className="mt-1 text-xs text-[#8ea0c3]">
+              <p className="mt-1 text-xs text-mist">
                 {model.listingCount.toLocaleString("en-US")} × {usd(model.rate)}. These two numbers are not a net-savings claim.
               </p>
             ) : null}
@@ -91,7 +91,7 @@ export function Roi() {
               The illustrated hours are {(model.teamShare * 100).toFixed(0)}% of this team’s monthly capacity, counting 160 hours per person. That is context, not a hiring plan.
             </p>
           ) : null}
-          <ul className="mt-4 space-y-2 text-xs leading-relaxed text-[#8ea0c3]">
+          <ul className="mt-4 space-y-2 text-xs leading-relaxed text-mist">
             <li>Minutes, share, and lift are scenario assumptions. Sliders are capped so the illustration stays bounded.</li>
             <li>Labor value prices those hours. It does not mean payroll falls by that amount.</li>
             <li>Upsell lift assumes the extra revenue clears. It is not a measured conversion rate.</li>
@@ -159,7 +159,7 @@ function Slider({
         max={max}
         value={value}
         onChange={(event) => onChange(Number(event.target.value))}
-        className="w-full accent-[#8ec8ff]"
+        className="w-full accent-[#e0b15a]"
       />
     </div>
   )
@@ -169,8 +169,8 @@ function Metric({ label, value, detail }: { label: string; value: string; detail
   return (
     <div>
       <p className="text-sm text-mist">{label}</p>
-      <p className="mt-1 text-2xl text-white">{value}</p>
-      <p className="text-xs text-[#8ea0c3]">{detail}</p>
+      <p className="mt-1 text-2xl text-ink">{value}</p>
+      <p className="text-xs text-mist">{detail}</p>
     </div>
   )
 }

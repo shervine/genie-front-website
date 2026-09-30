@@ -23,8 +23,8 @@ export default function LampPage() {
             ["Same rules", "A voice request is meant to follow the same policies as a text. “Send maintenance” should become a task, not a novelty."],
             ["No second product", "The lamp is the physical edge of the operating layer. It is not a separate chatbot with a different brain."],
           ].map(([title, body]) => (
-            <article key={title} className="rounded-[24px] border border-white/10 p-5">
-              <h2 className="text-lg text-white">{title}</h2>
+            <article key={title} className="rounded-[24px] border border-[#d4af37]/35 p-5">
+              <h2 className="text-lg text-ink">{title}</h2>
               <p className="mt-2 text-sm leading-relaxed text-mist">{body}</p>
             </article>
           ))}

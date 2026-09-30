@@ -32,7 +32,7 @@ export function Hero() {
           <p className="text-[0.72rem] font-medium tracking-[0.22em] text-glow uppercase">
             The AI operating system for hospitality
           </p>
-          <h1 className="mt-5 font-display text-[clamp(3.3rem,7vw,6.1rem)] leading-[0.9] font-bold tracking-[-0.045em] text-white">
+          <h1 className="mt-5 font-display text-[clamp(3.3rem,7vw,6.1rem)] leading-[0.9] font-bold tracking-[-0.045em] text-ink">
             Hospitality.
             <span className="text-shimmer mt-1 block italic">On Autopilot.</span>
           </h1>
@@ -47,22 +47,22 @@ export function Hero() {
               href="/meet?intent=demo"
               className={buttonVariants({
                 variant: "outline",
-                className: "h-12 rounded-full border-white/15 bg-white/5 px-6 text-sm text-white hover:bg-white/10 hover:text-white",
+                className: "h-12 rounded-full border-[#2eafd0]/30 bg-white/80 px-6 text-sm text-ink hover:bg-[#fff4d6] hover:text-[#123848]",
               })}
             >
               Book a Demo
             </Link>
           </div>
-          <div className="mt-8 flex flex-wrap gap-2 text-xs text-[#d5def3]">
+          <div className="mt-8 flex flex-wrap gap-2 text-xs text-ink">
             {["Connect your stack", "Set your rules", "Make a wish"].map((item) => (
-              <span key={item} className="rounded-full border border-white/10 bg-white/5 px-3 py-1.5">
+              <span key={item} className="rounded-full border border-[#d4af37]/35 bg-white/80 px-3 py-1.5">
                 {item}
               </span>
             ))}
           </div>
           <p className="mt-5 text-sm text-mist">
             For professional operators managing 20 to 2,000+ listings.{" "}
-            <span className="text-white">{POLICIES[policy]}</span>
+            <span className="text-ink">{POLICIES[policy]}</span>
           </p>
         </div>
 

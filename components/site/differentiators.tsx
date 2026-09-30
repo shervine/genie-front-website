@@ -11,17 +11,17 @@ export function Differentiators() {
       </Lede>
       <div className="mt-8 grid gap-3 sm:grid-cols-2">
         {CONTRAST.map(([left, right]) => (
-          <div key={left} className="grid grid-cols-2 overflow-hidden rounded-2xl border border-white/10 text-sm">
-            <p className="bg-white/4 px-4 py-4 text-mist">{left}</p>
-            <p className="bg-[#10203a] px-4 py-4 text-white">{right}</p>
+          <div key={left} className="grid grid-cols-2 overflow-hidden rounded-2xl border border-[#d4af37]/35 text-sm">
+            <p className="bg-white/70 px-4 py-4 text-mist">{left}</p>
+            <p className="bg-[#e7f4fa] px-4 py-4 text-ink">{right}</p>
           </div>
         ))}
       </div>
       <div className="mt-8 grid gap-4 md:grid-cols-2">
         {DIFFERENTIATORS.map((item) => (
-          <article key={item.n} className="rounded-[24px] border border-white/10 p-5">
-            <p className="font-display text-2xl text-[#b7dcff]">{item.n}</p>
-            <h3 className="mt-2 text-lg text-white">{item.title}</h3>
+          <article key={item.n} className="rounded-[24px] border border-[#d4af37]/35 p-5">
+            <p className="font-display text-2xl text-[#b8860b]">{item.n}</p>
+            <h3 className="mt-2 text-lg text-ink">{item.title}</h3>
             <p className="mt-2 text-sm leading-relaxed text-mist">{item.body}</p>
           </article>
         ))}

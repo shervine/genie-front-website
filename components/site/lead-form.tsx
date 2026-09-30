@@ -108,7 +108,7 @@ export function LeadForm({
               : "Tell me the shape of the company. I’ll take the wish to the team, and onboarding starts from there."}
           </Lede>
           <ol className="mt-8 space-y-4 text-sm text-mist">
-            <li className="text-white">1. I read how you operate.</li>
+            <li className="text-ink">1. I read how you operate.</li>
             <li>2. The team replies to your work email.</li>
             <li>3. You connect the stack, and I start granting the work you allow.</li>
           </ol>
@@ -116,7 +116,7 @@ export function LeadForm({
 
         {done ? (
           <div className="panel rounded-[28px] p-8">
-            <p className="font-display text-4xl text-white">Your wish has been received. 🧞‍♂️</p>
+            <p className="font-display text-4xl text-ink">Your wish has been received. 🧞‍♂️</p>
             <p className="mt-4 text-mist">
               We’ll reply to {email} about {company}.
             </p>
@@ -195,13 +195,13 @@ export function LeadForm({
             </div>
 
             <fieldset className="mt-6">
-              <legend className="text-sm font-medium text-white">What would you most like Genie to automate?</legend>
+              <legend className="text-sm font-medium text-ink">What would you most like Genie to automate?</legend>
               <p className="mt-1 text-xs text-mist">Optional.</p>
               <div className="mt-3 grid gap-2 sm:grid-cols-2">
                 {AUTOMATION_OPTIONS.map((option) => {
                   const checked = automate.includes(option)
                   return (
-                    <label key={option} className="flex items-center gap-3 rounded-xl border border-white/10 px-3 py-2 text-sm text-[#d5def3]">
+                    <label key={option} className="flex items-center gap-3 rounded-xl border border-[#d4af37]/35 px-3 py-2 text-sm text-ink">
                       <Checkbox
                         checked={checked}
                         onCheckedChange={(next) => {
@@ -222,11 +222,11 @@ export function LeadForm({
               <input id="fax-number" tabIndex={-1} autoComplete="off" value={faxNumber} onChange={(event) => setFaxNumber(event.target.value)} />
             </div>
 
-            {message ? <p className="mt-4 text-sm text-[#ffb4b4]">{message}</p> : null}
+            {message ? <p className="mt-4 text-sm text-[#a33b32]">{message}</p> : null}
             <Button type="submit" disabled={pending} className="mt-6 h-12 rounded-full px-6">
               {pending ? "Sending…" : "Meet Genie"}
             </Button>
-            <p className="mt-3 text-xs leading-relaxed text-[#8ea0c3]">
+            <p className="mt-3 text-xs leading-relaxed text-mist">
               This sends your wish to support@superhost.management so the team can follow up. It does not create an account.
             </p>
           </form>
@@ -252,7 +252,7 @@ function Field({
       <Label htmlFor={id}>{label}</Label>
       {children}
       {error ? (
-        <p id={`${id}-error`} className="text-sm text-[#ffb4b4]">
+        <p id={`${id}-error`} className="text-sm text-[#a33b32]">
           {error}
         </p>
       ) : null}

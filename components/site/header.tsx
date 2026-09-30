@@ -13,9 +13,9 @@ export function SiteHeader() {
   const [open, setOpen] = useState(false)
 
   return (
-    <header className="sticky top-0 z-40 border-b border-white/10 bg-[#070b14]/80 backdrop-blur-xl">
+    <header className="sticky top-0 z-40 border-b border-[#d4af37]/35 bg-[#eef8fc]/90 backdrop-blur-xl">
       <div className="mx-auto flex h-28 w-full max-w-6xl items-center justify-between gap-4 px-5">
-        <Link href="/" className="flex items-center gap-3 text-sm font-medium tracking-tight text-white" onClick={() => setOpen(false)}>
+        <Link href="/" className="flex items-center gap-3 text-sm font-medium tracking-tight text-ink" onClick={() => setOpen(false)}>
           <span className="text-[3.375rem] leading-none" aria-hidden="true">
             🧞‍♂️
           </span>
@@ -30,8 +30,8 @@ export function SiteHeader() {
                 key={item.href}
                 href={item.href}
                 className={cn(
-                  "rounded-full px-3 py-1.5 text-sm text-mist transition-colors hover:bg-white/5 hover:text-white",
-                  active && "bg-white/8 text-white",
+                  "rounded-full px-3 py-1.5 text-sm text-mist transition-colors hover:bg-[#e7f7fb] hover:text-[#123848]",
+                  active && "bg-[#e7f6fb] text-ink",
                 )}
                 aria-current={active ? "page" : undefined}
               >
@@ -44,7 +44,7 @@ export function SiteHeader() {
         <div className="flex items-center gap-2">
           <Link
             href="/sign-in"
-            className="hidden rounded-full px-3 py-1.5 text-sm text-mist hover:text-white sm:inline"
+            className="hidden rounded-full px-3 py-1.5 text-sm text-mist hover:text-[#123848] sm:inline"
           >
             Sign In
           </Link>
@@ -58,7 +58,7 @@ export function SiteHeader() {
           </Link>
           <button
             type="button"
-            className="inline-flex size-10 items-center justify-center rounded-full border border-white/10 text-white lg:hidden"
+            className="inline-flex size-10 items-center justify-center rounded-full border border-[#d4af37]/35 text-ink lg:hidden"
             aria-expanded={open}
             aria-controls="mobile-nav"
             onClick={() => setOpen((value) => !value)}
@@ -70,13 +70,13 @@ export function SiteHeader() {
       </div>
 
       {open ? (
-        <div id="mobile-nav" className="border-t border-white/10 bg-[#070b14] lg:hidden">
+        <div id="mobile-nav" className="border-t border-[#d4af37]/35 bg-[#e7f6fb] lg:hidden">
           <nav className="mx-auto flex w-full max-w-6xl flex-col px-5 py-3" aria-label="Mobile">
             {NAV.map((item) => (
               <Link
                 key={item.href}
                 href={item.href}
-                className="rounded-xl px-2 py-3 text-base text-white"
+                className="rounded-xl px-2 py-3 text-base text-ink"
                 onClick={() => setOpen(false)}
               >
                 {item.label}

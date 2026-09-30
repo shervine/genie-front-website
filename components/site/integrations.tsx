@@ -31,13 +31,13 @@ export function Integrations({
       <div className={cn("grid items-center gap-8 lg:grid-cols-2", showIntro ? "mt-10" : "")}>
         <div className="panel rounded-[28px] p-6">
           <p className="text-xs tracking-[0.18em] text-glow uppercase">Connection target</p>
-          <h3 className="mt-2 text-2xl text-white">{active.category}</h3>
+          <h3 className="mt-2 text-2xl text-ink">{active.category}</h3>
           <p className="mt-3 text-sm leading-relaxed text-mist">{active.detail}</p>
           <p className="mt-4 text-xs tracking-[0.16em] text-glow uppercase">Access level</p>
-          <p className="mt-2 text-sm leading-relaxed text-white">{active.access}</p>
+          <p className="mt-2 text-sm leading-relaxed text-ink">{active.access}</p>
           <ul className="mt-4 flex flex-wrap gap-2">
             {active.examples.map((example) => (
-              <li key={example} className="rounded-full border border-white/10 px-3 py-1 text-xs text-[#d5def3]">
+              <li key={example} className="rounded-full border border-[#d4af37]/35 px-3 py-1 text-xs text-ink">
                 {example}
               </li>
             ))}
@@ -61,8 +61,8 @@ export function Integrations({
               className={cn(
                 "absolute -translate-x-1/2 -translate-y-1/2 rounded-full border px-3 py-1.5 text-xs whitespace-nowrap",
                 item.id === active.id
-                  ? "border-[#8ec8ff] bg-[#16324a] text-white"
-                  : "border-white/15 bg-[#0c1322]/90 text-mist",
+                  ? "border-[#e0b15a] bg-[#d7f0f8] text-ink"
+                  : "border-[#2eafd0]/30 bg-white text-mist",
               )}
               style={{ left: item.left, top: item.top }}
               aria-pressed={item.id === active.id}
@@ -81,7 +81,7 @@ export function Integrations({
             onClick={() => setId(item.id)}
             className={cn(
               "rounded-2xl border px-4 py-3 text-left text-sm",
-              item.id === active.id ? "border-[#8ec8ff]/50 text-white" : "border-white/10 text-mist",
+              item.id === active.id ? "border-[#e0b15a] text-ink" : "border-[#d4af37]/35 text-mist",
             )}
             aria-pressed={item.id === active.id}
           >
@@ -90,10 +90,10 @@ export function Integrations({
         ))}
       </div>
 
-      <div className="mt-8 overflow-x-auto rounded-[24px] border border-white/10">
+      <div className="mt-8 overflow-x-auto rounded-[24px] border border-[#d4af37]/35">
         <table className="w-full min-w-[760px] text-left text-sm">
           <caption className="sr-only">Access level for each connection Genie is designed to sit across</caption>
-          <thead className="text-xs tracking-[0.16em] text-[#8ea0c3] uppercase">
+          <thead className="text-xs tracking-[0.16em] text-mist uppercase">
             <tr>
               <th className="px-4 py-3 font-medium">Category</th>
               <th className="px-4 py-3 font-medium">Examples</th>
@@ -102,16 +102,16 @@ export function Integrations({
           </thead>
           <tbody>
             {INTEGRATIONS.map((item) => (
-              <tr key={item.id} className="border-t border-white/8 align-top">
-                <td className="px-4 py-3 text-white">{item.category}</td>
+              <tr key={item.id} className="border-t border-[#2eafd0]/20 align-top">
+                <td className="px-4 py-3 text-ink">{item.category}</td>
                 <td className="px-4 py-3 text-mist">{item.examples.join(", ")}</td>
-                <td className="px-4 py-3 text-[#d7ecff]">{item.access}</td>
+                <td className="px-4 py-3 text-[#0e6f86]">{item.access}</td>
               </tr>
             ))}
           </tbody>
         </table>
       </div>
-      <p className="mt-3 text-xs leading-relaxed text-[#8ea0c3]">
+      <p className="mt-3 text-xs leading-relaxed text-mist">
         Access level is the role Genie is designed to recognize. A person should only see the slice that role allows.
       </p>
     </Section>

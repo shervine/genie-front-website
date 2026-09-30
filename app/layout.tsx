@@ -47,9 +47,9 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} ${display.variable} dark h-full antialiased`}
+      className={`${geistSans.variable} ${geistMono.variable} ${display.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col bg-[#070b14] text-foreground">
+      <body className="min-h-full flex flex-col bg-[#e7f6fb] text-foreground">
         <a
           href="#content"
           className="sr-only focus:not-sr-only focus:absolute focus:top-3 focus:left-3 focus:z-50 focus:rounded-full focus:bg-white focus:px-4 focus:py-2 focus:text-sm focus:text-black"
@@ -57,9 +57,9 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           Skip to content
         </a>
         <div className="pointer-events-none fixed inset-0 -z-10">
-          <div className="absolute inset-0 bg-[#070b14]" />
-          <div className="absolute -top-48 left-1/2 h-[560px] w-[920px] -translate-x-1/2 rounded-full bg-[radial-gradient(circle,rgba(64,120,255,0.18),transparent_68%)]" />
-          <div className="absolute top-[38%] -left-32 h-80 w-80 rounded-full bg-[radial-gradient(circle,rgba(140,110,255,0.12),transparent_70%)]" />
+          <div className="absolute inset-0 bg-[#e7f6fb]" />
+          <div className="absolute -top-48 left-1/2 h-[560px] w-[920px] -translate-x-1/2 rounded-full bg-[radial-gradient(circle,rgba(126,212,234,0.55),transparent_68%)]" />
+          <div className="absolute top-[30%] -right-24 h-80 w-80 rounded-full bg-[radial-gradient(circle,rgba(232,197,106,0.35),transparent_70%)]" />
         </div>
         <SiteHeader />
         <main id="content" className="flex-1">
