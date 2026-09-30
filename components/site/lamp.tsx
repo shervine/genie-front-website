@@ -102,77 +102,87 @@ export function Lamp({
 }
 
 export function LampArt({ speaking = false }: { speaking?: boolean }) {
+  const body =
+    "M200 168c58 0 78 46 66 102-12 54 22 92 10 150-12 56-38 86-76 86s-64-30-76-86c-12-58 22-96 10-150-12-56 8-102 66-102Z"
   return (
-    <svg viewBox="0 0 360 500" className="w-full overflow-visible" role="img" aria-label="A sculptural Genie lamp with light at the opening">
+    <svg viewBox="0 0 400 540" className="w-full overflow-visible" role="img" aria-label="A sculptural Genie lamp with light at the opening">
       <defs>
-        <linearGradient id="body" x1="0" y1="0" x2="1" y2="1">
-          <stop offset="0" stopColor="#314066" />
-          <stop offset="0.42" stopColor="#161d31" />
-          <stop offset="1" stopColor="#090d16" />
+        <linearGradient id="lamp-body" x1="0.15" y1="0" x2="0.9" y2="1">
+          <stop offset="0" stopColor="#f7fbff" />
+          <stop offset="0.18" stopColor="#b7c7e4" />
+          <stop offset="0.48" stopColor="#5d7098" />
+          <stop offset="0.78" stopColor="#2a3858" />
+          <stop offset="1" stopColor="#141c2e" />
         </linearGradient>
-        <linearGradient id="sheen" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0" stopColor="#ffffff" stopOpacity="0.28" />
-          <stop offset="0.4" stopColor="#ffffff" stopOpacity="0" />
+        <linearGradient id="lamp-sheen" x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0" stopColor="#ffffff" stopOpacity="0.55" />
+          <stop offset="0.45" stopColor="#ffffff" stopOpacity="0" />
         </linearGradient>
-        <radialGradient id="bloom" cx="50%" cy="50%" r="50%">
-          <stop offset="0" stopColor="#f4fbff" />
-          <stop offset="0.35" stopColor="#7fd4ff" />
-          <stop offset="1" stopColor="#7fd4ff" stopOpacity="0" />
+        <radialGradient id="lamp-bloom" cx="50%" cy="50%" r="50%">
+          <stop offset="0" stopColor="#ffffff" />
+          <stop offset="0.25" stopColor="#b9ecff" />
+          <stop offset="0.55" stopColor="#49bfff" stopOpacity="0.7" />
+          <stop offset="1" stopColor="#49bfff" stopOpacity="0" />
         </radialGradient>
-        <pattern id="print" width="6" height="7" patternUnits="userSpaceOnUse">
-          <line x1="0" y1="6" x2="6" y2="6" stroke="#d7e7ff" strokeOpacity="0.22" strokeWidth="0.6" />
-        </pattern>
-        <clipPath id="vessel">
-          <path d="M180 118c46 0 62 38 52 82-10 46 18 78 8 128-10 48-32 78-60 78s-50-30-60-78c-10-50 18-82 8-128-10-44 6-82 52-82Z" />
-        </clipPath>
-        <filter id="soft" x="-40%" y="-40%" width="180%" height="180%">
-          <feGaussianBlur stdDeviation="8" />
+        <filter id="lamp-blur" x="-50%" y="-50%" width="200%" height="200%">
+          <feGaussianBlur stdDeviation="14" />
         </filter>
+        <clipPath id="lamp-clip">
+          <path d={body} />
+        </clipPath>
       </defs>
-      <ellipse cx="180" cy="430" rx="108" ry="18" fill="#04070f" opacity="0.85" />
+      <ellipse cx="200" cy="478" rx="118" ry="18" fill="#02040a" opacity="0.75" />
       <ellipse
-        cx="180"
-        cy="70"
-        rx={speaking ? 92 : 78}
-        ry={speaking ? 36 : 28}
-        fill="url(#bloom)"
+        cx="200"
+        cy="118"
+        rx={speaking ? 130 : 108}
+        ry={speaking ? 52 : 42}
+        fill="url(#lamp-bloom)"
+        filter="url(#lamp-blur)"
         className={speaking ? "pulse-glow" : undefined}
-        filter="url(#soft)"
       />
-      <path
-        d="M180 118c46 0 62 38 52 82-10 46 18 78 8 128-10 48-32 78-60 78s-50-30-60-78c-10-50 18-82 8-128-10-44 6-82 52-82Z"
-        fill="url(#body)"
-      />
-      <g clipPath="url(#vessel)">
-        <rect x="90" y="110" width="180" height="300" fill="url(#print)" />
-        <path d="M128 150c18 80 10 180-8 250" stroke="url(#sheen)" strokeWidth="18" fill="none" />
+      <path d={body} fill="url(#lamp-body)" />
+      <path d={body} fill="none" stroke="#d5e6ff" strokeOpacity="0.35" strokeWidth="1.5" />
+      <g clipPath="url(#lamp-clip)">
+        <path d="M148 188c24 96 14 190-8 280" stroke="url(#lamp-sheen)" strokeWidth="36" fill="none" />
       </g>
-      <ellipse cx="180" cy="392" rx="78" ry="16" fill="#0c1322" />
-      <ellipse cx="180" cy="386" rx="70" ry="12" fill="#1a2438" />
-      <g fill="#9fd7ff" opacity="0.85">
-        {Array.from({ length: 14 }).map((_, index) => {
-          const angle = (index / 14) * Math.PI * 2
-          const cx = 180 + Math.cos(angle) * 48
-          const cy = 336 + Math.sin(angle) * 10
-          return <circle key={index} cx={cx} cy={cy} r="1.6" />
+      <ellipse cx="200" cy="430" rx="86" ry="16" fill="#10182a" />
+      <g fill="#c9f4ff">
+        {Array.from({ length: 16 }).map((_, index) => {
+          const angle = (index / 16) * Math.PI * 2
+          return (
+            <circle
+              key={index}
+              cx={200 + Math.cos(angle) * 52}
+              cy={360 + Math.sin(angle) * 11}
+              r="2.1"
+              opacity={0.55 + (index % 3) * 0.15}
+            />
+          )
         })}
       </g>
-      <ellipse cx="180" cy="124" rx="54" ry="14" fill="#0a101c" />
-      <ellipse cx="180" cy="120" rx="40" ry="10" fill="#123044" />
-      <ellipse cx="180" cy="116" rx="22" ry="6" fill="#d9f6ff" className={speaking ? "pulse-glow" : undefined} />
-      <ellipse cx="180" cy="132" rx="58" ry="12" fill="none" stroke="#8fd7ff" strokeOpacity="0.8" strokeWidth="2" />
+      <ellipse cx="200" cy="176" rx="64" ry="15" fill="#070b14" />
+      <ellipse cx="200" cy="186" rx="70" ry="13" fill="none" stroke="#9fe7ff" strokeWidth="3" />
+      <ellipse
+        cx="200"
+        cy="170"
+        rx="28"
+        ry="8"
+        fill="#f4fcff"
+        className={speaking ? "pulse-glow" : undefined}
+      />
       {speaking ? (
-        <g fill="#d9f6ff">
+        <g fill="#e9f8ff">
           {Array.from({ length: 5 }).map((_, index) => (
             <rect
               key={index}
               className="speak-bar"
-              x={158 + index * 8}
-              y="78"
-              width="3"
-              height="18"
-              rx="1.5"
-              style={{ animationDelay: `${index * 0.12}s` }}
+              x={176 + index * 10}
+              y="96"
+              width="4"
+              height="22"
+              rx="2"
+              style={{ animationDelay: `${index * 0.1}s` }}
             />
           ))}
         </g>

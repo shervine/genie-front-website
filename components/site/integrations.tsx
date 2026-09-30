@@ -28,7 +28,7 @@ export function Integrations({
         </>
       ) : null}
 
-      <div className={cn("grid items-center gap-8 lg:grid-cols-[0.85fr_1.15fr]", showIntro ? "mt-10" : "")}>
+      <div className={cn("grid items-center gap-8 lg:grid-cols-2", showIntro ? "mt-10" : "")}>
         <div className="panel rounded-[28px] p-6">
           <p className="text-xs tracking-[0.18em] text-glow uppercase">Connection target</p>
           <h3 className="mt-2 text-2xl text-white">{active.category}</h3>
@@ -42,7 +42,7 @@ export function Integrations({
           </ul>
         </div>
 
-        <div className="relative mx-auto hidden h-[640px] w-full max-w-[640px] md:block">
+        <div className="relative mx-auto hidden h-[520px] w-full max-w-[520px] md:block">
           <div className="absolute top-1/2 left-1/2 flex size-28 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border border-[#8ec8ff]/40 bg-[#10203a] text-center shadow-[0_0_80px_rgba(80,150,255,0.25)]">
             <span className="font-display text-3xl text-white">Genie</span>
           </div>
@@ -114,8 +114,8 @@ function layoutNodes() {
   const inner = INTEGRATIONS.filter((item) => item.ring === "inner")
   const outer = INTEGRATIONS.filter((item) => item.ring === "outer")
   return [
-    ...place(inner, 28),
-    ...place(outer, 44),
+    ...place(inner, 24),
+    ...place(outer, 40),
   ]
 }
 
