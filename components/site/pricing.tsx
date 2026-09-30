@@ -1,0 +1,95 @@
+"use client"
+
+import Link from "next/link"
+import { useState } from "react"
+import { buttonVariants } from "@/components/ui/button"
+import { Input } from "@/components/ui/input"
+import { Label } from "@/components/ui/label"
+import { bandForListings, PRICING_BANDS, rateForListings, usd } from "@/lib/pricing"
+import { Display, Eyebrow, Lede, Section } from "@/components/site/section"
+
+export function Pricing({
+  detailed = false,
+  titleAs = "h2",
+}: {
+  detailed?: boolean
+  titleAs?: "h1" | "h2"
+}) {
+  const [listings, setListings] = useState("120")
+  const count = Math.floor(Number(listings))
+  const rate = rateForListings(count)
+  const band = bandForListings(count)
+  const monthly = rate && count > 0 ? rate * count : null
+  const enterprise = count >= 2000
+
+  return (
+    <Section id="pricing">
+      <Eyebrow>Pricing</Eyebrow>
+      <Display as={titleAs} className="mt-4 max-w-3xl">Simple pricing. No complicated AI math.</Display>
+      <Lede className="mt-5">
+        Monthly, per listing, in USD. Every listing is billed at the rate for the portfolio band you fall into.
+      </Lede>
+      <div className="mt-10 grid gap-4 md:grid-cols-3">
+        {PRICING_BANDS.map((item) => (
+          <article key={item.id} className="panel flex flex-col rounded-[28px] p-6">
+            <p className="text-sm text-mist">{item.label}</p>
+            <p className="mt-6 font-display text-5xl text-white">
+              {usd(item.price)}
+            </p>
+            <p className="mt-2 text-sm text-[#d7ecff]">per listing / month</p>
+            <p className="mt-4 text-sm leading-relaxed text-mist">{item.detail}</p>
+          </article>
+        ))}
+      </div>
+      <div className="mt-4 rounded-[28px] border border-white/10 px-6 py-5">
+        <p className="text-white">2,000+ listings? Talk to us about enterprise pricing.</p>
+        <Link href="/meet?intent=demo" className="mt-3 inline-flex text-sm text-[#b7dcff] underline-offset-4 hover:underline">
+          Start that conversation
+        </Link>
+      </div>
+
+      {detailed ? (
+        <div className="panel mt-8 rounded-[28px] p-6">
+          <h3 className="text-xl text-white">Estimate the published rate</h3>
+          <div className="mt-4 grid gap-4 sm:max-w-xs">
+            <Label htmlFor="listing-count">Number of listings</Label>
+            <Input
+              id="listing-count"
+              inputMode="numeric"
+              value={listings}
+              onChange={(event) => setListings(event.target.value.replace(/[^\d]/g, "").slice(0, 6))}
+              className="h-11"
+            />
+          </div>
+          {monthly && band && rate ? (
+            <div className="mt-5">
+              <p className="font-display text-4xl text-white">{usd(monthly)}<span className="text-lg text-mist"> / month</span></p>
+              <p className="mt-2 text-sm text-mist">
+                {count.toLocaleString("en-US")} listings in the {band.label.toLowerCase()} band at {usd(rate)} each.
+              </p>
+              {enterprise ? (
+                <p className="mt-2 text-sm text-[#d5ccff]">
+                  Portfolios of 2,000 or more are priced in conversation. This figure uses the published 101+ rate and is not an enterprise quote.
+                </p>
+              ) : null}
+            </div>
+          ) : (
+            <p className="mt-4 text-sm text-mist">Enter a listing count to see the published monthly total.</p>
+          )}
+        </div>
+      ) : (
+        <p className="mt-4 text-sm text-mist">
+          <Link href="/pricing" className="text-[#b7dcff] underline-offset-4 hover:underline">
+            Estimate a portfolio, or model an operating scenario
+          </Link>
+        </p>
+      )}
+
+      <div className="mt-8">
+        <Link href="/meet" className={buttonVariants({ className: "h-12 rounded-full px-6" })}>
+          Start with Genie
+        </Link>
+      </div>
+    </Section>
+  )
+}

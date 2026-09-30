@@ -1,0 +1,253 @@
+"use client"
+
+import { useState } from "react"
+import { Button } from "@/components/ui/button"
+import { Checkbox } from "@/components/ui/checkbox"
+import { Input } from "@/components/ui/input"
+import { Label } from "@/components/ui/label"
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select"
+import {
+  AUTOMATION_OPTIONS,
+  COUNTRIES,
+  LISTING_BANDS,
+  type FieldErrors,
+  validateLead,
+} from "@/lib/lead-schema"
+import { Display, Eyebrow, Lede, Section } from "@/components/site/section"
+
+export function LeadForm({
+  intent = "meet",
+  titleAs = "h2",
+}: {
+  intent?: "meet" | "demo"
+  titleAs?: "h1" | "h2"
+}) {
+  const [firstName, setFirstName] = useState("")
+  const [lastName, setLastName] = useState("")
+  const [email, setEmail] = useState("")
+  const [company, setCompany] = useState("")
+  const [website, setWebsite] = useState("")
+  const [country, setCountry] = useState("")
+  const [listings, setListings] = useState("")
+  const [pms, setPms] = useState("")
+  const [automate, setAutomate] = useState<string[]>([])
+  const [faxNumber, setFaxNumber] = useState("")
+  const [errors, setErrors] = useState<FieldErrors>({})
+  const [message, setMessage] = useState("")
+  const [pending, setPending] = useState(false)
+  const [done, setDone] = useState(false)
+
+  async function onSubmit(event: React.FormEvent) {
+    event.preventDefault()
+    setMessage("")
+    const payload = {
+      firstName,
+      lastName,
+      email,
+      company,
+      website,
+      country,
+      listings,
+      pms,
+      automate,
+      intent,
+      faxNumber,
+    }
+    const local = validateLead(payload)
+    if (!local.ok) {
+      setErrors(local.fieldErrors)
+      setMessage(local.message)
+      return
+    }
+    setErrors({})
+    setPending(true)
+    try {
+      const response = await fetch("/api/lead", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      })
+      const data = (await response.json()) as {
+        ok?: boolean
+        message?: string
+        fieldErrors?: FieldErrors
+      }
+      if (!response.ok || !data.ok) {
+        setErrors(data.fieldErrors ?? {})
+        setMessage(data.message || "We couldn’t send that. Email support@talktogenie.ai.")
+        return
+      }
+      setDone(true)
+    } catch {
+      setMessage("We couldn’t reach the server. Email support@talktogenie.ai and include your portfolio size.")
+    } finally {
+      setPending(false)
+    }
+  }
+
+  return (
+    <Section id="meet">
+      <div className="grid items-start gap-10 lg:grid-cols-[0.85fr_1.15fr]">
+        <div>
+          <Eyebrow>{intent === "demo" ? "Book a demo" : "Onboarding"}</Eyebrow>
+          <Display as={titleAs} className="mt-4">
+            Meet your new AI operations team.
+          </Display>
+          <Lede className="mt-5">
+            {intent === "demo"
+              ? "Tell us how you operate. We’ll reply by email to find a time. A calendar isn’t connected on this site."
+              : "Tell us how you operate. Connect the stack, configure Genie, and begin onboarding from there."}
+          </Lede>
+          <ol className="mt-8 space-y-4 text-sm text-mist">
+            <li className="text-white">1. We read the shape of the operation.</li>
+            <li>2. We reply to your work email.</li>
+            <li>3. You connect systems and set the policies Genie is allowed to execute.</li>
+          </ol>
+        </div>
+
+        {done ? (
+          <div className="panel rounded-[28px] p-8">
+            <p className="font-display text-4xl text-white">Your wish has been received. 🧞‍♂️</p>
+            <p className="mt-4 text-mist">
+              We’ll reply to {email} about {company}.
+            </p>
+            {intent === "demo" ? (
+              <p className="mt-3 text-sm text-mist">
+                We’ll follow up to schedule a demo. There isn’t a self-serve calendar on this page.
+              </p>
+            ) : null}
+          </div>
+        ) : (
+          <form onSubmit={onSubmit} className="panel rounded-[28px] p-5 sm:p-7" noValidate>
+            <div className="grid gap-4 sm:grid-cols-2">
+              <Field id="first-name" label="First name" error={errors.firstName}>
+                <Input id="first-name" autoComplete="given-name" value={firstName} onChange={(event) => setFirstName(event.target.value)} className="h-11" aria-invalid={Boolean(errors.firstName)} />
+              </Field>
+              <Field id="last-name" label="Last name" error={errors.lastName}>
+                <Input id="last-name" autoComplete="family-name" value={lastName} onChange={(event) => setLastName(event.target.value)} className="h-11" aria-invalid={Boolean(errors.lastName)} />
+              </Field>
+              <Field id="work-email" label="Work email" error={errors.email}>
+                <Input id="work-email" type="email" autoComplete="email" value={email} onChange={(event) => setEmail(event.target.value)} className="h-11" aria-invalid={Boolean(errors.email)} />
+              </Field>
+              <Field id="company" label="Company name" error={errors.company}>
+                <Input id="company" autoComplete="organization" value={company} onChange={(event) => setCompany(event.target.value)} className="h-11" aria-invalid={Boolean(errors.company)} />
+              </Field>
+              <Field id="website" label="Website" error={errors.website}>
+                <Input id="website" autoComplete="url" placeholder="company.com" value={website} onChange={(event) => setWebsite(event.target.value)} className="h-11" aria-invalid={Boolean(errors.website)} />
+              </Field>
+              <Field id="country" label="Country" error={errors.country}>
+                <Select
+                  value={country || null}
+                  onValueChange={(value) => {
+                    if (typeof value === "string") setCountry(value)
+                  }}
+                  items={COUNTRIES.map((item) => ({ value: item, label: item }))}
+                >
+                  <SelectTrigger id="country" className="h-11 w-full" aria-invalid={Boolean(errors.country)}>
+                    <SelectValue placeholder="Choose a country" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {COUNTRIES.map((item) => (
+                      <SelectItem key={item} value={item}>
+                        {item}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+              </Field>
+              <Field id="listings" label="Number of listings" error={errors.listings}>
+                <Select
+                  value={listings || null}
+                  onValueChange={(value) => {
+                    if (typeof value === "string") setListings(value)
+                  }}
+                  items={LISTING_BANDS.map((item) => ({ value: item, label: item }))}
+                >
+                  <SelectTrigger id="listings" className="h-11 w-full" aria-invalid={Boolean(errors.listings)}>
+                    <SelectValue placeholder="Choose a range" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {LISTING_BANDS.map((item) => (
+                      <SelectItem key={item} value={item}>
+                        {item}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+              </Field>
+              <Field id="pms" label="PMS / channel manager" error={errors.pms}>
+                <Input id="pms" value={pms} onChange={(event) => setPms(event.target.value)} placeholder="The system you use today" className="h-11" aria-invalid={Boolean(errors.pms)} />
+              </Field>
+            </div>
+
+            <fieldset className="mt-6">
+              <legend className="text-sm font-medium text-white">What would you most like Genie to automate?</legend>
+              <p className="mt-1 text-xs text-mist">Optional.</p>
+              <div className="mt-3 grid gap-2 sm:grid-cols-2">
+                {AUTOMATION_OPTIONS.map((option) => {
+                  const checked = automate.includes(option)
+                  return (
+                    <label key={option} className="flex items-center gap-3 rounded-xl border border-white/10 px-3 py-2 text-sm text-[#d5def3]">
+                      <Checkbox
+                        checked={checked}
+                        onCheckedChange={(next) => {
+                          setAutomate((current) =>
+                            next ? [...current, option] : current.filter((item) => item !== option),
+                          )
+                        }}
+                      />
+                      {option}
+                    </label>
+                  )
+                })}
+              </div>
+            </fieldset>
+
+            <div className="hidden" aria-hidden="true">
+              <label htmlFor="fax-number">Fax</label>
+              <input id="fax-number" tabIndex={-1} autoComplete="off" value={faxNumber} onChange={(event) => setFaxNumber(event.target.value)} />
+            </div>
+
+            {message ? <p className="mt-4 text-sm text-[#ffb4b4]">{message}</p> : null}
+            <Button type="submit" disabled={pending} className="mt-6 h-12 rounded-full px-6">
+              {pending ? "Sending…" : "Meet Genie"}
+            </Button>
+            <p className="mt-3 text-xs leading-relaxed text-[#8ea0c3]">
+              This sends your details to the TalkToGenie team at support@talktogenie.ai so we can follow up. It does not create an account.
+            </p>
+          </form>
+        )}
+      </div>
+    </Section>
+  )
+}
+
+function Field({
+  id,
+  label,
+  error,
+  children,
+}: {
+  id: string
+  label: string
+  error?: string
+  children: React.ReactNode
+}) {
+  return (
+    <div className="grid gap-2">
+      <Label htmlFor={id}>{label}</Label>
+      {children}
+      {error ? (
+        <p id={`${id}-error`} className="text-sm text-[#ffb4b4]">
+          {error}
+        </p>
+      ) : null}
+    </div>
+  )
+}

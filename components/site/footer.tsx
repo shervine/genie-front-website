@@ -1,0 +1,46 @@
+import Link from "next/link"
+import { NAV } from "@/lib/content"
+
+export function SiteFooter() {
+  return (
+    <footer className="border-t border-white/10">
+      <div className="mx-auto grid w-full max-w-6xl gap-10 px-5 py-14 md:grid-cols-[1.4fr_1fr]">
+        <div>
+          <Link href="/" className="flex items-center gap-2 text-sm font-medium text-white">
+            <span aria-hidden="true">🧞‍♂️</span>
+            TalkToGenie.ai
+          </Link>
+          <p className="mt-4 max-w-md text-sm leading-relaxed text-mist">
+            The autonomous operating layer for hospitality. Connect the stack you already use, set your policies, and let Genie do the work.
+          </p>
+          <p className="mt-4 text-sm text-mist">
+            <a className="text-white underline-offset-4 hover:underline" href="mailto:support@talktogenie.ai">
+              support@talktogenie.ai
+            </a>
+          </p>
+        </div>
+        <div className="grid grid-cols-2 gap-3 text-sm">
+          {NAV.map((item) => (
+            <Link key={item.href} href={item.href} className="text-mist hover:text-white">
+              {item.label}
+            </Link>
+          ))}
+          <Link href="/meet" className="text-mist hover:text-white">
+            Meet Genie
+          </Link>
+          <Link href="/sign-in" className="text-mist hover:text-white">
+            Sign In
+          </Link>
+        </div>
+      </div>
+      <div className="border-t border-white/10">
+        <div className="mx-auto flex w-full max-w-6xl flex-col gap-2 px-5 py-5 text-xs leading-relaxed text-[#8ea0c3] sm:flex-row sm:items-center sm:justify-between">
+          <p>© {new Date().getFullYear()} TalkToGenie.ai</p>
+          <p className="max-w-xl sm:text-right">
+            Screens on this site are simulations of the operating model. They are not a live portfolio, a partner list, or a claim that every workflow is in production.
+          </p>
+        </div>
+      </div>
+    </footer>
+  )
+}
