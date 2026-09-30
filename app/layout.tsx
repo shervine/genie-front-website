@@ -1,5 +1,5 @@
 import type { Metadata } from "next"
-import { Geist, Geist_Mono, Instrument_Serif } from "next/font/google"
+import { Geist, Geist_Mono, Source_Serif_4 } from "next/font/google"
 import { SiteFooter } from "@/components/site/footer"
 import { SiteHeader } from "@/components/site/header"
 import "./globals.css"
@@ -14,10 +14,10 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 })
 
-const instrument = Instrument_Serif({
+const display = Source_Serif_4({
   variable: "--font-instrument",
   subsets: ["latin"],
-  weight: "400",
+  weight: "700",
   style: ["normal", "italic"],
 })
 
@@ -47,7 +47,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} ${instrument.variable} dark h-full antialiased`}
+      className={`${geistSans.variable} ${geistMono.variable} ${display.variable} dark h-full antialiased`}
     >
       <body className="min-h-full flex flex-col bg-[#070b14] text-foreground">
         <a

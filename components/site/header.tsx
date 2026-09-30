@@ -14,9 +14,11 @@ export function SiteHeader() {
 
   return (
     <header className="sticky top-0 z-40 border-b border-white/10 bg-[#070b14]/80 backdrop-blur-xl">
-      <div className="mx-auto flex h-16 w-full max-w-6xl items-center justify-between gap-4 px-5">
-        <Link href="/" className="flex items-center gap-2 text-sm font-medium tracking-tight text-white" onClick={() => setOpen(false)}>
-          <span className="text-lg leading-none" aria-hidden="true">🧞‍♂️</span>
+      <div className="mx-auto flex h-28 w-full max-w-6xl items-center justify-between gap-4 px-5">
+        <Link href="/" className="flex items-center gap-3 text-sm font-medium tracking-tight text-white" onClick={() => setOpen(false)}>
+          <span className="text-[3.375rem] leading-none" aria-hidden="true">
+            🧞‍♂️
+          </span>
           <span>TalkToGenie.ai</span>
         </Link>
 

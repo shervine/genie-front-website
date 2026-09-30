@@ -33,6 +33,8 @@ export function Integrations({
           <p className="text-xs tracking-[0.18em] text-glow uppercase">Connection target</p>
           <h3 className="mt-2 text-2xl text-white">{active.category}</h3>
           <p className="mt-3 text-sm leading-relaxed text-mist">{active.detail}</p>
+          <p className="mt-4 text-xs tracking-[0.16em] text-glow uppercase">Access level</p>
+          <p className="mt-2 text-sm leading-relaxed text-white">{active.access}</p>
           <ul className="mt-4 flex flex-wrap gap-2">
             {active.examples.map((example) => (
               <li key={example} className="rounded-full border border-white/10 px-3 py-1 text-xs text-[#d5def3]">
@@ -43,8 +45,11 @@ export function Integrations({
         </div>
 
         <div className="relative mx-auto hidden h-[520px] w-full max-w-[520px] md:block">
-          <div className="absolute top-1/2 left-1/2 flex size-28 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border border-[#8ec8ff]/40 bg-[#10203a] text-center shadow-[0_0_80px_rgba(80,150,255,0.25)]">
-            <span className="font-display text-3xl text-white">Genie</span>
+          <div className="absolute top-1/2 left-1/2 flex -translate-x-1/2 -translate-y-1/2 items-center justify-center">
+            <span className="text-[6.5rem] leading-none drop-shadow-[0_0_28px_rgba(143,215,255,0.45)]" aria-hidden="true">
+              🧞‍♂️
+            </span>
+            <span className="sr-only">Genie</span>
           </div>
           {positioned.map((item) => (
             <button
@@ -85,27 +90,30 @@ export function Integrations({
         ))}
       </div>
 
-      <div className="mt-8 hidden overflow-hidden rounded-[24px] border border-white/10 md:block">
-        <table className="w-full text-left text-sm">
-          <caption className="sr-only">Connection targets Genie is designed to sit across</caption>
+      <div className="mt-8 overflow-x-auto rounded-[24px] border border-white/10">
+        <table className="w-full min-w-[760px] text-left text-sm">
+          <caption className="sr-only">Access level for each connection Genie is designed to sit across</caption>
           <thead className="text-xs tracking-[0.16em] text-[#8ea0c3] uppercase">
             <tr>
               <th className="px-4 py-3 font-medium">Category</th>
               <th className="px-4 py-3 font-medium">Examples</th>
-              <th className="px-4 py-3 font-medium">Status on this site</th>
+              <th className="px-4 py-3 font-medium">Access level</th>
             </tr>
           </thead>
           <tbody>
             {INTEGRATIONS.map((item) => (
-              <tr key={item.id} className="border-t border-white/8">
+              <tr key={item.id} className="border-t border-white/8 align-top">
                 <td className="px-4 py-3 text-white">{item.category}</td>
                 <td className="px-4 py-3 text-mist">{item.examples.join(", ")}</td>
-                <td className="px-4 py-3 text-[#d7ecff]">Connection target</td>
+                <td className="px-4 py-3 text-[#d7ecff]">{item.access}</td>
               </tr>
             ))}
           </tbody>
         </table>
       </div>
+      <p className="mt-3 text-xs leading-relaxed text-[#8ea0c3]">
+        Access level is the role Genie is designed to recognize. A person should only see the slice that role allows.
+      </p>
     </Section>
   )
 }

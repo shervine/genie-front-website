@@ -14,7 +14,7 @@ export default function LampPage() {
       <Lamp
         titleAs="h1"
         heading="The front desk, reimagined."
-        lede="Just say, “Hey Genie.” The lamp is a modern 3D-printed object with a smart speaker and voice interface, so a guest can reach the same operating layer without downloading another app or finding a phone number."
+        lede="Just say, “Hey Genie.” The lamp is white, 3D-printed, and shaped like the classic genie lamp, with a Google Nest Mini seated inside. Guests talk. They don’t download another app or hunt for a phone number."
       />
       <Section className="pt-0">
         <div className="grid gap-4 md:grid-cols-3">
@@ -30,7 +30,7 @@ export default function LampPage() {
           ))}
         </div>
         <p className="mt-6 max-w-2xl text-sm text-mist">
-          Hardware pricing, shipping, and a certified device list are not published here. The lamp on this page is a product visualization, not a live unit you can order from the site.
+          Hardware pricing, shipping, and a certified device list are not published here. The drawing is a white printed lamp with a Nest Mini inside. It is not a Google partnership, and it is not a unit you can order from this page.
         </p>
       </Section>
     </>

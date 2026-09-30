@@ -45,7 +45,7 @@ export function Display({
   return (
     <Tag
       className={cn(
-        "font-display text-[clamp(2.4rem,5vw,4.4rem)] leading-[0.98] tracking-[-0.035em] text-white",
+        "font-display text-[clamp(2.4rem,5vw,4.4rem)] leading-[0.98] font-bold tracking-[-0.035em] text-white",
         className,
       )}
     >

@@ -68,8 +68,8 @@ export const STEPS = [
   },
   {
     n: "02",
-    title: "Set the rules",
-    body: "Review the policy tree: permissions, workflows, prices, and the line where a human must approve.",
+    title: "Tune the rules",
+    body: "Start from Genie’s standard rules and change only what your company does differently. That pass is meant to take a few minutes.",
   },
   {
     n: "03",
@@ -446,6 +446,7 @@ export const INTEGRATIONS = [
     detail:
       "Reservations, listings, and availability stay in the system you already run. Genie is designed to read that system of record, not replace it.",
     examples: ["Your current PMS", "Your channel manager"],
+    access: "Operators and managers. Owners see only their own listings.",
   },
   {
     id: "channels",
@@ -455,6 +456,7 @@ export const INTEGRATIONS = [
     detail:
       "Guest conversations and stay events from the channels you sell on, plus direct bookings.",
     examples: ["Airbnb", "Booking.com", "Vrbo", "Direct"],
+    access: "Operators and managers. Guests reach Genie through the channel. They do not open the connector.",
   },
   {
     id: "payments",
@@ -464,6 +466,7 @@ export const INTEGRATIONS = [
     detail:
       "Collect an approved upsell or see whether a charge succeeded. Stripe is an example of a processor a connector can target where it is supported.",
     examples: ["Stripe", "The processor you use"],
+    access: "Finance, managers, and operators collecting an approved charge. Guests pay. They do not see the processor.",
   },
   {
     id: "banking",
@@ -473,6 +476,7 @@ export const INTEGRATIONS = [
     detail:
       "Compare what a reservation should have paid with what arrived. Plaid is an example of a financial-data source where a connection is supported.",
     examples: ["Plaid", "Payout reports"],
+    access: "Finance and managers.",
   },
   {
     id: "email",
@@ -481,6 +485,7 @@ export const INTEGRATIONS = [
     ring: "outer",
     detail: "Guest and owner email in the same operational context as the channel messages.",
     examples: ["Guest email", "Owner email"],
+    access: "Operators and managers. Owners see threads about their properties. Guests see only their own thread.",
   },
   {
     id: "sms",
@@ -489,6 +494,7 @@ export const INTEGRATIONS = [
     ring: "outer",
     detail: "Text messages treated as part of the stay, not a separate inbox to babysit.",
     examples: ["Guest SMS", "Staff SMS"],
+    access: "Operators and managers. Cleaners and maintenance receive assignment texts. Guests see only their own thread.",
   },
   {
     id: "whatsapp",
@@ -497,6 +503,7 @@ export const INTEGRATIONS = [
     ring: "outer",
     detail: "WhatsApp conversations, with the same policies as every other channel.",
     examples: ["Guest WhatsApp"],
+    access: "Operators and managers. Guests see only their own conversation.",
   },
   {
     id: "locks",
@@ -505,6 +512,7 @@ export const INTEGRATIONS = [
     ring: "inner",
     detail: "Access codes and lock events can inform arrival, departure, and vendor entry.",
     examples: ["The locks already on the doors"],
+    access: "Operators and managers. Cleaners and maintenance get the code for the job in front of them. Guests receive only their own code.",
   },
   {
     id: "tasks",
@@ -513,6 +521,7 @@ export const INTEGRATIONS = [
     ring: "inner",
     detail: "Create, assign, and chase work in the task system your team already opens.",
     examples: ["Your task tool"],
+    access: "Operators, managers, cleaners, and maintenance. Each person sees the work assigned to them.",
   },
   {
     id: "accounting",
@@ -522,6 +531,7 @@ export const INTEGRATIONS = [
     detail:
       "Genie reconciles reservation and guest-transaction activity. It is not a replacement for the general ledger.",
     examples: ["Your accounting system"],
+    access: "Finance and managers.",
   },
   {
     id: "guest",
@@ -530,6 +540,7 @@ export const INTEGRATIONS = [
     ring: "outer",
     detail: "Guides, arrival info, and service requests, shared with the operational brain instead of living in a PDF.",
     examples: ["Property guides", "Arrival instructions"],
+    access: "Guests for their stay. Operators and managers for the portfolio.",
   },
   {
     id: "pricing",
@@ -538,6 +549,7 @@ export const INTEGRATIONS = [
     ring: "outer",
     detail: "Approved add-on prices and stay rules. Genie should quote what you configured.",
     examples: ["Your rate and fee rules"],
+    access: "Operators and managers set the rules. Finance can read them. Guests see an approved price, not the rule set.",
   },
   {
     id: "maintenance",
@@ -546,6 +558,7 @@ export const INTEGRATIONS = [
     ring: "outer",
     detail: "Issues arrive with property context, priority, and the escalation path you wrote.",
     examples: ["In-house techs", "Vendors"],
+    access: "Maintenance, operators, and managers.",
   },
   {
     id: "cleaning",
@@ -554,14 +567,16 @@ export const INTEGRATIONS = [
     ring: "outer",
     detail: "Turnovers, inspections, and quality complaints routed to the right cleaner.",
     examples: ["Cleaning teams", "Inspection notes"],
+    access: "Cleaners, operators, and managers.",
   },
   {
     id: "voice",
     short: "Voice",
     category: "Voice",
     ring: "inner",
-    detail: "The Genie Lamp, and other voice endpoints you choose to connect, using the same policies.",
-    examples: ["Genie Lamp"],
+    detail: "The white Genie Lamp, with a Nest Mini inside, and other voice endpoints you choose to connect, using the same policies.",
+    examples: ["Genie Lamp", "Google Nest Mini"],
+    access: "Guests in the room. Operators and managers.",
   },
   {
     id: "api",
@@ -571,6 +586,7 @@ export const INTEGRATIONS = [
     detail:
       "Where a packaged connector is not the right path, Genie is designed to take events through APIs and webhooks.",
     examples: ["Your internal tools"],
+    access: "Operators and managers.",
   },
 ] as const
 

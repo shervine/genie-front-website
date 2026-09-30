@@ -7,7 +7,7 @@ import { cn } from "@/lib/utils"
 
 export function Lamp({
   heading = "Meet the concierge guests already know how to use.",
-  lede = "Just say, “Hey Genie.” A modern 3D-printed lamp with a voice interface becomes the front desk, reimagined — no extra app, no phone number to hunt down.",
+  lede = "Just say, “Hey Genie.” A white 3D-printed lamp, in the shape you already know, with a Google Nest Mini inside. No extra app, and no phone number to hunt down.",
   titleAs = "h2",
 }: {
   heading?: string
@@ -88,7 +88,7 @@ export function Lamp({
           style={{ perspective: "1200px" }}
         >
           <div
-            className="relative w-[min(100%,380px)] transition-transform duration-200 ease-out"
+            className="relative w-[min(100%,520px)] transition-transform duration-200 ease-out"
             style={{
               transform: `rotateX(${(-tilt.y * 10).toFixed(2)}deg) rotateY(${(tilt.x * 14).toFixed(2)}deg)`,
             }}
@@ -102,91 +102,90 @@ export function Lamp({
 }
 
 export function LampArt({ speaking = false }: { speaking?: boolean }) {
-  const body =
-    "M200 168c58 0 78 46 66 102-12 54 22 92 10 150-12 56-38 86-76 86s-64-30-76-86c-12-58 22-96 10-150-12-56 8-102 66-102Z"
+  const shell =
+    "M250 150c18-28 70-32 96-8 8 8 10 14 6 22-18 6-46 14-62 28 36 8 92 18 132 8 48-12 92-48 132-78 18-14 42-8 40 16-4 36-28 78-70 104 22 18 34 48 28 82-10 52-58 92-118 100-78 10-168-8-196-62-22-42-8-78 18-104-16-22-22-52-6-78 10-16 8-22 0-30z"
   return (
-    <svg viewBox="0 0 400 540" className="w-full overflow-visible" role="img" aria-label="A sculptural Genie lamp with light at the opening">
+    <svg viewBox="0 0 640 460" className="w-full overflow-visible" role="img" aria-label="A white 3D-printed genie lamp with a Nest Mini inside">
       <defs>
-        <linearGradient id="lamp-body" x1="0.15" y1="0" x2="0.9" y2="1">
-          <stop offset="0" stopColor="#f7fbff" />
-          <stop offset="0.18" stopColor="#b7c7e4" />
-          <stop offset="0.48" stopColor="#5d7098" />
-          <stop offset="0.78" stopColor="#2a3858" />
-          <stop offset="1" stopColor="#141c2e" />
-        </linearGradient>
-        <linearGradient id="lamp-sheen" x1="0" y1="0" x2="1" y2="0">
-          <stop offset="0" stopColor="#ffffff" stopOpacity="0.55" />
-          <stop offset="0.45" stopColor="#ffffff" stopOpacity="0" />
-        </linearGradient>
-        <radialGradient id="lamp-bloom" cx="50%" cy="50%" r="50%">
+        <linearGradient id="white-shell" x1="0" y1="0" x2="1" y2="1">
           <stop offset="0" stopColor="#ffffff" />
-          <stop offset="0.25" stopColor="#b9ecff" />
-          <stop offset="0.55" stopColor="#49bfff" stopOpacity="0.7" />
-          <stop offset="1" stopColor="#49bfff" stopOpacity="0" />
-        </radialGradient>
-        <filter id="lamp-blur" x="-50%" y="-50%" width="200%" height="200%">
-          <feGaussianBlur stdDeviation="14" />
-        </filter>
-        <clipPath id="lamp-clip">
-          <path d={body} />
+          <stop offset="0.45" stopColor="#f3f5f8" />
+          <stop offset="1" stopColor="#d5dbe6" />
+        </linearGradient>
+        <linearGradient id="nest-fabric" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stopColor="#c5c9d1" />
+          <stop offset="1" stopColor="#8d939c" />
+        </linearGradient>
+        <clipPath id="shell-clip">
+          <path d={shell} />
         </clipPath>
+        <filter id="soft-shadow" x="-20%" y="-20%" width="140%" height="140%">
+          <feGaussianBlur stdDeviation="6" />
+        </filter>
       </defs>
-      <ellipse cx="200" cy="478" rx="118" ry="18" fill="#02040a" opacity="0.75" />
-      <ellipse
-        cx="200"
-        cy="118"
-        rx={speaking ? 130 : 108}
-        ry={speaking ? 52 : 42}
-        fill="url(#lamp-bloom)"
-        filter="url(#lamp-blur)"
-        className={speaking ? "pulse-glow" : undefined}
+      <ellipse cx="330" cy="400" rx="170" ry="16" fill="#02040a" opacity="0.55" filter="url(#soft-shadow)" />
+      <path
+        d="M188 214c-62 8-78 78-28 112"
+        fill="none"
+        stroke="#f7f8fb"
+        strokeWidth="28"
+        strokeLinecap="round"
       />
-      <path d={body} fill="url(#lamp-body)" />
-      <path d={body} fill="none" stroke="#d5e6ff" strokeOpacity="0.35" strokeWidth="1.5" />
-      <g clipPath="url(#lamp-clip)">
-        <path d="M148 188c24 96 14 190-8 280" stroke="url(#lamp-sheen)" strokeWidth="36" fill="none" />
-      </g>
-      <ellipse cx="200" cy="430" rx="86" ry="16" fill="#10182a" />
-      <g fill="#c9f4ff">
-        {Array.from({ length: 16 }).map((_, index) => {
-          const angle = (index / 16) * Math.PI * 2
-          return (
-            <circle
-              key={index}
-              cx={200 + Math.cos(angle) * 52}
-              cy={360 + Math.sin(angle) * 11}
-              r="2.1"
-              opacity={0.55 + (index % 3) * 0.15}
-            />
-          )
-        })}
-      </g>
-      <ellipse cx="200" cy="176" rx="64" ry="15" fill="#070b14" />
-      <ellipse cx="200" cy="186" rx="70" ry="13" fill="none" stroke="#9fe7ff" strokeWidth="3" />
-      <ellipse
-        cx="200"
-        cy="170"
-        rx="28"
-        ry="8"
-        fill="#f4fcff"
-        className={speaking ? "pulse-glow" : undefined}
+      <path
+        d="M196 226c-42 8-50 52-16 74"
+        fill="none"
+        stroke="#e7ebf2"
+        strokeWidth="8"
+        strokeLinecap="round"
       />
-      {speaking ? (
-        <g fill="#e9f8ff">
-          {Array.from({ length: 5 }).map((_, index) => (
-            <rect
-              key={index}
-              className="speak-bar"
-              x={176 + index * 10}
-              y="96"
-              width="4"
-              height="22"
-              rx="2"
-              style={{ animationDelay: `${index * 0.1}s` }}
-            />
-          ))}
-        </g>
-      ) : null}
+      <path d={shell} fill="url(#white-shell)" />
+      <path d={shell} fill="none" stroke="#ffffff" strokeWidth="2" />
+      <g clipPath="url(#shell-clip)" opacity="0.28">
+        {Array.from({ length: 14 }).map((_, index) => (
+          <line
+            key={index}
+            x1="140"
+            x2="620"
+            y1={170 + index * 14}
+            y2={170 + index * 14}
+            stroke="#8ea0b8"
+            strokeWidth="1"
+          />
+        ))}
+      </g>
+      <path
+        d="M430 168c48-28 110-62 148-86 16-10 28 8 18 22-28 36-78 72-140 96"
+        fill="none"
+        stroke="#f7f8fb"
+        strokeWidth="34"
+        strokeLinecap="round"
+      />
+      <path
+        d="M560 92c28-22 48-6 36 16"
+        fill="none"
+        stroke="#f4f6fa"
+        strokeWidth="18"
+        strokeLinecap="round"
+      />
+      <ellipse cx="300" cy="268" rx="78" ry="48" fill="#121820" />
+      <ellipse cx="300" cy="274" rx="58" ry="28" fill="#e8eaee" />
+      <ellipse cx="300" cy="266" rx="50" ry="22" fill="url(#nest-fabric)" />
+      {Array.from({ length: 4 }).map((_, index) => {
+        const angle = (index / 4) * Math.PI * 2 - Math.PI / 2
+        return (
+          <circle
+            key={index}
+            cx={300 + Math.cos(angle) * 28}
+            cy={266 + Math.sin(angle) * 12}
+            r={speaking ? 3.2 : 2.4}
+            fill={speaking ? "#8fd7ff" : "#f4fbff"}
+            className={speaking ? "pulse-glow" : undefined}
+          />
+        )
+      })}
+      <ellipse cx="292" cy="258" rx="16" ry="6" fill="#ffffff" opacity="0.35" />
+      <ellipse cx="292" cy="168" rx="54" ry="16" fill="#f7f8fb" />
+      <ellipse cx="292" cy="154" rx="12" ry="10" fill="#ffffff" />
     </svg>
   )
 }

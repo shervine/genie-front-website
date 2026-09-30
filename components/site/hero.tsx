@@ -73,12 +73,12 @@ export function Hero() {
   return (
     <section className="relative overflow-hidden">
       <div className="bg-grid pointer-events-none absolute inset-0" />
-      <div className="relative mx-auto grid min-h-[calc(100vh-4rem)] w-full max-w-6xl items-center gap-12 px-5 py-16 lg:grid-cols-[1.05fr_0.95fr] lg:py-10">
+      <div className="relative mx-auto grid min-h-[calc(100vh-7rem)] w-full max-w-6xl items-center gap-12 px-5 py-16 lg:grid-cols-[1.05fr_0.95fr] lg:py-10">
         <div>
           <p className="text-[0.72rem] font-medium tracking-[0.22em] text-glow uppercase">
             The AI operating system for hospitality
           </p>
-          <h1 className="mt-5 font-display text-[clamp(3.3rem,7vw,6.1rem)] leading-[0.9] tracking-[-0.045em] text-white">
+          <h1 className="mt-5 font-display text-[clamp(3.3rem,7vw,6.1rem)] leading-[0.9] font-bold tracking-[-0.045em] text-white">
             Hospitality.
             <span className="text-shimmer mt-1 block italic">On Autopilot.</span>
           </h1>

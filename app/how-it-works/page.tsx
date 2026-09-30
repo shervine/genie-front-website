@@ -6,7 +6,7 @@ import { Display, Eyebrow, Lede, Section } from "@/components/site/section"
 export const metadata: Metadata = {
   title: "How It Works",
   description:
-    "Connect your hospitality stack, configure Genie’s policies, and move from Observe to Copilot to Autopilot without giving up the exception.",
+    "Adopt Genie’s standard hospitality rules, customize them in a few minutes during onboarding, and let Genie drive the operation from there.",
 }
 
 export default function HowItWorksPage() {
@@ -15,10 +15,10 @@ export default function HowItWorksPage() {
       <Section className="pb-0">
         <Eyebrow>How it works</Eyebrow>
         <Display as="h1" className="mt-4 max-w-4xl">
-          You write the rules. Genie runs inside them.
+          Standard rules, tuned in minutes. Then Genie drives.
         </Display>
         <Lede className="mt-5">
-          A safe path into autonomy: watch, draft, then execute. The mode can differ by company, department, workflow, or a single policy.
+          You don’t build the rulebook from scratch. Onboarding starts from a standard set of hospitality rules. You customize what your company does differently, usually in a few minutes. After that, the operation is self-driving. People stay on the exceptions.
         </Lede>
         <div className="mt-8 grid gap-4 md:grid-cols-2">
           <article className="rounded-[24px] border border-white/10 p-5">
