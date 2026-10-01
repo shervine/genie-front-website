@@ -75,16 +75,16 @@ export function Lamp({
 
         <div className="flex flex-col gap-4">
           <Image
-            src="/luxury-queen-beds-lamp.jpg"
-            alt="A shiny genie lamp glowing on a marble nightstand between two queen beds in a luxury hotel room"
+            src="/luxury-queen-beds-genie.jpg"
+            alt="A blue genie rising from a shiny lamp on the nightstand between two queen beds"
             width={1280}
             height={720}
             className="h-auto w-full rounded-[28px] border border-[#d4af37]/35 shadow-[0_24px_60px_rgba(18,56,72,0.12)]"
             sizes="(min-width: 1024px) 640px, 100vw"
           />
           <Image
-            src="/airbnb-kitchen-lamp.jpg"
-            alt="The same shiny genie lamp on the kitchen counter of a larger vacation house"
+            src="/airbnb-kitchen-genie.jpg"
+            alt="A blue genie rising from a shiny lamp on the kitchen counter of a vacation house"
             width={1280}
             height={720}
             className="h-auto w-full rounded-[28px] border border-[#d4af37]/35 shadow-[0_24px_60px_rgba(18,56,72,0.12)]"
