@@ -75,8 +75,8 @@ export function Lamp({
 
         <div className="flex flex-col gap-4">
           <Image
-            src="/hotel-bedside-lamp.jpg"
-            alt="A shiny genie lamp glowing on the nightstand between two queen beds in a hotel room"
+            src="/luxury-queen-beds-lamp.jpg"
+            alt="A shiny genie lamp glowing on a marble nightstand between two queen beds in a luxury hotel room"
             width={1280}
             height={720}
             className="h-auto w-full rounded-[28px] border border-[#d4af37]/35 shadow-[0_24px_60px_rgba(18,56,72,0.12)]"
