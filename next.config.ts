@@ -6,6 +6,15 @@ const nextConfig: NextConfig = {
   // The dev server treats 127.0.0.1 as cross-origin unless it is listed here,
   // which blocks hydration of client components.
   allowedDevOrigins: ["127.0.0.1"],
+  async redirects() {
+    return [
+      {
+        source: "/pitch",
+        destination: "/investors",
+        permanent: false,
+      },
+    ]
+  },
 };
 
 export default nextConfig;

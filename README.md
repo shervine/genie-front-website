@@ -22,7 +22,7 @@ npm run build
 
 ## Investor briefing
 
-A ten-slide deck is at [/pitch](http://127.0.0.1:43123/pitch), with downloads at `public/pitch-deck.pptx` and `public/pitch-deck.pdf`. The same page includes the San Francisco outreach note. A plain-text copy is `public/outreach-email.txt`.
+The ten-slide deck is unlisted at `/investors`. It is not linked from the navigation, footer, or sitemap. Downloads are `public/pitch-deck.pptx` and `public/pitch-deck.pdf`. The same page includes the San Francisco outreach note. A plain-text copy is `public/outreach-email.txt`.
 
 Rebuild the deck files with:
 

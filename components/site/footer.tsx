@@ -25,9 +25,6 @@ export function SiteFooter() {
               {item.label}
             </Link>
           ))}
-          <Link href="/pitch" className="text-mist hover:text-[#123848]">
-            For investors
-          </Link>
           <Link href="/meet" className="text-mist hover:text-[#123848]">
             Meet Genie
           </Link>

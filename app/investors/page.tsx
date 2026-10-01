@@ -7,9 +7,13 @@ export const metadata: Metadata = {
   title: "Investor pitch",
   description:
     "A ten-slide briefing on TalkToGenie.ai: the AI operating layer that runs hospitality communication, tasks, and reservation money, with human support over the automation.",
+  robots: {
+    index: false,
+    follow: false,
+  },
 }
 
-export default function PitchPage() {
+export default function InvestorsPage() {
   return (
     <Section>
       <Eyebrow>For investors</Eyebrow>
@@ -33,7 +37,7 @@ export default function PitchPage() {
           Download PDF
         </a>
         <Link
-          href="/pitch#outreach"
+          href="/investors#outreach"
           className="inline-flex h-11 items-center justify-center rounded-full px-5 text-sm text-mist"
         >
           Outreach note
