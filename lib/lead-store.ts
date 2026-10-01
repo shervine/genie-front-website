@@ -38,6 +38,7 @@ export function formatLead(lead: StoredLead) {
     `Listings: ${lead.listings}`,
     `PMS / channel manager: ${lead.pms}`,
     `Automate: ${lead.automate.length ? lead.automate.join(", ") : "Not specified"}`,
+    `Notes: ${lead.notes || "Not specified"}`,
     `Submitted: ${lead.createdAt}`,
     `Reference: ${lead.id}`,
   ].join("\n")
@@ -47,7 +48,7 @@ export async function storeLead(lead: StoredLead) {
   await storeRow(lead)
 }
 
-const inbox = () => process.env.LEAD_INBOX || "support@superhost.management"
+const inbox = () => process.env.LEAD_INBOX || "support@talktogenie.ai"
 const fromAddress = () => process.env.SES_FROM || process.env.RESEND_FROM || "support@mench.com"
 
 export async function sendInboxEmail(message: { subject: string; text: string; replyTo?: string }) {

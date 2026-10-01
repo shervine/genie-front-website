@@ -14,8 +14,8 @@ export function SiteFooter() {
             The autonomous operating layer for hospitality. Connect the stack, set the rules, and make the wish.
           </p>
           <p className="mt-4 text-sm text-mist">
-            <a className="text-ink underline-offset-4 hover:underline" href="mailto:support@superhost.management">
-              support@superhost.management
+            <a className="text-ink underline-offset-4 hover:underline" href="mailto:support@talktogenie.ai">
+              support@talktogenie.ai
             </a>
           </p>
         </div>

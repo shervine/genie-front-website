@@ -26,14 +26,14 @@ Meet Genie submissions are validated and appended to `data/leads.jsonl` (gitigno
 
 Every Meet Genie and sign-in submission is stored as a row in `data/submissions.json` (and appended to `data/leads.jsonl`). Both files are gitignored.
 
-A copy is also emailed to `support@superhost.management` through Amazon SES, from `support@mench.com`, when these are set in `.env.local`:
+A copy is also emailed to `support@talktogenie.ai` through Amazon SES, from `support@mench.com`, when these are set in `.env.local`:
 
 ```bash
 AWS_ACCESS_KEY_ID=
 AWS_SECRET_ACCESS_KEY=
 AWS_REGION=us-west-2
 SES_FROM=support@mench.com
-LEAD_INBOX=support@superhost.management
+LEAD_INBOX=support@talktogenie.ai
 ```
 
 The sender must be verified in that SES region. Sign-in never sends the password. If mail credentials are missing, the row is still stored and the visitor is told to write the inbox directly.

@@ -2,6 +2,7 @@
 
 import { useState } from "react"
 import { Button } from "@/components/ui/button"
+import { Textarea } from "@/components/ui/textarea"
 import { Checkbox } from "@/components/ui/checkbox"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
@@ -37,6 +38,7 @@ export function LeadForm({
   const [listings, setListings] = useState("")
   const [pms, setPms] = useState("")
   const [automate, setAutomate] = useState<string[]>([])
+  const [notes, setNotes] = useState("")
   const [faxNumber, setFaxNumber] = useState("")
   const [errors, setErrors] = useState<FieldErrors>({})
   const [message, setMessage] = useState("")
@@ -57,6 +59,7 @@ export function LeadForm({
       listings,
       pms,
       automate,
+      notes,
       intent,
       faxNumber,
     }
@@ -82,13 +85,13 @@ export function LeadForm({
       }
       if (!response.ok || !data.ok) {
         setErrors(data.fieldErrors ?? {})
-        setMessage(data.message || "We couldn’t send that. Email support@superhost.management.")
+        setMessage(data.message || "We couldn’t send that. Email support@talktogenie.ai.")
         return
       }
       setEmailed(Boolean(data.emailed))
       setDone(true)
     } catch {
-      setMessage("We couldn’t reach the server. Email support@superhost.management and include your portfolio size.")
+      setMessage("We couldn’t reach the server. Email support@talktogenie.ai and include your portfolio size.")
     } finally {
       setPending(false)
     }
@@ -122,8 +125,8 @@ export function LeadForm({
             </p>
             <p className="mt-3 text-sm text-mist">
               {emailed
-                ? "Sent to support@superhost.management."
-                : "Email delivery is not configured on this server yet. Write support@superhost.management directly so the wish is not waiting on a missing mail key."}
+                ? "Sent to support@talktogenie.ai."
+                : "Email delivery is not configured on this server yet. Write support@talktogenie.ai directly so the wish is not waiting on a missing mail key."}
             </p>
             {intent === "demo" ? (
               <p className="mt-3 text-sm text-mist">
@@ -217,6 +220,18 @@ export function LeadForm({
               </div>
             </fieldset>
 
+            <div className="mt-6 grid gap-2">
+              <Label htmlFor="notes">Anything else you want Genie to do?</Label>
+              <p className="text-xs text-mist">Optional.</p>
+              <Textarea
+                id="notes"
+                value={notes}
+                onChange={(event) => setNotes(event.target.value)}
+                placeholder="Write the wish in your own words."
+                className="min-h-28"
+              />
+            </div>
+
             <div className="hidden" aria-hidden="true">
               <label htmlFor="fax-number">Fax</label>
               <input id="fax-number" tabIndex={-1} autoComplete="off" value={faxNumber} onChange={(event) => setFaxNumber(event.target.value)} />
@@ -227,7 +242,7 @@ export function LeadForm({
               {pending ? "Sending…" : "Meet Genie"}
             </Button>
             <p className="mt-3 text-xs leading-relaxed text-mist">
-              This sends your wish to support@superhost.management so the team can follow up. It does not create an account.
+              This sends your wish to support@talktogenie.ai so the team can follow up. It does not create an account.
             </p>
           </form>
         )}

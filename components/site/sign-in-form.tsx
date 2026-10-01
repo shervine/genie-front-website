@@ -33,8 +33,8 @@ export function SignInForm() {
         }
         setNotice(
           emailed
-            ? "This page does not check a password. Your work email was sent to support@superhost.management."
-            : "This page does not check a password. Email delivery is not configured on this server yet, so write support@superhost.management directly. The password was not sent.",
+            ? "This page does not check a password. Your work email was sent to support@talktogenie.ai."
+            : "This page does not check a password. Email delivery is not configured on this server yet, so write support@talktogenie.ai directly. The password was not sent.",
         )
       }}
     >

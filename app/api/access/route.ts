@@ -35,7 +35,7 @@ export async function POST(request: Request) {
     await storeRow(row)
   } catch {
     return Response.json(
-      { ok: false, emailed, message: "We couldn’t store that. Email support@superhost.management." },
+      { ok: false, emailed, message: "We couldn’t store that. Email support@talktogenie.ai." },
       { status: 500 },
     )
   }

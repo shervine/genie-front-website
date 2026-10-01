@@ -64,6 +64,7 @@ export type LeadInput = {
   listings: string
   pms: string
   automate: string[]
+  notes: string
   intent: "meet" | "demo"
 }
 
@@ -76,6 +77,15 @@ function clean(value: unknown, max: number) {
   return value
     .replace(/[\u0000-\u001F\u007F]/g, " ")
     .replace(/\s+/g, " ")
+    .trim()
+    .slice(0, max)
+}
+
+function cleanNote(value: unknown, max: number) {
+  if (typeof value !== "string") return ""
+  return value
+    .replace(/[^\S\n]+/g, " ")
+    .replace(/\n{3,}/g, "\n\n")
     .trim()
     .slice(0, max)
 }
@@ -96,6 +106,7 @@ export function validateLead(input: unknown):
     listings: clean(source.listings, 20),
     pms: clean(source.pms, 120),
     automate: [],
+    notes: cleanNote(source.notes, 2000),
     intent: source.intent === "demo" ? "demo" : "meet",
   }
 
