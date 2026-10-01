@@ -36,10 +36,10 @@ export function Reconciliation() {
 
   return (
     <Section id="reconciliation">
-      <Eyebrow>Reservation financial reconciliation</Eyebrow>
-      <Display className="mt-4 max-w-3xl">Every reservation accounted for.</Display>
+      <Eyebrow>Financial tracker</Eyebrow>
+      <Display className="mt-4 max-w-3xl">The money you expected, checked against the bank.</Display>
       <Lede className="mt-5">
-        Genie reconciles financial activity tied to reservations and guest transactions. It is not a replacement for your accounting system. The questions it should answer are simple: What should we have received? What did we receive? What’s missing? Why? Which stays are still open?
+        Expected reservation revenue is matched to bank transactions, through a connection such as Plaid, and to card payouts such as Stripe. If a card payment is later disputed, it is flagged so the revenue is not quietly lost. Your accounting system stays your accounting system.
       </Lede>
       <div ref={ref} className="mt-10 grid gap-4 lg:grid-cols-2">
         <article className="panel rounded-[28px] p-6">

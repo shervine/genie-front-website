@@ -28,7 +28,7 @@ export const metadata: Metadata = {
     template: "%s · TalkToGenie.ai",
   },
   description:
-    "Genie is the autonomous operating layer for hospitality. Connect the stack you already use, set your policies, and let Genie handle communication, operations, tasks, upsells, and reservation reconciliation.",
+    "Genie is the AI operating layer for hospitality. Unified inbox, task coordination, financial tracking, and an intent tree operators control, aimed at higher ratings and higher income.",
   openGraph: {
     title: "TalkToGenie.ai — Hospitality. On Autopilot.",
     description:

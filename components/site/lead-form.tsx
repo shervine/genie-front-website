@@ -32,6 +32,7 @@ export function LeadForm({
   const [firstName, setFirstName] = useState("")
   const [lastName, setLastName] = useState("")
   const [email, setEmail] = useState("")
+  const [phone, setPhone] = useState("")
   const [company, setCompany] = useState("")
   const [website, setWebsite] = useState("")
   const [country, setCountry] = useState("")
@@ -53,6 +54,7 @@ export function LeadForm({
       firstName,
       lastName,
       email,
+      phone,
       company,
       website,
       country,
@@ -145,6 +147,9 @@ export function LeadForm({
               </Field>
               <Field id="work-email" label="Work email" error={errors.email}>
                 <Input id="work-email" type="email" autoComplete="email" value={email} onChange={(event) => setEmail(event.target.value)} className="h-11" aria-invalid={Boolean(errors.email)} />
+              </Field>
+              <Field id="phone" label="Telephone" error={errors.phone}>
+                <Input id="phone" type="tel" autoComplete="tel" required value={phone} onChange={(event) => setPhone(event.target.value)} className="h-11" aria-invalid={Boolean(errors.phone)} />
               </Field>
               <Field id="company" label="Company name" error={errors.company}>
                 <Input id="company" autoComplete="organization" value={company} onChange={(event) => setCompany(event.target.value)} className="h-11" aria-invalid={Boolean(errors.company)} />

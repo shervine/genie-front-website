@@ -37,6 +37,9 @@ yarn-error.log*
 # lead submissions
 /data/
 
+# generated print source for the pitch PDF
+/scripts/pitch-print.html
+
 # vercel
 .vercel
 

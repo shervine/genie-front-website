@@ -11,7 +11,7 @@ export function SiteFooter() {
             TalkToGenie.ai
           </Link>
           <p className="mt-4 max-w-md text-sm leading-relaxed text-mist">
-            The autonomous operating layer for hospitality. Connect the stack, set the rules, and make the wish.
+            The AI operating layer for hospitality. Communication, tasks, and reservation money, aimed at higher ratings and higher income.
           </p>
           <p className="mt-4 text-sm text-mist">
             <a className="text-ink underline-offset-4 hover:underline" href="mailto:support@talktogenie.ai">
@@ -25,6 +25,9 @@ export function SiteFooter() {
               {item.label}
             </Link>
           ))}
+          <Link href="/pitch" className="text-mist hover:text-[#123848]">
+            For investors
+          </Link>
           <Link href="/meet" className="text-mist hover:text-[#123848]">
             Meet Genie
           </Link>

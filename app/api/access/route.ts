@@ -31,9 +31,13 @@ export async function POST(request: Request) {
     emailed = false
   }
   const row = { id: crypto.randomUUID(), type: "sign-in", email: clean, createdAt, emailed }
+  let durability: "durable" | "ephemeral" | "none" = "none"
   try {
-    await storeRow(row)
-  } catch {
+    durability = await storeRow(row)
+  } catch (error) {
+    console.error("access store failed", error)
+  }
+  if (!emailed && durability !== "durable") {
     return Response.json(
       { ok: false, emailed, message: "We couldn’t store that. Email support@talktogenie.ai." },
       { status: 500 },

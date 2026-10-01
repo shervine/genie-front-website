@@ -17,10 +17,10 @@ export default function ProductPage() {
       <Section className="pb-0">
         <Eyebrow>Product</Eyebrow>
         <Display as="h1" className="mt-4 max-w-4xl">
-          The autonomous operating layer for hospitality.
+          One AI brand for the whole operation.
         </Display>
         <Lede className="mt-5">
-          Not another PMS, inbox, chatbot, or guest-experience tool. Genie connects the systems you already run and does the work inside rules you set.
+          Plug in the stack you already run. Genie takes guest communication, task coordination, and reservation money, inside an intent tree you can rewrite. Human support sits over the automation.
         </Lede>
         <p className="mt-6 max-w-2xl text-sm leading-relaxed text-mist">
           Built for vacation-rental managers, serviced apartments, aparthotels, boutique groups, and multi-market operators, roughly 20 to 2,000+ listings. The job is not more software. The job is one layer that can see the stay, decide inside policy, and finish the action.

@@ -23,7 +23,7 @@ export function Problem() {
         Every Message Answered. Task Done. Dollar Tracked.
       </Display>
       <Lede className="mt-5">
-        The problem isn’t a lack of software. It is fragmentation. Data, teams, and money live in different places, and people spend the day moving them by hand.
+        The problem isn’t a lack of software. Messages, physical work, and reservation money live in different places, and the rating moves only when someone stitches them together by hand.
       </Lede>
 
       <div className="mt-10 flex flex-wrap gap-2" onMouseEnter={() => setHeld(true)}>

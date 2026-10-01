@@ -12,10 +12,10 @@ export function PolicyTree() {
 
   return (
     <Section id="policy">
-      <Eyebrow>Policy-controlled autonomy</Eyebrow>
-      <Display className="mt-4 max-w-3xl">Autonomous doesn’t mean uncontrolled.</Display>
+      <Eyebrow>Human in the loop</Eyebrow>
+      <Display className="mt-4 max-w-3xl">Every pattern is decided before Genie speaks.</Display>
       <Lede className="mt-5">
-        Your business. Your policies. Genie executes them. AI should not invent company policy. Humans define the boundaries. Genie operates inside them. People remain on exceptions, approvals, and escalation.
+        Onboarding starts from a template of the patterns hospitality already runs, chosen from how you describe the company. You can rewrite any branch. A new message is read for its intent and matched to that tree. The tone, the resolution, and the action are the ones you already set. If an intent is missing, our team expands the tree. Human support sits over it.
       </Lede>
 
       <div className="mt-10 grid gap-6 lg:grid-cols-[0.85fr_1.15fr]">

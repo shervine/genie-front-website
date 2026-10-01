@@ -1,5 +1,5 @@
 import { validateLead } from "@/lib/lead-schema"
-import { emailLead, storeLead, type StoredLead } from "@/lib/lead-store"
+import { emailLead, formatLead, storeLead, type StoredLead } from "@/lib/lead-store"
 
 export const runtime = "nodejs"
 
@@ -64,9 +64,15 @@ export async function POST(request: Request) {
     lead.emailed = false
   }
 
+  let durability: "durable" | "ephemeral" | "none" = "none"
   try {
-    await storeLead(lead)
-  } catch {
+    durability = await storeLead(lead)
+  } catch (error) {
+    console.error("lead store failed", error)
+  }
+
+  if (!lead.emailed && durability !== "durable") {
+    console.error(`lead not delivered ${lead.id}\n${formatLead(lead)}`)
     return Response.json(
       {
         ok: false,
@@ -76,6 +82,6 @@ export async function POST(request: Request) {
     )
   }
 
-  console.info(`lead stored ${lead.id} emailed=${lead.emailed} company=${lead.company}`)
+  console.info(`lead stored ${lead.id} emailed=${lead.emailed} durability=${durability} company=${lead.company}`)
   return Response.json({ ok: true, emailed: lead.emailed })
 }

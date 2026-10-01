@@ -14,7 +14,7 @@ export function Stakeholders() {
       <Eyebrow>One AI for every stakeholder</Eyebrow>
       <Display className="mt-4 max-w-3xl">Everyone talks to Genie. Genie understands who they are.</Display>
       <Lede className="mt-5">
-        Guests, operators, owners, cleaners, maintenance, managers, and finance share one intelligence layer. Role-based permissions decide what comes back.
+        Genie coordinates guests, operators, owners, cleaners, maintenance, managers, and finance. The same chat is translated live into up to 50 languages, so each person reads it in their own. Permissions decide what comes back.
       </Lede>
       <div className="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
         {STAKEHOLDERS.map((item) => (

@@ -11,20 +11,41 @@ export type StoredLead = LeadInput & {
 
 const filePath = path.join(process.cwd(), "data", "leads.jsonl")
 const tablePath = path.join(process.cwd(), "data", "submissions.json")
+const tmpRoot = path.join("/tmp", "talktogenie")
 
-export async function storeRow(row: Record<string, unknown>) {
-  await mkdir(path.dirname(tablePath), { recursive: true })
+export type StoreDurability = "durable" | "ephemeral"
+
+async function persist(table: string, jsonl: string, row: Record<string, unknown>) {
+  await mkdir(path.dirname(table), { recursive: true })
   let rows: Record<string, unknown>[] = []
   try {
-    const raw = await readFile(tablePath, "utf8")
+    const raw = await readFile(table, "utf8")
     const parsed = JSON.parse(raw) as unknown
     if (Array.isArray(parsed)) rows = parsed as Record<string, unknown>[]
   } catch {
     rows = []
   }
   rows.push(row)
-  await writeFile(tablePath, JSON.stringify(rows, null, 2))
-  await appendFile(filePath, `${JSON.stringify(row)}\n`, "utf8")
+  await writeFile(table, JSON.stringify(rows, null, 2))
+  await appendFile(jsonl, `${JSON.stringify(row)}\n`, "utf8")
+}
+
+export async function storeRow(row: Record<string, unknown>): Promise<StoreDurability> {
+  try {
+    await persist(tablePath, filePath, row)
+    return "durable"
+  } catch (error) {
+    const code = error && typeof error === "object" && "code" in error ? String(error.code) : ""
+    if (code === "EROFS" || code === "EACCES" || code === "EPERM" || code === "ROFS") {
+      await persist(
+        path.join(tmpRoot, "submissions.json"),
+        path.join(tmpRoot, "leads.jsonl"),
+        row,
+      )
+      return "ephemeral"
+    }
+    throw error
+  }
 }
 
 export function formatLead(lead: StoredLead) {
@@ -32,6 +53,7 @@ export function formatLead(lead: StoredLead) {
     `Intent: ${lead.intent === "demo" ? "Book a demo" : "Meet Genie"}`,
     `Name: ${lead.firstName} ${lead.lastName}`,
     `Email: ${lead.email}`,
+    `Phone: ${lead.phone}`,
     `Company: ${lead.company}`,
     `Website: ${lead.website}`,
     `Country: ${lead.country}`,
@@ -45,7 +67,7 @@ export function formatLead(lead: StoredLead) {
 }
 
 export async function storeLead(lead: StoredLead) {
-  await storeRow(lead)
+  return storeRow(lead)
 }
 
 const inbox = () => process.env.LEAD_INBOX || "support@talktogenie.ai"

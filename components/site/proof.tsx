@@ -1,11 +1,11 @@
 import { Display, Eyebrow, Lede, Section } from "@/components/site/section"
 
 const METRICS = [
-  "Conversations resolved inside policy",
-  "Hours returned per 100 reservations",
+  "Inquiries resolved inside the intent tree",
   "Tasks closed without a chase",
-  "Reconciliation exceptions caught",
-  "Upsell revenue that cleared",
+  "Reservation dollars matched to the bank",
+  "Average rating over time",
+  "Nightly rate on the same listings",
 ]
 
 export function Proof() {

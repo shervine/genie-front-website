@@ -68,8 +68,8 @@ export const STEPS = [
   },
   {
     n: "02",
-    title: "Tune the rules",
-    body: "Start from Genie’s standard rules and change only what your company does differently. That pass is meant to take a few minutes.",
+    title: "Take the template",
+    body: "Start from a standard intent tree of the patterns hospitality already runs. Change only what your company does differently. That pass is meant to take a few minutes.",
   },
   {
     n: "03",
@@ -183,8 +183,8 @@ export const SIM_EVENTS = [
 export const MODULES = [
   {
     id: "communication",
-    label: "Communication",
-    kicker: "Genie understands what the guest needs and works toward resolving it.",
+    label: "Unified inbox",
+    kicker: "Every channel lands in one thread, with sentiment on the message. The greater share of these inquiries is meant to finish without a person.",
     lines: [
       { from: "Guest", text: "The AC isn’t working." },
       {
@@ -215,8 +215,8 @@ export const MODULES = [
   },
   {
     id: "tasks",
-    label: "Tasks",
-    kicker: "Messages become actions automatically.",
+    label: "Task coordination",
+    kicker: "When the fix has to happen in the physical world, Genie opens a task, assigns it, and keeps the guest inquiry alive until the work is done.",
     lines: [
       { from: "Cleaner", text: "The sofa at Cottage 12 is stained." },
       {
@@ -248,8 +248,8 @@ export const MODULES = [
   },
   {
     id: "reconciliation",
-    label: "Reconciliation",
-    kicker: "Every reservation accounted for. Your accounting system stays your accounting system.",
+    label: "Financial tracker",
+    kicker: "Expected reservation revenue is checked against bank transactions and card payouts, including a Stripe dispute that shows up later.",
     lines: [
       { from: "Finance", text: "Which reservations haven’t been fully reconciled?" },
       {
@@ -264,8 +264,8 @@ export const MODULES = [
   },
   {
     id: "analytics",
-    label: "Analytics",
-    kicker: "From thousands of interactions to one clear picture.",
+    label: "Intent analytics",
+    kicker: "More than a thousand intents. The report says which unit had access issues and which had furniture complaints.",
     lines: [
       { from: "Operator", text: "Why did Property 214 receive three bad reviews?" },
       {
@@ -598,8 +598,8 @@ export const DIFFERENTIATORS = [
   },
   {
     n: "02",
-    title: "Policy-controlled autonomy",
-    body: "You decide what Genie may do, what it must ask, and what it must refuse. Autonomy stays inside those lines.",
+    title: "An intent tree you can rewrite",
+    body: "Onboarding starts from a template of hospitality patterns. You decide the tone, the resolution, and what Genie must ask a person. Human support sits over that tree.",
   },
   {
     n: "03",
@@ -661,6 +661,28 @@ export const LAMP_LINES = [
 ]
 
 export const ANALYTICS_QUESTIONS = [
+  {
+    id: "ratings",
+    q: "Is the average rating moving?",
+    a: "Average rating is the scoreboard. In this sample the portfolio moved from 4.61 to 4.74 as replies, task close rate, and cleaner notes tightened. The other tools exist to move this number, and nightly rates can follow.",
+    points: [
+      ["Portfolio average", "4.74"],
+      ["90 days earlier", "4.61"],
+      ["Units above 4.8", "19"],
+      ["Units under 4.5", "3"],
+    ],
+  },
+  {
+    id: "intents",
+    q: "Which intents fired most?",
+    a: "In this sample, access issues clustered at Unit 214 and furniture complaints clustered at Cottage 12. The tree holds more than a thousand intents. Each trigger is counted so the report is specific, not a vague mood score.",
+    points: [
+      ["Access issues · Unit 214", "22"],
+      ["Furniture · Cottage 12", "9"],
+      ["Late checkout offers", "41"],
+      ["Intents in the tree", "1,000+"],
+    ],
+  },
   {
     id: "refunds",
     q: "Why did refunds increase 14% this month?",

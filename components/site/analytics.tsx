@@ -12,10 +12,10 @@ export function Analytics() {
 
   return (
     <Section id="analytics">
-      <Eyebrow>Analytics and operational intelligence</Eyebrow>
-      <Display className="mt-4 max-w-3xl">Ask your operation anything.</Display>
+      <Eyebrow>Intent analytics</Eyebrow>
+      <Display className="mt-4 max-w-3xl">The rating is the scoreboard.</Display>
       <Lede className="mt-5">
-        Genie should explain the operation, not only automate it. Move from portfolio to market, property, reservation, conversation, and transaction.
+        Genie counts every intent in a tree of more than 1,000 hospitality patterns, then ties them to the average rating it is here to move with you. The figures below are a sample.
       </Lede>
       <div className="mt-8 flex flex-wrap gap-2">
         {ANALYTICS_QUESTIONS.map((question) => (

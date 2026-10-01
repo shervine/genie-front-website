@@ -20,9 +20,21 @@ npm run lint
 npm run build
 ```
 
+## Investor briefing
+
+A ten-slide deck is at [/pitch](http://127.0.0.1:43123/pitch), with downloads at `public/pitch-deck.pptx` and `public/pitch-deck.pdf`. The same page includes the San Francisco outreach note. A plain-text copy is `public/outreach-email.txt`.
+
+Rebuild the deck files with:
+
+```bash
+npm run pitch
+```
+
 ## Lead form
 
-Meet Genie submissions are validated and appended to `data/leads.jsonl` (gitignored).
+Meet Genie submissions require a telephone number. They are validated and appended to `data/leads.jsonl` (gitignored).
+
+On Vercel the project disk is read-only, so the row is only durable when it is emailed. Set the Amazon SES variables below on the Vercel project. A successful email is not blocked by the file save.
 
 Every Meet Genie and sign-in submission is stored as a row in `data/submissions.json` (and appended to `data/leads.jsonl`). Both files are gitignored.
 

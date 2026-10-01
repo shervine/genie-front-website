@@ -58,6 +58,7 @@ export type LeadInput = {
   firstName: string
   lastName: string
   email: string
+  phone: string
   company: string
   website: string
   country: string
@@ -71,6 +72,15 @@ export type LeadInput = {
 export type FieldErrors = Partial<Record<keyof LeadInput, string>>
 
 const EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+
+function cleanPhone(value: unknown) {
+  if (typeof value !== "string") return ""
+  return value
+    .replace(/[^\d+\-().\s]/g, "")
+    .replace(/\s+/g, " ")
+    .trim()
+    .slice(0, 32)
+}
 
 function clean(value: unknown, max: number) {
   if (typeof value !== "string") return ""
@@ -100,6 +110,7 @@ export function validateLead(input: unknown):
     firstName: clean(source.firstName, 80),
     lastName: clean(source.lastName, 80),
     email: clean(source.email, 160).toLowerCase(),
+    phone: cleanPhone(source.phone),
     company: clean(source.company, 120),
     website: clean(source.website, 200),
     country: clean(source.country, 80),
@@ -113,6 +124,7 @@ export function validateLead(input: unknown):
   if (value.firstName.length < 1) fieldErrors.firstName = "Add a first name."
   if (value.lastName.length < 1) fieldErrors.lastName = "Add a last name."
   if (!EMAIL.test(value.email)) fieldErrors.email = "Add a work email."
+  if (value.phone.replace(/\D/g, "").length < 7) fieldErrors.phone = "Add a telephone number."
   if (value.company.length < 2) fieldErrors.company = "Add your company name."
   if (value.website.length < 3) fieldErrors.website = "Add your company website."
   if (!COUNTRIES.includes(value.country as (typeof COUNTRIES)[number])) {

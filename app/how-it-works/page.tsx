@@ -18,7 +18,7 @@ export default function HowItWorksPage() {
           Standard rules, tuned in minutes. Then Genie drives.
         </Display>
         <Lede className="mt-5">
-          You don’t build the rulebook from scratch. Onboarding starts from a standard set of hospitality rules. You customize what your company does differently, usually in a few minutes. After that, name the wish. Genie drives, and people stay on the exceptions.
+          You don’t build the rulebook from scratch. Onboarding starts from a standard intent tree of hospitality patterns, picked to fit the company you describe. You customize what you do differently, usually in a few minutes. After that, Genie matches each new message to that tree, and people stay on the exceptions.
         </Lede>
         <div className="mt-8 grid gap-4 md:grid-cols-2">
           <article className="rounded-[24px] border border-[#d4af37]/35 p-5">
