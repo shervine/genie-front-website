@@ -75,7 +75,7 @@ export function Lamp({
 
         <div className="flex flex-col gap-4">
           <Image
-            src="/luxury-queen-beds-small-genie.jpg"
+            src="/luxury-queen-beds-smaller-genie.jpg"
             alt="A small genie rising from the lamp between two queen beds"
             width={1280}
             height={720}
@@ -83,7 +83,7 @@ export function Lamp({
             sizes="(min-width: 1024px) 640px, 100vw"
           />
           <Image
-            src="/airbnb-kitchen-small-genie.jpg"
+            src="/airbnb-kitchen-smaller-genie.jpg"
             alt="A small genie rising from the lamp on a vacation-house kitchen counter"
             width={1280}
             height={720}
