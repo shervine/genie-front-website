@@ -13,7 +13,7 @@ export default function LampPage() {
     <>
       <Lamp
         titleAs="h1"
-        heading="The hotel telephone, replaced."
+        heading="Goodbye Telephone"
         lede="Say “Hey Genie.” The lamp is a live concierge: knowledgeable, tied into your APIs, and able to act. With the guest’s card on file and their say-so, a prompt can order from DoorDash, Amazon, or Instacart."
       />
       <Section className="pt-0">

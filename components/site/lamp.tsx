@@ -7,7 +7,7 @@ import { Display, Eyebrow, Lede, SampleNote } from "@/components/site/section"
 import { cn } from "@/lib/utils"
 
 export function Lamp({
-  heading = "The hotel telephone, replaced.",
+  heading = "Goodbye Telephone",
   lede = "Say “Hey Genie.” A live concierge answers in the room: knowledgeable, connected to your APIs, and ready to act. With the guest’s card on file and their say-so, a wish can become a DoorDash order, an Amazon delivery, or an Instacart run.",
   titleAs = "h2",
 }: {
@@ -75,7 +75,7 @@ export function Lamp({
 
         <div className="flex flex-col gap-4">
           <Image
-            src="/luxury-queen-beds-smaller-genie.jpg"
+            src="/luxury-queen-beds-aligned-genie.jpg"
             alt="A small genie rising from the lamp between two queen beds"
             width={1280}
             height={720}
@@ -83,7 +83,7 @@ export function Lamp({
             sizes="(min-width: 1024px) 640px, 100vw"
           />
           <Image
-            src="/airbnb-kitchen-smaller-genie.jpg"
+            src="/airbnb-kitchen-aligned-genie.jpg"
             alt="A small genie rising from the lamp on a vacation-house kitchen counter"
             width={1280}
             height={720}
