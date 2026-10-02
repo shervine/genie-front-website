@@ -43,12 +43,19 @@ export function Pricing({
       </div>
       <article className="mt-4 grid items-center gap-6 rounded-[28px] border border-[#d4af37]/35 bg-white/80 p-6 md:grid-cols-[16rem_1fr]">
         <div>
-          <p className="text-sm text-mist">Genie Lamp</p>
+          <p className="flex items-center gap-2 text-sm text-mist">
+            Genie Lamp
+            <span className="rounded-full border border-[#d4af37]/50 bg-[#fff6dc] px-2 py-0.5 text-[11px] font-medium tracking-wide text-[#8a6508] uppercase">
+              Optional
+            </span>
+          </p>
           <p className="mt-4 font-display text-5xl text-ink">{usd(LAMP_PRICE)}</p>
-          <p className="mt-2 text-sm text-[#0e6f86]">per lamp</p>
+          <p className="mt-2 text-sm text-[#0e6f86]">per lamp, one-time</p>
         </div>
         <div>
-          <p className="text-ink">A separate price from the monthly software. Put one lamp in each rental unit.</p>
+          <p className="text-ink">
+            Optional add-on, priced separately from the monthly software. Genie works fully without it; add a lamp to any rental unit where you want guests to talk to Genie out loud.
+          </p>
           <ul className="mt-4 space-y-2 text-sm leading-relaxed text-mist">
             <li>The 3D-printed lamp frame.</li>
             <li>A Google Nest Mini inside, preprogrammed to wake when a guest says “Hey Genie.”</li>

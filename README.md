@@ -52,6 +52,6 @@ Monthly per listing, USD, one rate for the whole portfolio:
 - 21–100 listings: $21
 - 101+ listings: $18
 - 2,000+ listings: enterprise conversation
-- Genie Lamp: $85 per lamp, including the 3D-printed frame and a Google Nest Mini preprogrammed for “Hey Genie,” one lamp per rental unit
+- Genie Lamp (optional add-on): $85 per lamp, including the 3D-printed frame and a Google Nest Mini preprogrammed for “Hey Genie,” for any rental unit where guests should talk to Genie out loud
 
 The scenario calculator is an illustration with its assumptions printed beside it. It is not a savings guarantee.
