@@ -1,5 +1,6 @@
 import Image from "next/image"
 import { BRAND_MARKS } from "@/lib/brand-marks"
+import { GenieWorkspace } from "@/components/site/workspace"
 import { OrbitStage } from "@/components/site/orbit-stage"
 import { Display, Eyebrow, Lede, Section } from "@/components/site/section"
 
@@ -246,18 +247,14 @@ function ratingFlow(name: string, index: number, offset: number): Signal[] {
   ]
 }
 
-export function AppStore({ titleAs = "h2" }: { titleAs?: "h1" | "h2" }) {
+export function GenieGraph() {
+  const apps = place(APPS, 44)
   return (
-    <Section id="app-store" className="py-16 md:py-24">
-      <Eyebrow>App store</Eyebrow>
-      <Display as={titleAs} className="mt-4 max-w-4xl">Genie Handles Them All</Display>
-      <Lede className="mt-5">
-        About 85% of inbound inquiries are auto-resolved by a predefined human policy. Genie communicates with each app in two directions: it reads what came in, and it writes the reply, the task, or the update back.
-      </Lede>
+    <div className="min-w-0">
       <OrbitStage>
         <div className="orbit-right absolute inset-0">
-          <Signals apps={place(APPS, 44)} radius={44} signals={ORBIT_SIGNALS} upright="orbit-upright-right" />
-          {place(APPS, 44).map((app) => (
+          <Signals apps={apps} radius={44} signals={ORBIT_SIGNALS} upright="orbit-upright-right" />
+          {apps.map((app) => (
             <AppNode key={app.name} app={app} upright="orbit-upright-right" />
           ))}
         </div>
@@ -284,6 +281,21 @@ export function AppStore({ titleAs = "h2" }: { titleAs?: "h1" | "h2" }) {
           Financials
         </li>
       </ul>
+    </div>
+  )
+}
+
+export function AppStore({ titleAs = "h2" }: { titleAs?: "h1" | "h2" }) {
+  return (
+    <Section id="app-store" className="py-16 md:py-24">
+      <Eyebrow>App store</Eyebrow>
+      <Display as={titleAs} className="mt-4 max-w-4xl">Genie Handles Them All</Display>
+      <Lede className="mt-5">
+        About 85% of inbound inquiries are auto-resolved by a predefined human policy. Genie communicates with each app in two directions: it reads what came in, and it writes the reply, the task, or the update back.
+      </Lede>
+      <div className="mx-auto mt-10 w-full max-w-3xl">
+        <GenieWorkspace />
+      </div>
     </Section>
   )
 }
@@ -480,7 +492,7 @@ function AppNode({
 
 function place<T extends { name: string }>(items: T[], radius: number) {
   return items.map((item, index) => {
-    const ring = item.name === "Manager" ? 34 : radius
+    const ring = item.name === "Manager" ? 40 : radius
     const angle = (index / items.length) * Math.PI * 2 - Math.PI / 2
     return {
       ...item,
@@ -495,8 +507,8 @@ function place<T extends { name: string }>(items: T[], radius: number) {
 function AppGlyph({ app }: { app: (typeof APPS)[number] }) {
   if (app.icon === "user") {
     return (
-      <span className="flex size-20 items-center justify-center rounded-[28px] border border-[#d4af37]/55 bg-white shadow-md sm:size-28">
-        <UserIcon className="size-12 sm:size-16" />
+      <span className="flex size-10 items-center justify-center rounded-2xl border border-[#d4af37]/35 bg-white shadow-sm sm:size-14">
+        <UserIcon className="size-5 sm:size-7" />
       </span>
     )
   }

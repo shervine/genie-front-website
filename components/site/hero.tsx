@@ -3,7 +3,7 @@
 import Link from "next/link"
 import { useEffect, useState } from "react"
 import { buttonVariants } from "@/components/ui/button"
-import { GenieWorkspace } from "@/components/site/workspace"
+import { GenieGraph } from "@/components/site/app-store"
 
 const POLICIES = [
   "Refunds under $100 · Autopilot",
@@ -27,8 +27,8 @@ export function Hero() {
   return (
     <section className="relative overflow-hidden">
       <div className="bg-grid pointer-events-none absolute inset-0" />
-      <div className="relative mx-auto grid w-full max-w-6xl items-center gap-10 px-5 py-14 lg:grid-cols-[0.86fr_1.14fr] lg:py-12">
-        <div>
+      <div className="relative mx-auto grid w-full max-w-6xl items-center gap-8 px-5 py-8 lg:grid-cols-[0.86fr_1.14fr] lg:gap-10 lg:py-12">
+        <div className="order-2 lg:order-1">
           <p className="text-[0.72rem] font-medium tracking-[0.22em] text-glow uppercase">
             Your wish is my command
           </p>
@@ -39,10 +39,16 @@ export function Hero() {
           <p className="mt-6 max-w-xl text-base leading-relaxed text-mist sm:text-lg">
             Genie is the on-demand concierge. Each guest can ask three million wishes, and Genie grants them 24/7, with the same speed and the same consistency, across messages, tasks, and the money on every stay. Abracadabra, and it’s done.
           </p>
-          <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+          <div className="mt-8 flex flex-row flex-wrap items-center gap-1 sm:gap-3">
             <Link href="/meet" className={buttonVariants({ className: "h-12 rounded-full px-6 text-sm" })}>
               Request Demo
             </Link>
+            <a
+              href="https://genie.tanin.ai/"
+              className="inline-flex h-12 items-center justify-center rounded-full px-4 text-sm text-mist hover:text-ink"
+            >
+              Log in
+            </a>
           </div>
           <div className="mt-8 flex flex-wrap gap-2 text-xs text-ink">
             {["Happier guests", "Higher ratings", "Higher income", "Operational excellence"].map((item) => (
@@ -57,7 +63,9 @@ export function Hero() {
           </p>
         </div>
 
-        <GenieWorkspace />
+        <div className="order-1 lg:order-2">
+          <GenieGraph />
+        </div>
       </div>
     </section>
   )

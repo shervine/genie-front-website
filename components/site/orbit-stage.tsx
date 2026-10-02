@@ -1,12 +1,13 @@
 "use client"
 
 import { useState, type ReactNode } from "react"
+import { cn } from "@/lib/utils"
 
-export function OrbitStage({ children }: { children: ReactNode }) {
+export function OrbitStage({ children, className }: { children: ReactNode; className?: string }) {
   const [spinning, setSpinning] = useState(false)
   return (
     <div
-      className="orbit-stage relative mx-auto mt-6 aspect-square w-full max-w-[820px]"
+      className={cn("orbit-stage relative mx-auto aspect-square w-full max-w-[820px]", className)}
       data-spinning={spinning ? "true" : "false"}
     >
       <div
