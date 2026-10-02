@@ -10,7 +10,6 @@ import { Outcomes } from "@/components/site/outcomes"
 import { Pricing } from "@/components/site/pricing"
 import { Problem } from "@/components/site/problem"
 import { CaseStudy } from "@/components/site/case-study"
-import { Proof } from "@/components/site/proof"
 import { Reconciliation } from "@/components/site/reconciliation"
 import { Stakeholders } from "@/components/site/stakeholders"
 import { Upsell } from "@/components/site/upsell"
@@ -32,7 +31,6 @@ export default function Home() {
       <Reconciliation />
       <Upsell />
       <Analytics />
-      <Proof />
       <CaseStudy />
       <Pricing />
       <LeadForm />

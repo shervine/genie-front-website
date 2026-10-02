@@ -65,7 +65,7 @@ export function Pricing({
       <div className="mt-4 rounded-[28px] border border-[#d4af37]/35 px-6 py-5">
         <p className="text-ink">2,000+ listings? Talk to us about enterprise pricing.</p>
         <Link href="/meet" className="mt-3 inline-flex text-sm text-[#b8860b] underline-offset-4 hover:underline">
-          Start that conversation
+          Request Demo
         </Link>
       </div>
 
@@ -96,30 +96,7 @@ export function Pricing({
                   Portfolios of 2,000 or more are priced in conversation. This figure uses the published 101+ rate and is not an enterprise quote.
                 </p>
               ) : null}
-              <div className="mt-6 rounded-2xl border border-[#d4af37]/35 bg-[#f4fbfe] p-5 text-left">
-                <p className="text-sm font-medium text-ink">Savings Calculator</p>
-                <p className="mt-3 font-display text-4xl text-ink">
-                  {usd(Math.round(monthly * 1.45) - monthly)}
-                  <span className="text-lg text-mist"> / month net</span>
-                </p>
-                <p className="mt-2 text-sm leading-relaxed text-mist">
-                  What stays after the software cost. Upsell income and staff/time savings run about 45% above what you pay Genie.
-                </p>
-                <dl className="mt-4 divide-y divide-[#d4af37]/30 text-sm">
-                  <div className="flex items-baseline justify-between gap-4 py-2">
-                    <dt className="text-mist">Total cost</dt>
-                    <dd className="font-medium text-ink">{usd(monthly)}</dd>
-                  </div>
-                  <div className="flex items-baseline justify-between gap-4 py-2">
-                    <dt className="text-mist">Upsell income + staff/time savings</dt>
-                    <dd className="font-medium text-ink">{usd(Math.round(monthly * 1.45))}</dd>
-                  </div>
-                  <div className="flex items-baseline justify-between gap-4 py-2">
-                    <dt className="text-ink">Net savings</dt>
-                    <dd className="font-medium text-[#0f7a4a]">{usd(Math.round(monthly * 1.45) - monthly)}</dd>
-                  </div>
-                </dl>
-              </div>
+              <SavingsCalculator monthly={monthly} />
             </div>
           ) : (
             <p className="mt-4 text-sm text-mist">Enter a listing count to see the published monthly total.</p>
@@ -128,16 +105,57 @@ export function Pricing({
       ) : (
         <p className="mt-4 text-sm text-mist">
           <Link href="/pricing" className="text-[#b8860b] underline-offset-4 hover:underline">
-            Estimate a portfolio, or model an operating scenario
+            Estimate a portfolio
           </Link>
         </p>
       )}
 
       <div className="mt-8">
         <Link href="/meet" className={buttonVariants({ className: "h-12 rounded-full px-6" })}>
-          Start with Genie
+          Request Demo
         </Link>
       </div>
     </Section>
+  )
+}
+
+function SavingsCalculator({ monthly }: { monthly: number }) {
+  const gain = Math.round(monthly * 1.45)
+  const staff = Math.round(gain * 0.8)
+  const upsell = gain - staff
+  const net = gain - monthly
+  return (
+    <div className="mt-6 rounded-2xl border border-[#d4af37]/35 bg-[#f4fbfe] p-5 text-left">
+      <p className="text-sm font-medium text-ink">Savings Calculator</p>
+      <p className="mt-3 font-display text-4xl text-ink">
+        {usd(net)}
+        <span className="text-lg text-mist"> / month net</span>
+      </p>
+      <p className="mt-2 text-sm leading-relaxed text-mist">
+        What stays after the software cost. Upsell income and staff/time savings together run about 45% above what you pay Genie. About four fifths of that gain is staff and time. The rest is upsell income.
+      </p>
+      <dl className="mt-4 divide-y divide-[#d4af37]/30 text-sm">
+        <Row label="Total cost" value={usd(monthly)} />
+        <Row label="Staff/time savings" value={usd(staff)} />
+        <Row label="Upsell income" value={usd(upsell)} />
+        <Row label="Upsell income + staff/time savings" value={usd(gain)} />
+        <div className="flex items-baseline justify-between gap-4 py-2">
+          <dt className="text-ink">Net savings</dt>
+          <dd className="font-medium text-[#0f7a4a]">{usd(net)}</dd>
+        </div>
+      </dl>
+      <p className="mt-3 text-xs leading-relaxed text-mist">
+        An estimate, not a forecast or a guarantee. Staff/time savings are capacity, not a promise that payroll falls by that amount. Upsell income assumes the extra revenue clears.
+      </p>
+    </div>
+  )
+}
+
+function Row({ label, value }: { label: string; value: string }) {
+  return (
+    <div className="flex items-baseline justify-between gap-4 py-2">
+      <dt className="text-mist">{label}</dt>
+      <dd className="font-medium text-ink">{value}</dd>
+    </div>
   )
 }
