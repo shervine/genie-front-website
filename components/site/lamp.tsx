@@ -8,7 +8,7 @@ import { cn } from "@/lib/utils"
 
 export function Lamp({
   heading = "Bye Phone. Hey Genie.",
-  lede = "Your wish is my command. Say “Hey Genie.” An on-demand concierge answers in the room, any hour. Guests can keep asking, three million wishes, and Genie grants them with the same speed and the same consistency. With the guest’s card on file and their say-so, a wish can become a DoorDash order, an Amazon delivery, or an Instacart run.",
+  lede = "Your wish is my command. Say “Hey Genie.” An on-demand concierge answers in the room, any hour. Guests can keep asking, three million wishes, and Genie grants them with a high speed and consistency. With the guest’s card on file and their say-so, a wish can become a DoorDash order, an Amazon delivery, or an Instacart run.",
   titleAs = "h2",
 }: {
   heading?: string

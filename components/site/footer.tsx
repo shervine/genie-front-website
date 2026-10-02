@@ -11,7 +11,7 @@ export function SiteFooter() {
             TalkToGenie.ai
           </Link>
           <p className="mt-4 max-w-md text-sm leading-relaxed text-mist">
-            Your wish is my command. An on-demand concierge for every guest, granting wishes 24/7 with the same speed and the same consistency.
+            Your wish is my command. An on-demand concierge for every guest, granting wishes 24/7 with a high speed and consistency.
           </p>
           <p className="mt-4 text-sm text-mist">
             <a className="text-ink underline-offset-4 hover:underline" href="mailto:support@talktogenie.ai">

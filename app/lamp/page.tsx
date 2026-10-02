@@ -14,7 +14,7 @@ export default function LampPage() {
       <Lamp
         titleAs="h1"
         heading="Bye Phone. Hey Genie."
-        lede="Your wish is my command. Say “Hey Genie.” The lamp is an on-demand concierge, awake 24/7. Guests can ask three million wishes, and Genie grants them with the same speed and the same consistency. With the guest’s card on file and their say-so, a prompt can order from DoorDash, Amazon, or Instacart."
+        lede="Your wish is my command. Say “Hey Genie.” The lamp is an on-demand concierge, awake 24/7. Guests can ask three million wishes, and Genie grants them with a high speed and consistency. With the guest’s card on file and their say-so, a prompt can order from DoorDash, Amazon, or Instacart."
       />
       <Section className="pt-0">
         <div className="grid gap-4 md:grid-cols-3">
