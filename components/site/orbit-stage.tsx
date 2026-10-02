@@ -12,7 +12,7 @@ export function OrbitStage({ children, className }: { children: ReactNode; class
     >
       <div
         aria-hidden="true"
-        className="genie-halo pointer-events-none absolute top-1/2 left-1/2 z-[8] aspect-square w-[24%] -translate-x-1/2 -translate-y-1/2 rounded-full sm:w-[20%]"
+        className="genie-halo pointer-events-none absolute top-1/2 left-1/2 z-[8] aspect-square w-[27.6%] -translate-x-1/2 -translate-y-1/2 rounded-full sm:w-[23%]"
       />
       <button
         type="button"
