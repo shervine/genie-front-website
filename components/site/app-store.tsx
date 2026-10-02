@@ -62,19 +62,35 @@ const CHATTY = new Set([
   "Slack",
 ])
 
+const TASK_FROM = new Set([
+  "Gmail",
+  "Dialpad",
+  "WhatsApp",
+  "Slack",
+  "Booking.com",
+  "Vrbo",
+  "Airbnb",
+  "Hostaway",
+  "Guesty",
+])
+const TASK_TO = new Set(["Jira", "Asana", "Monday.com"])
+
 const INNER_APPS = APPS.slice(0, 9)
 const OUTER_APPS = APPS.slice(9)
 const INNER_SIGNALS = signalsFor(INNER_APPS, 0)
 const OUTER_SIGNALS = signalsFor(OUTER_APPS, 0.35)
 
+type Mark = "message" | "task" | "money"
+
 type Signal = {
   from: number
   to?: number
-  kind: "absorb" | "return" | "redirect"
+  kind: "absorb" | "return" | "redirect" | "outbound"
   delay: string
   duration: string
   moneyIn?: boolean
   moneyOut?: boolean
+  mark?: Mark
 }
 
 function nextTarget(apps: Array<{ name: string }>, index: number, step: number) {
@@ -115,7 +131,7 @@ function signalsFor(apps: Array<{ name: string }>, offset: number): Signal[] {
       moneyIn: alwaysMoney,
       moneyOut: alwaysMoney || occasionalMoney,
     }
-    if (!CHATTY.has(app.name)) return [inbound, outbound]
+    if (!CHATTY.has(app.name)) return [inbound, outbound, ...taskFlow(app.name, index, offset)]
     const extraInbound = [1.1, 2.2].map((step, stepIndex) => ({
       from: index,
       kind: "absorb" as const,
@@ -132,15 +148,59 @@ function signalsFor(apps: Array<{ name: string }>, offset: number): Signal[] {
       moneyIn: alwaysMoney,
       moneyOut: alwaysMoney || (occasionalMoney && stepIndex === 0),
     }))
-    return [inbound, outbound, ...extraInbound, ...extraOutbound]
+    return [inbound, outbound, ...extraInbound, ...extraOutbound, ...taskFlow(app.name, index, offset)]
   })
+}
+
+function taskFlow(name: string, index: number, offset: number): Signal[] {
+  const signals: Signal[] = []
+  if (TASK_FROM.has(name)) {
+    signals.push({
+      from: index,
+      kind: "absorb",
+      mark: "task",
+      delay: `${(offset + 0.35 + (index % 5) * 0.55).toFixed(2)}s`,
+      duration: "4.4s",
+    })
+    signals.push({
+      from: index,
+      kind: "outbound",
+      mark: "message",
+      delay: `${(offset + 2.5 + (index % 5) * 0.55).toFixed(2)}s`,
+      duration: "4.2s",
+    })
+  }
+  if (TASK_TO.has(name)) {
+    signals.push({
+      from: index,
+      kind: "outbound",
+      mark: "task",
+      delay: `${(offset + 1.15 + index * 0.2).toFixed(2)}s`,
+      duration: "4.3s",
+    })
+    signals.push({
+      from: index,
+      kind: "outbound",
+      mark: "task",
+      delay: `${(offset + 3.05 + index * 0.2).toFixed(2)}s`,
+      duration: "4s",
+    })
+    signals.push({
+      from: index,
+      kind: "absorb",
+      mark: "message",
+      delay: `${(offset + 2.15 + index * 0.2).toFixed(2)}s`,
+      duration: "4.1s",
+    })
+  }
+  return signals
 }
 
 export function AppStore({ titleAs = "h2" }: { titleAs?: "h1" | "h2" }) {
   return (
     <Section id="app-store" className="py-16 md:py-24">
       <Eyebrow>App store</Eyebrow>
-      <Display as={titleAs} className="mt-4 max-w-4xl">Let Genie Handle Them All</Display>
+      <Display as={titleAs} className="mt-4 max-w-4xl">Genie Handles Them All</Display>
       <Lede className="mt-5">
         About 85% of inbound inquiries are auto-resolved by a predefined human policy. Genie communicates with each app in two directions: it reads what came in, and it writes the reply, the task, or the update back.
       </Lede>
@@ -164,9 +224,20 @@ export function AppStore({ titleAs = "h2" }: { titleAs?: "h1" | "h2" }) {
           ))}
         </div>
       </div>
-      <p className="mt-5 text-xs leading-relaxed text-mist">
-        Every signal comes to Genie first. Genie keeps some, sends some back to the same app, and redirects others to a different app. Marks belong to their owners. A tile is a connection Genie is built to offer, not a partnership badge.
-      </p>
+      <ul className="mx-auto mt-4 flex max-w-xl flex-wrap items-center justify-center gap-x-6 gap-y-2 text-sm text-ink">
+        <li className="flex items-center gap-2">
+          <CommentIcon />
+          Communication
+        </li>
+        <li className="flex items-center gap-2">
+          <WrenchIcon />
+          Tasks
+        </li>
+        <li className="flex items-center gap-2">
+          <span className="text-base leading-none font-bold text-[#0f7a4a]">$</span>
+          Financials
+        </li>
+      </ul>
     </Section>
   )
 }
@@ -191,6 +262,22 @@ function Signals({
         const source = apps[signal.from]
         const target = signal.to === undefined ? source : apps[signal.to]
         if (!source || !target) return null
+        const inboundMark: Mark = signal.mark ?? (signal.moneyIn ? "money" : "message")
+        const outboundMark: Mark = signal.mark ?? (signal.moneyOut ? "money" : "message")
+        if (signal.kind === "outbound") {
+          return (
+            <Travel
+              key={`${signal.kind}-${signal.from}-${signal.delay}-${index}`}
+              angle={source.angle}
+              radius={radius}
+              className="signal-out"
+              delay={signal.delay}
+              duration={signal.duration}
+              mark={outboundMark}
+              upright={upright}
+            />
+          )
+        }
         return (
           <span key={`${signal.kind}-${signal.from}-${signal.delay}-${index}`}>
             <Travel
@@ -199,7 +286,7 @@ function Signals({
               className={signal.kind === "return" ? "signal-return" : "signal-absorb"}
               delay={signal.delay}
               duration={signal.duration}
-              money={Boolean(signal.moneyIn) || (signal.kind === "return" && Boolean(signal.moneyOut))}
+              mark={signal.kind === "return" && signal.moneyOut ? "money" : inboundMark}
               upright={upright}
             />
             {signal.kind === "redirect" ? (
@@ -209,7 +296,7 @@ function Signals({
                 className="signal-out"
                 delay={`calc(${signal.delay} + ${signal.duration} * 0.46)`}
                 duration={signal.duration}
-                money={Boolean(signal.moneyOut)}
+                mark={outboundMark}
                 upright={upright}
               />
             ) : null}
@@ -237,7 +324,7 @@ function Travel({
   className,
   delay,
   duration,
-  money = false,
+  mark,
   upright,
 }: {
   angle: number
@@ -245,29 +332,51 @@ function Travel({
   className: string
   delay: string
   duration: string
-  money?: boolean
+  mark: Mark
   upright: string
 }) {
   return (
     <div className="absolute inset-0" style={{ transform: `rotate(${angle + 90}deg)` }}>
       <div className="absolute bottom-1/2 left-1/2 w-2 -translate-x-1/2" style={{ height: `${radius}%` }}>
         <span
-          className={`absolute left-0 ${money ? "signal-money" : "size-[7px] rounded-full"} ${className}`}
+          className={`signal-money absolute left-0 ${className}`}
           style={{ animationDelay: delay, animationDuration: duration }}
         >
-          {money ? (
-            <span className={`${upright} block`}>
-              <span
-                className="block text-[13px] leading-none font-bold text-[#0f7a4a]"
-                style={{ transform: `rotate(${-(angle + 90)}deg)` }}
-              >
-                $
-              </span>
+          <span className={`${upright} block`}>
+            <span className="block" style={{ transform: `rotate(${-(angle + 90)}deg)` }}>
+              <SignalMark mark={mark} />
             </span>
-          ) : null}
+          </span>
         </span>
       </div>
     </div>
+  )
+}
+
+function SignalMark({ mark }: { mark: Mark }) {
+  if (mark === "money") {
+    return <span className="block text-[13px] leading-none font-bold text-[#0f7a4a]">$</span>
+  }
+  if (mark === "task") return <WrenchIcon />
+  return <CommentIcon />
+}
+
+function CommentIcon() {
+  return (
+    <svg viewBox="0 0 24 24" className="size-3.5" aria-hidden="true">
+      <path fill="#1a73e8" d="M4 3h16a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H9l-5 4v-4H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2z" />
+    </svg>
+  )
+}
+
+function WrenchIcon() {
+  return (
+    <svg viewBox="0 0 24 24" className="size-3.5" aria-hidden="true">
+      <path
+        fill="#e24a2b"
+        d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"
+      />
+    </svg>
   )
 }
 
