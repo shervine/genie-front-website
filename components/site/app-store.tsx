@@ -470,9 +470,10 @@ function UserIcon({ className }: { className?: string }) {
 function ManagerIcon({ className }: { className?: string }) {
   return (
     <svg viewBox="0 0 24 24" className={className} aria-hidden="true">
-      <circle cx="12" cy="7.2" r="3.1" fill="#123848" />
-      <path fill="#123848" d="M5.4 19.8c.7-3.3 3.2-5.1 6.6-5.1s5.9 1.8 6.6 5.1c.14.6-.4 1.1-1 1.1H6.4c-.6 0-1.14-.5-1-1.1Z" />
-      <path fill="#e0b15a" d="m12 11.2-1.4 3.2L12 18.8l1.4-4.4-1.4-3.2Z" />
+      <circle cx="12" cy="6.6" r="3.15" fill="#123848" />
+      <path fill="#123848" d="M5.1 20.7c.55-3.5 2.7-5.5 4.9-6.1L12 17.2l2-2.6c2.2.6 4.35 2.6 4.9 6.1.12.6-.38 1.1-1 1.1H6.1c-.62 0-1.12-.5-1-1.1Z" />
+      <path fill="#fff" d="M12 13.6 9.4 20.6h5.2L12 13.6Z" />
+      <path fill="#123848" d="m12 14.2-1 3.2L12 20.8l1-3.4-1-3.2Z" />
     </svg>
   )
 }
@@ -480,17 +481,9 @@ function ManagerIcon({ className }: { className?: string }) {
 function BroomIcon({ className }: { className?: string }) {
   return (
     <svg viewBox="0 0 24 24" className={className} aria-hidden="true">
-      <path fill="#123848" d="m14.8 2.8-2.2 2.2 6.4 6.4 2.2-2.2-6.4-6.4Z" />
-      <path fill="#123848" d="m11.6 6-6.6 6.6 1.5 1.5 6.6-6.6L11.6 6Z" />
-      <path fill="#123848" d="M3.6 14.6h9.2l-1.3 6.4H4.9l-1.3-6.4Z" />
-    </svg>
-  )
-}
-
-function HammerIcon({ className }: { className?: string }) {
-  return (
-    <svg viewBox="0 0 24 24" className={className} aria-hidden="true">
-      <path fill="#123848" d="M10.2 3.2h8.4v4.4h-2.6L14.4 20h-2.6l-1.6-12.4H8.2V3.2h2Z" />
+      <path fill="#123848" d="M15.2 2.2a1.2 1.2 0 0 1 1.7 1.7L9.4 11.4 7.7 9.7 15.2 2.2Z" />
+      <path fill="#123848" d="M6.1 11.6h8.2c.5 0 .8.5.7.9l-1.4 7.4c-.1.5-.5.8-1 .8H7.8c-.5 0-.9-.3-1-.8L5.4 12.5c-.1-.4.2-.9.7-.9Z" />
+      <path fill="#fff" d="M8.1 13.4h.8v5.6h-.8zM10.5 13.4h.8v5.6h-.8zM12.9 13.4h.8v5.6h-.8z" />
     </svg>
   )
 }
@@ -511,9 +504,9 @@ function CommentIcon() {
   )
 }
 
-function WrenchIcon() {
+function WrenchIcon({ className = "size-5" }: { className?: string }) {
   return (
-    <svg viewBox="0 0 24 24" className="size-5" aria-hidden="true">
+    <svg viewBox="0 0 24 24" className={className} aria-hidden="true">
       <path
         fill="#111"
         d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"
@@ -589,7 +582,7 @@ function AppGlyph({ app }: { app: (typeof APPS)[number] }) {
         {app.icon === "manager" ? <ManagerIcon className="size-5 sm:size-7" /> : null}
         {app.icon === "homeowner" ? <HomeIcon className="size-5 sm:size-7" /> : null}
         {app.icon === "cleaners" ? <BroomIcon className="size-5 sm:size-7" /> : null}
-        {app.icon === "handymen" ? <HammerIcon className="size-5 sm:size-7" /> : null}
+        {app.icon === "handymen" ? <WrenchIcon className="size-8 text-[#111] sm:size-10" /> : null}
       </span>
     )
   }
