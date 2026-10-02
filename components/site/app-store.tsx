@@ -10,7 +10,7 @@ const APPS: Array<{
   logo?: string
   initials?: string
   color?: string
-  icon?: "guest" | "manager" | "homeowner"
+  icon?: "guest" | "manager" | "homeowner" | "cleaners" | "handymen"
 }> = [
   { name: "Airbnb", mark: "airbnb" },
   { name: "Booking.com", mark: "bookingdotcom" },
@@ -20,11 +20,11 @@ const APPS: Array<{
   { name: "TaskRabbit", logo: "/brands/taskrabbit.png" },
   { name: "Amazon", logo: "/brands/amazon.png" },
   { name: "Instacart", mark: "instacart" },
-  { name: "Manager", icon: "manager" },
-  { name: "Homeowner", icon: "homeowner" },
-  { name: "Guest", icon: "guest" },
-  { name: "DoorDash", mark: "doordash" },
-  { name: "Uber", mark: "uber" },
+  { name: "Managers", icon: "manager" },
+  { name: "Homeowners", icon: "homeowner" },
+  { name: "Users", icon: "guest" },
+  { name: "Cleaners", icon: "cleaners" },
+  { name: "Handymen", icon: "handymen" },
   { name: "Gmail", mark: "gmail" },
   { name: "Dialpad", logo: "/brands/dialpad.png" },
   { name: "Twilio", logo: "/brands/twilio.png" },
@@ -43,10 +43,8 @@ const MONEY = new Set(["Plaid", "Stripe", "QuickBooks"])
 const MONEY_SOMETIMES = new Set([
   "PriceLabs",
   "Airbnb",
-  "DoorDash",
   "Amazon",
   "Booking.com",
-  "Uber",
   "Instacart",
 ])
 
@@ -73,7 +71,7 @@ const TASK_FROM = new Set([
 const TASK_TO = new Set(["Jira", "Asana", "Monday.com"])
 const RATING_FROM = new Set(["Guesty", "Hostaway", "Airbnb", "Booking.com"])
 const PERMISSION_TO = new Set(["Airbnb", "Booking.com", "TaskRabbit", "Guesty", "Hostaway", "Amazon"])
-const INNER_RING = new Set(["Manager", "Guest", "Homeowner"])
+const INNER_RING = new Set(["Managers", "Users", "Homeowners"])
 
 const ORBIT_SIGNALS = signalsFor(APPS, 0)
 
@@ -112,10 +110,10 @@ function signalsFor(apps: Array<{ name: string }>, offset: number): Signal[] {
       duration: `${4.4 + (index % 3) * 0.4}s`,
       moneyIn: alwaysMoney,
     }
-    if (app.name === "Manager" || app.name === "Homeowner") {
+    if (app.name === "Managers" || app.name === "Homeowners") {
       return roleFlow(index, offset, ["message", "task", "permission"], ["message", "rating", "money"])
     }
-    if (app.name === "Guest") {
+    if (app.name === "Users") {
       return roleFlow(index, offset, ["message", "task", "rating"], ["message", "task", "rating"])
     }
     if (app.name === "Plaid") {
@@ -479,6 +477,24 @@ function ManagerIcon({ className }: { className?: string }) {
   )
 }
 
+function BroomIcon({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 24 24" className={className} aria-hidden="true">
+      <path fill="#123848" d="m14.8 2.8-2.2 2.2 6.4 6.4 2.2-2.2-6.4-6.4Z" />
+      <path fill="#123848" d="m11.6 6-6.6 6.6 1.5 1.5 6.6-6.6L11.6 6Z" />
+      <path fill="#123848" d="M3.6 14.6h9.2l-1.3 6.4H4.9l-1.3-6.4Z" />
+    </svg>
+  )
+}
+
+function HammerIcon({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 24 24" className={className} aria-hidden="true">
+      <path fill="#123848" d="M10.2 3.2h8.4v4.4h-2.6L14.4 20h-2.6l-1.6-12.4H8.2V3.2h2Z" />
+    </svg>
+  )
+}
+
 function HomeIcon({ className }: { className?: string }) {
   return (
     <svg viewBox="0 0 24 24" className={className} aria-hidden="true">
@@ -572,6 +588,8 @@ function AppGlyph({ app }: { app: (typeof APPS)[number] }) {
         {app.icon === "guest" ? <UserIcon className="size-5 sm:size-7" /> : null}
         {app.icon === "manager" ? <ManagerIcon className="size-5 sm:size-7" /> : null}
         {app.icon === "homeowner" ? <HomeIcon className="size-5 sm:size-7" /> : null}
+        {app.icon === "cleaners" ? <BroomIcon className="size-5 sm:size-7" /> : null}
+        {app.icon === "handymen" ? <HammerIcon className="size-5 sm:size-7" /> : null}
       </span>
     )
   }
