@@ -256,8 +256,8 @@
   0% {
     top: 0;
     opacity: 0;
-    background: #2eafd0;
-    box-shadow: 0 0 10px #2eafd0;
+    background: #111;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.45);
   }
   10% {
     opacity: 1;
@@ -268,8 +268,6 @@
   }
   50% {
     opacity: 0;
-    background: #e8c56a;
-    box-shadow: 0 0 10px #c9962e;
   }
   58% {
     top: calc(100% - 7px);
@@ -316,38 +314,25 @@
   animation: orbit-left 96s linear infinite;
 }
 
-.signal-absorb {
-  background: #2eafd0;
-  box-shadow: 0 0 10px #2eafd0;
-  animation-name: signal-absorb;
+.signal-absorb,
+.signal-return,
+.signal-out {
+  background: #111;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.45);
   animation-timing-function: linear;
   animation-iteration-count: infinite;
+}
+
+.signal-absorb {
+  animation-name: signal-absorb;
 }
 
 .signal-return {
-  background: #2eafd0;
-  box-shadow: 0 0 10px #2eafd0;
   animation-name: signal-return;
-  animation-timing-function: linear;
-  animation-iteration-count: infinite;
 }
 
 .signal-out {
-  background: #e8c56a;
-  box-shadow: 0 0 10px #c9962e;
   animation-name: signal-out;
-  animation-timing-function: linear;
-  animation-iteration-count: infinite;
-}
-
-.orbit-stage:hover .orbit-left,
-.orbit-stage:hover .orbit-right,
-.orbit-stage:hover .orbit-upright-left,
-.orbit-stage:hover .orbit-upright-right,
-.orbit-stage:hover .signal-absorb,
-.orbit-stage:hover .signal-return,
-.orbit-stage:hover .signal-out {
-  animation-play-state: paused;
 }
 
 @media (prefers-reduced-motion: reduce) {

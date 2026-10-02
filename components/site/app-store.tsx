@@ -28,23 +28,31 @@ const APPS: Array<{
   { name: "Monday.com", logo: "/brands/monday.png" },
   { name: "Asana", mark: "asana" },
   { name: "Jira", mark: "jira" },
+  { name: "Hospitable", logo: "/brands/hospitable.png" },
+  { name: "Breezeway", logo: "/brands/breezeway.png" },
+  { name: "OwnerRez", logo: "/brands/ownerrez.png" },
+  { name: "Expedia", logo: "/brands/expedia.png" },
+  { name: "Stripe", logo: "/brands/stripe.png" },
+  { name: "Slack", logo: "/brands/slack.png" },
+  { name: "QuickBooks", logo: "/brands/quickbooks.png" },
+  { name: "RemoteLock", logo: "/brands/remotelock.png" },
 ]
 
-const INNER_SIGNALS: Signal[] = [
-  { from: 0, kind: "absorb", delay: "0s", duration: "4.6s" },
-  { from: 2, kind: "return", delay: "1.1s", duration: "6.2s" },
-  { from: 4, to: 6, kind: "redirect", delay: "0.4s", duration: "7s" },
-  { from: 5, kind: "absorb", delay: "2.2s", duration: "5s" },
-  { from: 1, kind: "return", delay: "2.8s", duration: "6.4s" },
-]
+const CHATTY = new Set([
+  "Guesty",
+  "Hostaway",
+  "Airbnb",
+  "Booking.com",
+  "Gmail",
+  "WhatsApp",
+  "Hospitable",
+  "Slack",
+])
 
-const OUTER_SIGNALS: Signal[] = [
-  { from: 0, kind: "absorb", delay: "0.6s", duration: "5.4s" },
-  { from: 3, kind: "return", delay: "1.5s", duration: "6.6s" },
-  { from: 5, to: 9, kind: "redirect", delay: "0.2s", duration: "7.2s" },
-  { from: 8, kind: "absorb", delay: "2.4s", duration: "4.8s" },
-  { from: 11, kind: "return", delay: "3.1s", duration: "6s" },
-]
+const INNER_APPS = APPS.slice(0, 9)
+const OUTER_APPS = APPS.slice(9)
+const INNER_SIGNALS = signalsFor(INNER_APPS, 0)
+const OUTER_SIGNALS = signalsFor(OUTER_APPS, 0.35)
 
 type Signal = {
   from: number
@@ -52,6 +60,28 @@ type Signal = {
   kind: "absorb" | "return" | "redirect"
   delay: string
   duration: string
+}
+
+function signalsFor(apps: Array<{ name: string }>, offset: number): Signal[] {
+  const kinds = ["absorb", "return", "redirect"] as const
+  return apps.flatMap((app, index) => {
+    const kind = kinds[index % kinds.length]
+    const base: Signal = {
+      from: index,
+      to: kind === "redirect" ? (index + Math.ceil(apps.length / 3)) % apps.length : undefined,
+      kind,
+      delay: `${(offset + index * 0.42).toFixed(2)}s`,
+      duration: `${4.8 + (index % 4) * 0.55}s`,
+    }
+    if (!CHATTY.has(app.name)) return [base]
+    const extra = [0.85, 1.7, 2.55].map((step, stepIndex) => ({
+      from: index,
+      kind: "absorb" as const,
+      delay: `${(offset + index * 0.2 + step).toFixed(2)}s`,
+      duration: `${3.1 + stepIndex * 0.35}s`,
+    }))
+    return [base, ...extra]
+  })
 }
 
 export function AppStore({ titleAs = "h2" }: { titleAs?: "h1" | "h2" }) {
@@ -63,23 +93,21 @@ export function AppStore({ titleAs = "h2" }: { titleAs?: "h1" | "h2" }) {
         Genie has an app store with hundreds of apps for the popular tools and websites an operator uses. Connect the PMS, the channels, the inbox, the task board, and the services a guest can ask for. Genie works across that set.
       </Lede>
       <div className="orbit-stage relative mx-auto mt-6 aspect-square w-full max-w-[760px]">
-        <div className="absolute top-1/2 left-1/2 size-[46%] -translate-x-1/2 -translate-y-1/2 rounded-full border border-[#d4af37]/40" />
-        <div className="absolute top-1/2 left-1/2 size-[72%] -translate-x-1/2 -translate-y-1/2 rounded-full border border-[#2eafd0]/25" />
-        <div className="absolute top-1/2 left-1/2 z-10 flex -translate-x-1/2 -translate-y-1/2 flex-col items-center">
+        <div className="absolute top-1/2 left-[calc(50%+10px)] z-10 flex -translate-x-1/2 -translate-y-1/2 flex-col items-center">
           <span className="text-[4.5rem] leading-none drop-shadow-[0_0_28px_rgba(143,215,255,0.45)] sm:text-[6.5rem]" aria-hidden="true">
             🧞‍♂️
           </span>
           <span className="sr-only">Genie, at the center of the apps</span>
         </div>
         <div className="orbit-left absolute inset-0">
-          <Signals apps={place(APPS.slice(0, 7), 23)} radius={23} signals={INNER_SIGNALS} />
-          {place(APPS.slice(0, 7), 23).map((app) => (
+          <Signals apps={place(INNER_APPS, 24)} radius={24} signals={INNER_SIGNALS} />
+          {place(INNER_APPS, 24).map((app) => (
             <AppNode key={app.name} app={app} upright="orbit-upright-left" />
           ))}
         </div>
         <div className="orbit-right absolute inset-0">
-          <Signals apps={place(APPS.slice(7), 39)} radius={39} signals={OUTER_SIGNALS} />
-          {place(APPS.slice(7), 39).map((app) => (
+          <Signals apps={place(OUTER_APPS, 42)} radius={42} signals={OUTER_SIGNALS} />
+          {place(OUTER_APPS, 42).map((app) => (
             <AppNode key={app.name} app={app} upright="orbit-upright-right" />
           ))}
         </div>
@@ -102,14 +130,15 @@ function Signals({
 }) {
   return (
     <div className="pointer-events-none absolute inset-0" aria-hidden="true">
-      {signals.map((signal) => {
+      {apps.map((app) => (
+        <Spoke key={app.name} angle={app.angle} radius={radius} />
+      ))}
+      {signals.map((signal, index) => {
         const source = apps[signal.from]
         const target = signal.to === undefined ? source : apps[signal.to]
         if (!source || !target) return null
         return (
-          <span key={`${signal.kind}-${signal.from}-${signal.to ?? "same"}`}>
-            <Spoke angle={source.angle} radius={radius} />
-            {signal.kind === "redirect" ? <Spoke angle={target.angle} radius={radius} /> : null}
+          <span key={`${signal.kind}-${signal.from}-${signal.delay}-${index}`}>
             <Travel
               angle={source.angle}
               radius={radius}
@@ -137,7 +166,7 @@ function Spoke({ angle, radius }: { angle: number; radius: number }) {
   return (
     <div className="absolute inset-0" style={{ transform: `rotate(${angle + 90}deg)` }}>
       <div
-        className="absolute bottom-1/2 left-1/2 w-px -translate-x-1/2 bg-gradient-to-t from-[#2eafd0]/55 via-[#2eafd0]/20 to-transparent"
+        className="absolute bottom-1/2 left-1/2 w-px -translate-x-1/2 bg-black"
         style={{ height: `${radius}%` }}
       />
     </div>
