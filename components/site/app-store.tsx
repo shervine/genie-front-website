@@ -69,14 +69,8 @@ const TASK_FROM = new Set([
   "Guesty",
 ])
 const TASK_TO = new Set(["Jira", "Asana", "Monday.com"])
-const RATING_FROM = new Set([
-  "Guesty",
-  "Hostaway",
-  "Airbnb",
-  "Booking.com",
-  "Vrbo",
-  "Turno",
-])
+const RATING_FROM = new Set(["Guesty", "Hostaway", "Airbnb", "Booking.com", "Vrbo"])
+const RATING_TO = new Set(["Dialpad", "Gmail", "Slack", "WhatsApp", "Twilio"])
 
 const ORBIT_SIGNALS = signalsFor(APPS, 0)
 
@@ -206,14 +200,40 @@ function taskFlow(name: string, index: number, offset: number): Signal[] {
 }
 
 function ratingFlow(name: string, index: number, offset: number): Signal[] {
-  if (!RATING_FROM.has(name)) return []
-  return [0, 2.1].map((step) => ({
-    from: index,
-    kind: "absorb" as const,
-    mark: "rating" as const,
-    delay: `${(offset + 0.6 + (index % 4) * 0.45 + step).toFixed(2)}s`,
-    duration: "4.6s",
-  }))
+  const signals: Signal[] = []
+  if (RATING_FROM.has(name)) {
+    signals.push({
+      from: index,
+      kind: "absorb",
+      mark: "rating",
+      delay: `${(offset + 0.55 + (index % 4) * 0.4).toFixed(2)}s`,
+      duration: "4.6s",
+    })
+    signals.push({
+      from: index,
+      kind: "absorb",
+      mark: "rating",
+      delay: `${(offset + 2.4 + (index % 4) * 0.4).toFixed(2)}s`,
+      duration: "4.3s",
+    })
+  }
+  if (RATING_TO.has(name)) {
+    signals.push({
+      from: index,
+      kind: "outbound",
+      mark: "rating",
+      delay: `${(offset + 1.35 + (index % 5) * 0.45).toFixed(2)}s`,
+      duration: "4.4s",
+    })
+    signals.push({
+      from: index,
+      kind: "outbound",
+      mark: "rating",
+      delay: `${(offset + 3.1 + (index % 5) * 0.45).toFixed(2)}s`,
+      duration: "4.1s",
+    })
+  }
+  return signals
 }
 
 export function AppStore({ titleAs = "h2" }: { titleAs?: "h1" | "h2" }) {
