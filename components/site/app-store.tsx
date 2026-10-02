@@ -286,7 +286,7 @@ export function GenieGraph() {
           ))}
         </div>
       </OrbitStage>
-      <ul className="mx-auto mt-3 flex w-full max-w-full flex-nowrap items-center justify-center gap-x-2 overflow-x-auto text-[11px] leading-none text-ink sm:gap-x-4 sm:text-sm [&_svg]:size-3.5">
+      <ul className="mx-auto mt-[33px] flex w-full max-w-full flex-nowrap items-center justify-center gap-x-2 overflow-x-auto text-[11px] leading-none text-ink sm:gap-x-4 sm:text-sm [&_svg]:size-3.5">
         <li className="flex items-center gap-1 whitespace-nowrap">
           <CommentIcon />
           Communications
