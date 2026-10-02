@@ -8,7 +8,7 @@ export function Hero() {
       <div className="bg-grid pointer-events-none absolute inset-0" />
       <div className="relative mx-auto grid w-full max-w-6xl items-center gap-8 px-5 py-8 lg:grid-cols-[0.86fr_1.14fr] lg:gap-10 lg:py-12">
         <div className="text-center">
-          <p className="text-[0.72rem] font-medium tracking-[0.22em] text-glow uppercase">
+          <p className="text-[0.72rem] font-bold tracking-[0.22em] text-[#d4af37] uppercase">
             Your wish is my command
           </p>
           <h1 className="mt-5 font-display text-[4.125rem] leading-[0.9] font-bold tracking-[-0.045em] text-ink md:text-[clamp(3.3rem,7vw,6.1rem)]">
