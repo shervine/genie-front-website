@@ -93,7 +93,7 @@ export function AppStore({ titleAs = "h2" }: { titleAs?: "h1" | "h2" }) {
         Genie has an app store with hundreds of apps for the popular tools and websites an operator uses. Connect the PMS, the channels, the inbox, the task board, and the services a guest can ask for. Genie works across that set.
       </Lede>
       <div className="orbit-stage relative mx-auto mt-6 aspect-square w-full max-w-[760px]">
-        <div className="absolute top-1/2 left-[calc(50%+10px)] z-10 flex -translate-x-1/2 -translate-y-1/2 flex-col items-center">
+        <div className="absolute top-1/2 left-[calc(50%+18px)] z-10 flex -translate-x-1/2 -translate-y-1/2 flex-col items-center">
           <span className="text-[4.5rem] leading-none drop-shadow-[0_0_28px_rgba(143,215,255,0.45)] sm:text-[6.5rem]" aria-hidden="true">
             🧞‍♂️
           </span>
