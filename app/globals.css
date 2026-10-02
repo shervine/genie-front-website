@@ -239,10 +239,10 @@
     top: 0;
     opacity: 0;
   }
-  14% {
+  6% {
     opacity: 1;
   }
-  82% {
+  94% {
     top: calc(100% - 7px);
     opacity: 1;
   }
@@ -256,21 +256,24 @@
   0% {
     top: 0;
     opacity: 0;
-    background: #111;
-    box-shadow: 0 0 8px rgba(0, 0, 0, 0.45);
   }
-  10% {
+  5% {
     opacity: 1;
   }
-  42% {
+  44% {
     top: calc(100% - 7px);
     opacity: 1;
   }
   50% {
+    top: calc(100% - 7px);
     opacity: 0;
   }
-  58% {
+  56% {
     top: calc(100% - 7px);
+    opacity: 1;
+  }
+  96% {
+    top: 0;
     opacity: 1;
   }
   100% {
@@ -284,7 +287,11 @@
     top: calc(100% - 7px);
     opacity: 0;
   }
-  16% {
+  6% {
+    opacity: 1;
+  }
+  94% {
+    top: 0;
     opacity: 1;
   }
   100% {

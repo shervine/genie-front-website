@@ -63,24 +63,36 @@ type Signal = {
 }
 
 function signalsFor(apps: Array<{ name: string }>, offset: number): Signal[] {
-  const kinds = ["absorb", "return", "redirect"] as const
   return apps.flatMap((app, index) => {
-    const kind = kinds[index % kinds.length]
-    const base: Signal = {
+    const outboundTarget = (index + 2 + (index % 3)) % apps.length
+    const inbound: Signal = {
       from: index,
-      to: kind === "redirect" ? (index + Math.ceil(apps.length / 3)) % apps.length : undefined,
-      kind,
-      delay: `${(offset + index * 0.42).toFixed(2)}s`,
-      duration: `${4.8 + (index % 4) * 0.55}s`,
+      kind: "absorb",
+      delay: `${(offset + index * 0.38).toFixed(2)}s`,
+      duration: `${4.4 + (index % 3) * 0.4}s`,
     }
-    if (!CHATTY.has(app.name)) return [base]
-    const extra = [0.85, 1.7, 2.55].map((step, stepIndex) => ({
+    const outbound: Signal = {
+      from: index,
+      to: index % 2 === 0 ? outboundTarget : undefined,
+      kind: index % 2 === 0 ? "redirect" : "return",
+      delay: `${(offset + 0.7 + index * 0.33).toFixed(2)}s`,
+      duration: `${4.6 + (index % 3) * 0.35}s`,
+    }
+    if (!CHATTY.has(app.name)) return [inbound, outbound]
+    const extraInbound = [1.1, 2.2].map((step, stepIndex) => ({
       from: index,
       kind: "absorb" as const,
-      delay: `${(offset + index * 0.2 + step).toFixed(2)}s`,
-      duration: `${3.1 + stepIndex * 0.35}s`,
+      delay: `${(offset + index * 0.15 + step).toFixed(2)}s`,
+      duration: `${3.4 + stepIndex * 0.3}s`,
     }))
-    return [base, ...extra]
+    const extraOutbound: Signal[] = [1.4, 2.6].map((step, stepIndex) => ({
+      from: index,
+      to: (index + 1 + stepIndex) % apps.length,
+      kind: "redirect" as const,
+      delay: `${(offset + index * 0.15 + step).toFixed(2)}s`,
+      duration: `${3.6 + stepIndex * 0.25}s`,
+    }))
+    return [inbound, outbound, ...extraInbound, ...extraOutbound]
   })
 }
 
