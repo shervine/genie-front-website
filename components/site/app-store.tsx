@@ -123,7 +123,7 @@ export function AppStore({ titleAs = "h2" }: { titleAs?: "h1" | "h2" }) {
   return (
     <Section id="app-store" className="py-16 md:py-24">
       <Eyebrow>App store</Eyebrow>
-      <Display as={titleAs} className="mt-4 max-w-4xl">Genie Can Run All Your Apps</Display>
+      <Display as={titleAs} className="mt-4 max-w-4xl">Let Genie Handle Them All</Display>
       <Lede className="mt-5">
         About 85% of inbound inquiries are auto-resolved by a predefined human policy. Genie communicates with each app in two directions: it reads what came in, and it writes the reply, the task, or the update back.
       </Lede>
