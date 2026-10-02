@@ -30,7 +30,7 @@ export function HowItWorks({ intro = true }: { intro?: boolean }) {
       {intro ? (
         <>
           <Eyebrow>Guarantee</Eyebrow>
-          <Display className="mt-4 max-w-3xl">Human-defined. Human-reviewed. 100%.</Display>
+          <Display className="mt-4 max-w-4xl">All Interactions Humans-Defined & Human-Reviewed</Display>
           <Lede className="mt-5">
             Genie only acts when a message matches a pattern a person already defined. If nothing matches, it does not act. You start from our policy, customize it in onboarding, and keep fine-tuning it so the behavior stays yours.
           </Lede>
