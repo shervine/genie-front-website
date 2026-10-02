@@ -30,7 +30,7 @@ const APPS: Array<{
   { name: "Jira", mark: "jira" },
   { name: "Hospitable", logo: "/brands/hospitable.png" },
   { name: "Breezeway", logo: "/brands/breezeway.png" },
-  { name: "OwnerRez", logo: "/brands/ownerrez.png" },
+  { name: "Turno", logo: "/brands/turno.png" },
   { name: "Expedia", logo: "/brands/expedia.png" },
   { name: "Stripe", logo: "/brands/stripe.png" },
   { name: "Slack", logo: "/brands/slack.png" },
