@@ -5,7 +5,7 @@ export function Differentiators() {
   return (
     <Section>
       <Eyebrow>Why this is a layer, not another tool</Eyebrow>
-      <Display className="mt-4 max-w-3xl">Genie does the work.</Display>
+      <Display className="mt-4 max-w-3xl">Abracadabra. Genie does the work.</Display>
       <Lede className="mt-5">
         Existing systems stay connected underneath. Genie becomes the intelligence and orchestration across them.
       </Lede>

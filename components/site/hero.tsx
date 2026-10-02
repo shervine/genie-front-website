@@ -37,7 +37,7 @@ export function Hero() {
             <span className="text-shimmer mt-1 block italic">On Autopilot.</span>
           </h1>
           <p className="mt-6 max-w-xl text-base leading-relaxed text-mist sm:text-lg">
-            Genie is the on-demand concierge. Each guest can ask three million wishes, and Genie grants them 24/7, with the same speed and the same consistency, across messages, tasks, and the money on every stay.
+            Genie is the on-demand concierge. Each guest can ask three million wishes, and Genie grants them 24/7, with the same speed and the same consistency, across messages, tasks, and the money on every stay. Abracadabra, and it’s done.
           </p>
           <div className="mt-8 flex flex-col gap-3 sm:flex-row">
             <Link href="/meet" className={buttonVariants({ className: "h-12 rounded-full px-6 text-sm" })}>

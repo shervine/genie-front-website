@@ -152,7 +152,7 @@ export function GenieWorkspace() {
                 <div>
                   <p className="font-display text-3xl font-bold text-ink">What is your wish?</p>
                   <p className="mt-2 text-sm leading-relaxed text-mist">
-                    Your wish is my command. You are the master of this chat. Ask me to do the work, or ask me what happened.
+                    Your wish is my command. You are the master of this chat. Ask me to do the work, or ask me what happened. Say the word, and abracadabra.
                   </p>
                   <div className="mt-6 flex flex-col gap-2">
                     {SUGGESTIONS.map((item) => (
