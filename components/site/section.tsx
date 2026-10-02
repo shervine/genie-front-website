@@ -27,7 +27,7 @@ export function Section({
 
 export function Eyebrow({ children }: { children: React.ReactNode }) {
   return (
-    <p className="text-[0.72rem] font-medium tracking-[0.22em] text-glow uppercase">
+    <p className="text-center text-[0.72rem] font-medium tracking-[0.22em] text-glow uppercase">
       {children}
     </p>
   )
@@ -45,7 +45,7 @@ export function Display({
   return (
     <Tag
       className={cn(
-        "font-display text-[3rem] leading-[0.98] font-bold tracking-[-0.035em] text-ink md:text-[clamp(2.4rem,5vw,4.4rem)]",
+        "text-center font-display text-[3rem] leading-[0.98] font-bold tracking-[-0.035em] text-ink md:text-[clamp(2.4rem,5vw,4.4rem)]",
         className,
       )}
     >
@@ -56,7 +56,7 @@ export function Display({
 
 export function Lede({ children, className }: { children: React.ReactNode; className?: string }) {
   return (
-    <p className={cn("max-w-2xl text-base leading-relaxed text-mist sm:text-lg", className)}>
+    <p className={cn("mx-auto max-w-2xl text-center text-base leading-relaxed text-mist sm:text-lg", className)}>
       {children}
     </p>
   )

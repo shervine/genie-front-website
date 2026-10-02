@@ -1,3 +1,6 @@
+"use client"
+
+import { useState } from "react"
 import Image from "next/image"
 import { BRAND_MARKS } from "@/lib/brand-marks"
 import { GenieWorkspace } from "@/components/site/workspace"
@@ -38,6 +41,34 @@ const APPS: Array<{
   { name: "Plaid", logo: "/brands/plaid.png" },
   { name: "QuickBooks", logo: "/brands/quickbooks.png" },
 ]
+
+const APP_USE: Record<string, string> = {
+  Airbnb: "Genie reads guest messages and ratings, writes the reply, and can send a permission unlock so the stay can move forward.",
+  "Booking.com": "Genie reads inquiries and ratings, answers inside the thread, and can push a permission unlock back to the booking.",
+  Guesty: "Genie reads the inbox, tasks, and ratings, then writes the reply or the task. A permission unlock can go back out to the listing.",
+  Hostaway: "Genie reads guest threads, tasks, and ratings, and writes the update back. Permission unlocks can be sent to the property.",
+  WhatsApp: "Genie reads and answers WhatsApp threads, turns a request into a task, and can deliver a rating update on the same chat.",
+  Slack: "Genie reads team requests, posts the update, and can open a task or share a rating with the people on the channel.",
+  Gmail: "Genie reads the email, replies in thread, and can send a task, a rating, or a financial note to the right person.",
+  Dialpad: "Genie takes the call or text, answers from policy, and can open a task or pass a rating to the operator.",
+  Twilio: "Genie sends and receives texts, follows the same policy as the other channels, and can deliver a rating by message.",
+  Managers: "Managers send communications, tasks, and permissions in. Genie sends communications, ratings, and financials back.",
+  Homeowners: "Homeowners send communications, tasks, and permissions in. Genie sends communications, ratings, and financials back, limited to their homes.",
+  Users: "Users exchange communications, tasks, and ratings with Genie. The chat stays on the stay, the job, and the score.",
+  Cleaners: "Genie assigns the turnover, sends the notes, and closes the task when the cleaner marks the work done.",
+  Handymen: "Genie opens the maintenance task, sends the access notes, and watches it until the fix is finished.",
+  TaskRabbit: "When the work has to leave the team, Genie can dispatch a TaskRabbit job and read the result back.",
+  "Monday.com": "Genie writes the task onto the board and reads the status so the guest thread closes only when the work is done.",
+  Asana: "Genie creates the task, follows it, and writes the outcome back to the person who asked.",
+  Jira: "Genie files the issue, tracks it, and reports the resolution instead of leaving it in another tool.",
+  Zapier: "Genie triggers and receives zaps so the rest of the stack stays in the same loop.",
+  Amazon: "A granted wish can become an Amazon order. Genie reads the order and the spend.",
+  Instacart: "A granted wish can become an Instacart run. Genie reads the order and the spend.",
+  PriceLabs: "Genie reads pricing signals and can send rate context back when the policy allows a change.",
+  Stripe: "Genie reads card payouts and later disputes so a missing or reversed payment is flagged.",
+  Plaid: "Bank transactions come in only. Genie checks that reservation money arrived, and does not write back to the bank.",
+  QuickBooks: "Genie reads the books and writes the stay’s money so the ledger matches what the bank shows.",
+}
 
 const MONEY = new Set(["Plaid", "Stripe", "QuickBooks"])
 const MONEY_SOMETIMES = new Set([
@@ -271,13 +302,24 @@ function ratingFlow(name: string, index: number, offset: number): Signal[] {
 
 export function GenieGraph() {
   const apps = place(APPS, 44)
+  const [hovered, setHovered] = useState<string | null>(null)
+  const [pinned, setPinned] = useState<string | null>(null)
+  const activeName = pinned ?? hovered
+  const active = activeName ? apps.find((app) => app.name === activeName) : null
   return (
     <div className="min-w-0">
       <OrbitStage>
         <div className="orbit-right absolute inset-0">
           <Signals apps={apps} radius={44} signals={ORBIT_SIGNALS} upright="orbit-upright-right" />
           {apps.map((app) => (
-            <AppIcon key={app.name} app={app} upright="orbit-upright-right" />
+            <AppIcon
+              key={app.name}
+              app={app}
+              upright="orbit-upright-right"
+              active={activeName === app.name}
+              onHover={setHovered}
+              onToggle={(name) => setPinned((current) => (current === name ? null : name))}
+            />
           ))}
           {apps.map((app) => (
             <AppLabel key={app.name} app={app} upright="orbit-upright-right" />
@@ -306,6 +348,16 @@ export function GenieGraph() {
           Financials
         </li>
       </ul>
+      <div className="mx-auto mt-4 min-h-16 max-w-xl text-center" aria-live="polite">
+        {active ? (
+          <>
+            <p className="text-sm font-medium text-ink">{active.name}</p>
+            <p className="mt-1 text-sm leading-relaxed text-mist">{APP_USE[active.name]}</p>
+          </>
+        ) : (
+          <p className="text-sm text-mist">Hover or tap an app to see how Genie uses it.</p>
+        )}
+      </div>
     </div>
   )
 }
@@ -526,15 +578,33 @@ function StarIcon() {
 function AppIcon({
   app,
   upright,
+  active,
+  onHover,
+  onToggle,
 }: {
   app: (typeof APPS)[number] & { left: string; top: string }
   upright: string
+  active: boolean
+  onHover: (name: string | null) => void
+  onToggle: (name: string) => void
 }) {
   return (
     <div className="absolute z-10 size-0" style={{ left: app.left, top: app.top }}>
       <div className="absolute -translate-x-1/2 -translate-y-1/2">
         <div className={upright}>
-          <AppGlyph app={app} />
+          <button
+            type="button"
+            className={`rounded-2xl outline-none focus-visible:ring-2 focus-visible:ring-[#e0b15a] ${active ? "ring-2 ring-[#e0b15a]" : ""}`}
+            aria-pressed={active}
+            aria-label={`${app.name}. How Genie uses it.`}
+            onMouseEnter={() => onHover(app.name)}
+            onMouseLeave={() => onHover(null)}
+            onFocus={() => onHover(app.name)}
+            onBlur={() => onHover(null)}
+            onClick={() => onToggle(app.name)}
+          >
+            <AppGlyph app={app} />
+          </button>
         </div>
       </div>
     </div>
@@ -582,7 +652,7 @@ function AppGlyph({ app }: { app: (typeof APPS)[number] }) {
         {app.icon === "manager" ? <ManagerIcon className="size-5 sm:size-7" /> : null}
         {app.icon === "homeowner" ? <HomeIcon className="size-5 sm:size-7" /> : null}
         {app.icon === "cleaners" ? <BroomIcon className="size-5 sm:size-7" /> : null}
-        {app.icon === "handymen" ? <WrenchIcon className="size-8 text-[#111] sm:size-10" /> : null}
+        {app.icon === "handymen" ? <WrenchIcon className="size-5 text-[#111] sm:size-7" /> : null}
       </span>
     )
   }

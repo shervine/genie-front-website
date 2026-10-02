@@ -38,8 +38,8 @@ const TOOLS = [
 
 export function ValueProps() {
   return (
-    <Section id="tools">
-      <Eyebrow>The tools</Eyebrow>
+    <Section id="features">
+      <Eyebrow>Features</Eyebrow>
       <Display className="mt-4 md:whitespace-nowrap">Tools that grant the wish.</Display>
       <Lede className="mt-5">
         Used together, and followed in the direction Genie sets, these are how an operator runs the company. Human support sits over the automation, so the AI stays controlled and doing what was decided.
@@ -62,7 +62,7 @@ export function ValueProps() {
 
       <ol className="mt-8 grid gap-4 md:grid-cols-2">
         {TOOLS.map((tool) => (
-          <li key={tool.title} className="rounded-[24px] border border-[#d4af37]/35 p-5">
+          <li key={tool.title} className="rounded-[24px] border border-[#d4af37]/35 p-5 text-center">
             <h3 className="text-lg text-ink">{tool.title}</h3>
             <p className="mt-2 text-sm leading-relaxed text-mist">{tool.body}</p>
           </li>

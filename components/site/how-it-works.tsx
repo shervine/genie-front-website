@@ -48,15 +48,15 @@ export function HowItWorks({ intro = true }: { intro?: boolean }) {
       </ol>
 
       <div className="mt-14">
-        <div className="flex flex-wrap items-end justify-between gap-4">
+        <div className="flex flex-wrap items-end justify-center gap-4 text-center">
           <div>
             <h3 className="font-display text-3xl text-ink sm:text-4xl">Observe → Copilot → Autopilot</h3>
-            <p className="mt-3 max-w-2xl text-sm leading-relaxed text-mist">
+            <p className="mx-auto mt-3 max-w-2xl text-sm leading-relaxed text-mist">
               Enterprise teams don’t have to flip the whole company to autonomous on day one. Set the mode at the company, a department, a workflow, or a single policy.
             </p>
           </div>
         </div>
-        <div className="mt-6 flex flex-wrap gap-2">
+        <div className="mt-6 flex flex-wrap justify-center gap-2">
           {MODES.map((item) => (
             <button
               key={item.id}

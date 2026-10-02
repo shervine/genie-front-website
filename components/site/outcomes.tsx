@@ -25,7 +25,7 @@ export function Outcomes() {
       <Eyebrow>What the operator unlocks</Eyebrow>
       <Display className="mt-4">Follow Genie. Ratings rise.</Display>
       <Lede className="mt-5">
-        The tools matter because they are used together. Guests leave satisfied, ratings rise, income grows, and operational excellence is what the portfolio arrives at.
+        The features matter because they are used together. Guests leave satisfied, ratings rise, income grows, and operational excellence is what the portfolio arrives at.
       </Lede>
       <ol className="mt-10 grid gap-4 sm:grid-cols-2">
         {OUTCOMES.map((item, index) => (

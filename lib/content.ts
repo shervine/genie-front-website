@@ -1,5 +1,6 @@
 export const NAV = [
   { href: "/product", label: "Product" },
+  { href: "/#features", label: "Features" },
   { href: "/how-it-works", label: "Guarantee" },
   { href: "/apps", label: "Apps" },
   { href: "/lamp", label: "Lamp" },
