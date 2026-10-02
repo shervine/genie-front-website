@@ -41,7 +41,7 @@ export function Hero() {
           </p>
           <div className="mt-8 flex flex-col gap-3 sm:flex-row">
             <Link href="/meet" className={buttonVariants({ className: "h-12 rounded-full px-6 text-sm" })}>
-              Meet Genie
+              Request Demo
             </Link>
           </div>
           <div className="mt-8 flex flex-wrap gap-2 text-xs text-ink">

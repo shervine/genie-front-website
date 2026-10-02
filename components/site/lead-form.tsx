@@ -230,7 +230,7 @@ export function LeadForm({ titleAs = "h2" }: { titleAs?: "h1" | "h2" }) {
 
             {message ? <p className="mt-4 text-sm text-[#a33b32]">{message}</p> : null}
             <Button type="submit" disabled={pending} className="mt-6 h-12 rounded-full px-6">
-              {pending ? "Sending…" : "Meet Genie"}
+              {pending ? "Sending…" : "Request Demo"}
             </Button>
             <p className="mt-3 text-xs leading-relaxed text-mist">
               This sends your wish to support@talktogenie.ai so the team can follow up. It does not create an account.

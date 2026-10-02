@@ -26,10 +26,7 @@ export function SiteFooter() {
             </Link>
           ))}
           <Link href="/meet" className="text-mist hover:text-[#123848]">
-            Meet Genie
-          </Link>
-          <Link href="/sign-in" className="text-mist hover:text-[#123848]">
-            Sign In
+            Request Demo
           </Link>
         </div>
       </div>

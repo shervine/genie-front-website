@@ -32,11 +32,11 @@ npm run pitch
 
 ## Lead form
 
-Meet Genie submissions require a telephone number. They are validated and appended to `data/leads.jsonl` (gitignored).
+Request Demo submissions require a telephone number. They are validated and appended to `data/leads.jsonl` (gitignored).
 
 On Vercel the project disk is read-only, so the row is only durable when it is emailed. Set the Amazon SES variables below on the Vercel project. A successful email is not blocked by the file save.
 
-Every Meet Genie and sign-in submission is stored as a row in `data/submissions.json` (and appended to `data/leads.jsonl`). Both files are gitignored.
+Every Request Demo submission is stored as a row in `data/submissions.json` (and appended to `data/leads.jsonl`). Both files are gitignored.
 
 A copy is also emailed to `support@talktogenie.ai` through Amazon SES, from `support@mench.com`, when these are set in `.env.local`:
 
@@ -48,7 +48,7 @@ SES_FROM=support@mench.com
 LEAD_INBOX=support@talktogenie.ai
 ```
 
-The sender must be verified in that SES region. Sign-in never sends the password. If mail credentials are missing, the row is still stored and the visitor is told to write the inbox directly.
+The sender must be verified in that SES region. If mail credentials are missing, the row is still stored and the visitor is told to write the inbox directly.
 
 ## Pricing shown on the site
 

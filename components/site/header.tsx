@@ -43,18 +43,12 @@ export function SiteHeader() {
 
         <div className="flex items-center gap-2">
           <Link
-            href="/sign-in"
-            className="hidden rounded-full px-3 py-1.5 text-sm text-mist hover:text-[#123848] sm:inline"
-          >
-            Sign In
-          </Link>
-          <Link
             href="/meet"
             className={buttonVariants({
-              className: "h-10 rounded-full px-4 text-sm",
+              className: "h-10 rounded-full px-4 text-sm whitespace-nowrap",
             })}
           >
-            Meet Genie
+            Request Demo
           </Link>
           <button
             type="button"
@@ -82,9 +76,6 @@ export function SiteHeader() {
                 {item.label}
               </Link>
             ))}
-            <Link href="/sign-in" className="rounded-xl px-2 py-3 text-base text-mist" onClick={() => setOpen(false)}>
-              Sign In
-            </Link>
           </nav>
         </div>
       ) : null}

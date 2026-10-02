@@ -5,7 +5,7 @@ export default function robots(): MetadataRoute.Robots {
     rules: {
       userAgent: "*",
       allow: "/",
-      disallow: ["/sign-in", "/api/"],
+      disallow: ["/api/"],
     },
     sitemap: "https://talktogenie.ai/sitemap.xml",
   }
