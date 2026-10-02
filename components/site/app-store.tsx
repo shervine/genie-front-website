@@ -10,20 +10,21 @@ const APPS: Array<{
   logo?: string
   initials?: string
   color?: string
-  icon?: "user"
+  icon?: "guest" | "manager" | "homeowner"
 }> = [
+  { name: "Airbnb", mark: "airbnb" },
+  { name: "Booking.com", mark: "bookingdotcom" },
   { name: "Guesty", logo: "/brands/guesty.png" },
   { name: "Hostaway", logo: "/brands/hostaway.png" },
   { name: "PriceLabs", logo: "/brands/pricelabs.png" },
   { name: "TaskRabbit", logo: "/brands/taskrabbit.png" },
   { name: "Amazon", logo: "/brands/amazon.png" },
   { name: "Instacart", mark: "instacart" },
-  { name: "Manager", icon: "user" },
+  { name: "Manager", icon: "manager" },
+  { name: "Guest", icon: "guest" },
+  { name: "Homeowner", icon: "homeowner" },
   { name: "DoorDash", mark: "doordash" },
   { name: "Uber", mark: "uber" },
-  { name: "Airbnb", mark: "airbnb" },
-  { name: "Booking.com", mark: "bookingdotcom" },
-  { name: "Vrbo", logo: "/brands/vrbo.png" },
   { name: "Gmail", mark: "gmail" },
   { name: "Dialpad", logo: "/brands/dialpad.png" },
   { name: "Twilio", logo: "/brands/twilio.png" },
@@ -32,7 +33,6 @@ const APPS: Array<{
   { name: "Monday.com", logo: "/brands/monday.png" },
   { name: "Asana", mark: "asana" },
   { name: "Jira", mark: "jira" },
-  { name: "Turno", logo: "/brands/turno.png" },
   { name: "Stripe", logo: "/brands/stripe.png" },
   { name: "Slack", logo: "/brands/slack.png" },
   { name: "QuickBooks", logo: "/brands/quickbooks.png" },
@@ -48,7 +48,6 @@ const MONEY_SOMETIMES = new Set([
   "Booking.com",
   "Uber",
   "Instacart",
-  "Vrbo",
 ])
 
 const CHATTY = new Set([
@@ -67,14 +66,14 @@ const TASK_FROM = new Set([
   "WhatsApp",
   "Slack",
   "Booking.com",
-  "Vrbo",
   "Airbnb",
   "Hostaway",
   "Guesty",
 ])
 const TASK_TO = new Set(["Jira", "Asana", "Monday.com"])
-const RATING_FROM = new Set(["Guesty", "Hostaway", "Airbnb", "Booking.com", "Vrbo"])
-const PERMISSION_TO = new Set(["Airbnb", "Booking.com", "Vrbo", "TaskRabbit", "Guesty", "Hostaway", "Amazon"])
+const RATING_FROM = new Set(["Guesty", "Hostaway", "Airbnb", "Booking.com"])
+const PERMISSION_TO = new Set(["Airbnb", "Booking.com", "TaskRabbit", "Guesty", "Hostaway", "Amazon"])
+const INNER_RING = new Set(["Manager", "Guest", "Homeowner"])
 
 const ORBIT_SIGNALS = signalsFor(APPS, 0)
 
@@ -95,7 +94,7 @@ function nextTarget(apps: Array<{ name: string }>, index: number, step: number) 
   let to = (index + step) % apps.length
   for (let guard = 0; guard < apps.length; guard += 1) {
     const name = apps[to]?.name
-    if (to !== index && name !== "Plaid" && name !== "Manager") return to
+    if (to !== index && name !== "Plaid" && !INNER_RING.has(name ?? "")) return to
     to = (to + 1) % apps.length
   }
   return to
@@ -113,7 +112,12 @@ function signalsFor(apps: Array<{ name: string }>, offset: number): Signal[] {
       duration: `${4.4 + (index % 3) * 0.4}s`,
       moneyIn: alwaysMoney,
     }
-    if (app.name === "Manager") return managerFlow(index, offset)
+    if (app.name === "Manager" || app.name === "Homeowner") {
+      return roleFlow(index, offset, ["message", "task", "permission"], ["message", "rating", "money"])
+    }
+    if (app.name === "Guest") {
+      return roleFlow(index, offset, ["message", "task", "rating"], ["message", "task", "rating"])
+    }
     if (app.name === "Plaid") {
       return [
         inbound,
@@ -208,22 +212,20 @@ function taskFlow(name: string, index: number, offset: number): Signal[] {
   return signals
 }
 
-function managerFlow(index: number, offset: number): Signal[] {
-  const inbound: Array<Mark> = ["message", "task", "permission"]
-  const outbound: Array<Mark> = ["message", "rating", "money"]
+function roleFlow(index: number, offset: number, inbound: Mark[], outbound: Mark[]): Signal[] {
   return [
     ...inbound.map((mark, step) => ({
       from: index,
       kind: "absorb" as const,
       mark,
-      delay: `${(offset + 0.4 + step * 1.35).toFixed(2)}s`,
+      delay: `${(offset + 0.4 + step * 1.35 + index * 0.05).toFixed(2)}s`,
       duration: "4.5s",
     })),
     ...outbound.map((mark, step) => ({
       from: index,
       kind: "outbound" as const,
       mark,
-      delay: `${(offset + 0.9 + step * 1.35).toFixed(2)}s`,
+      delay: `${(offset + 0.9 + step * 1.35 + index * 0.05).toFixed(2)}s`,
       duration: "4.4s",
     })),
   ]
@@ -467,6 +469,24 @@ function UserIcon({ className }: { className?: string }) {
   )
 }
 
+function ManagerIcon({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 24 24" className={className} aria-hidden="true">
+      <circle cx="12" cy="7.2" r="3.1" fill="#123848" />
+      <path fill="#123848" d="M5.4 19.8c.7-3.3 3.2-5.1 6.6-5.1s5.9 1.8 6.6 5.1c.14.6-.4 1.1-1 1.1H6.4c-.6 0-1.14-.5-1-1.1Z" />
+      <path fill="#e0b15a" d="m12 11.2-1.4 3.2L12 18.8l1.4-4.4-1.4-3.2Z" />
+    </svg>
+  )
+}
+
+function HomeIcon({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 24 24" className={className} aria-hidden="true">
+      <path fill="#123848" d="M12 3.2 3 11.2h2.2V20.4h5.2v-5.1h3.2v5.1h5.2V11.2H21L12 3.2Z" />
+    </svg>
+  )
+}
+
 function CommentIcon() {
   return (
     <svg viewBox="0 0 24 24" className="size-3.5" aria-hidden="true">
@@ -516,14 +536,23 @@ function AppLabel({
   app,
   upright,
 }: {
-  app: (typeof APPS)[number] & { left: string; top: string }
+  app: (typeof APPS)[number] & { left: string; top: string; angle: number }
   upright: string
 }) {
+  const radians = (app.angle * Math.PI) / 180
+  const distance = INNER_RING.has(app.name) ? 44 : 38
   return (
     <div className="pointer-events-none absolute z-30 size-0" style={{ left: app.left, top: app.top }}>
-      <div className="absolute top-6 left-0 -translate-x-1/2 sm:top-8">
+      <div
+        className="absolute"
+        style={{
+          left: Math.cos(radians) * distance,
+          top: Math.sin(radians) * distance,
+          transform: "translate(-50%, -50%)",
+        }}
+      >
         <div className={upright}>
-          <span className="block max-w-24 bg-[#e7f6fb] px-1 text-center text-[10px] leading-tight text-ink sm:text-[11px]">
+          <span className="block whitespace-nowrap bg-[#e7f6fb] px-1 text-center text-[10px] leading-tight text-ink sm:text-[11px]">
             {app.name}
           </span>
         </div>
@@ -534,7 +563,7 @@ function AppLabel({
 
 function place<T extends { name: string }>(items: T[], radius: number) {
   return items.map((item, index) => {
-    const ring = item.name === "Manager" ? 36 : radius
+    const ring = INNER_RING.has(item.name) ? 34 : radius
     const angle = (index / items.length) * Math.PI * 2 - Math.PI / 2
     return {
       ...item,
@@ -547,10 +576,12 @@ function place<T extends { name: string }>(items: T[], radius: number) {
 }
 
 function AppGlyph({ app }: { app: (typeof APPS)[number] }) {
-  if (app.icon === "user") {
+  if (app.icon) {
     return (
       <span className="flex size-10 items-center justify-center rounded-2xl border border-[#d4af37]/35 bg-white shadow-sm sm:size-14">
-        <UserIcon className="size-5 sm:size-7" />
+        {app.icon === "guest" ? <UserIcon className="size-5 sm:size-7" /> : null}
+        {app.icon === "manager" ? <ManagerIcon className="size-5 sm:size-7" /> : null}
+        {app.icon === "homeowner" ? <HomeIcon className="size-5 sm:size-7" /> : null}
       </span>
     )
   }
