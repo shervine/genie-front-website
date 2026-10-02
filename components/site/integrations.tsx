@@ -23,7 +23,7 @@ export function Integrations({
           <Eyebrow>Integration-first</Eyebrow>
           <Display as={titleAs} className="mt-4 max-w-3xl">Keep your stack. Add intelligence.</Display>
           <Lede className="mt-5">
-            Genie is designed to complement the systems an operator already runs. Names below are examples of those systems, not a partner roster, and not a list of live connectors.
+            Genie has an app store with hundreds of apps for the tools an operator already runs. The names below are connection targets in that store, not a partner roster, and not a claim that every connector is live.
           </Lede>
         </>
       ) : null}
