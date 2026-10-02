@@ -57,14 +57,14 @@ export function PitchDeck() {
         </p>
         <h2
           className={cn(
-            "mt-4 max-w-4xl font-display text-[clamp(2.1rem,4vw,3.6rem)] leading-[1.02] font-bold tracking-[-0.035em]",
+            "mx-auto mt-4 w-full max-w-4xl text-center font-display text-[clamp(2.1rem,4vw,3.6rem)] leading-[1.02] font-bold tracking-[-0.035em]",
             slide.variant === "content" ? "text-ink" : "text-white",
           )}
         >
           {slide.title}
         </h2>
         {slide.lede ? (
-          <p className={cn("mt-5 max-w-3xl text-base leading-relaxed sm:text-lg", slide.variant === "content" ? "text-mist" : "text-[#d5eef6]")}>
+          <p className={cn("mx-auto mt-5 w-full max-w-3xl text-center text-base leading-relaxed sm:text-lg", slide.variant === "content" ? "text-mist" : "text-[#d5eef6]")}>
             {slide.lede}
           </p>
         ) : null}
@@ -133,11 +133,11 @@ export function PitchDeck() {
       </div>
 
       <section className="mt-16" id="outreach">
-        <p className="text-[0.72rem] font-medium tracking-[0.22em] text-glow uppercase">Founder outreach</p>
-        <h2 className="mt-4 max-w-3xl font-display text-[clamp(2rem,4vw,3.2rem)] leading-[1.02] font-bold tracking-[-0.035em] text-ink">
+        <p className="text-center text-[0.72rem] font-medium tracking-[0.22em] text-glow uppercase">Founder outreach</p>
+        <h2 className="mx-auto mt-4 w-full max-w-3xl text-center font-display text-[clamp(2rem,4vw,3.2rem)] leading-[1.02] font-bold tracking-[-0.035em] text-ink">
           A note for hospitality teams in San Francisco.
         </h2>
-        <p className="mt-4 max-w-2xl text-base leading-relaxed text-mist">
+        <p className="mx-auto mt-4 w-full max-w-2xl text-center text-base leading-relaxed text-mist">
           Replace the name, then send it to founding and technical teams. The note asks for 20 minutes to compare challenges and exchange ideas. It is not a sales sequence.
         </p>
         <div className="mt-6 rounded-[28px] border border-[#d4af37]/35 bg-white/80 p-5 sm:p-7">
