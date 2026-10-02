@@ -1,5 +1,5 @@
 import { validateLead } from "@/lib/lead-schema"
-import { emailLead, formatLead, storeLead, type StoredLead } from "@/lib/lead-store"
+import { emailLead, formatLead, type StoredLead } from "@/lib/lead-store"
 
 export const runtime = "nodejs"
 
@@ -60,28 +60,22 @@ export async function POST(request: Request) {
 
   try {
     lead.emailed = await emailLead(lead)
-  } catch {
+  } catch (error) {
+    console.error("demo email failed", error)
     lead.emailed = false
   }
 
-  let durability: "durable" | "ephemeral" | "none" = "none"
-  try {
-    durability = await storeLead(lead)
-  } catch (error) {
-    console.error("lead store failed", error)
-  }
-
-  if (!lead.emailed && durability !== "durable") {
-    console.error(`lead not delivered ${lead.id}\n${formatLead(lead)}`)
+  if (!lead.emailed) {
+    console.error(`demo not emailed ${lead.id}\n${formatLead(lead)}`)
     return Response.json(
       {
         ok: false,
-        message: "We couldn’t store that. Email support@talktogenie.ai and we’ll take it from there.",
+        message: "We couldn’t send that. Email support@talktogenie.ai and we’ll take it from there.",
       },
       { status: 500 },
     )
   }
 
-  console.info(`lead stored ${lead.id} emailed=${lead.emailed} durability=${durability} company=${lead.company}`)
-  return Response.json({ ok: true, emailed: lead.emailed })
+  console.info(`demo emailed ${lead.id} company=${lead.company}`)
+  return Response.json({ ok: true, emailed: true })
 }

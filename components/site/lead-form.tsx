@@ -98,7 +98,7 @@ export function LeadForm({ titleAs = "h2" }: { titleAs?: "h1" | "h2" }) {
         <div>
           <Eyebrow>Onboarding</Eyebrow>
           <Display as={titleAs} className="mt-4">
-            Tell me the wish.
+            Your Wish is My Command
           </Display>
           <Lede className="mt-5">
             Tell me the shape of the company. I’ll take the wish to the team, and onboarding starts from there.
