@@ -14,7 +14,7 @@ export default function HowItWorksPage() {
       <Section className="pb-0">
         <Eyebrow>Guarantee</Eyebrow>
         <Display as="h1" className="mt-4 max-w-4xl">
-          All Interactions Humans-Defined & Human-Reviewed
+          Every Interaction Human-Defined & Human-Reviewed
         </Display>
         <Lede className="mt-5">
           Genie only detects patterns a person has already written. It does not invent a next step. If an inbound message matches none of those patterns, Genie does not act. Every new company adopts our standard policy, fully defined by us, then customizes it in onboarding and keeps fine-tuning it later, so the behavior is precisely theirs. That is how Genie can resolve the great majority of inquiries and still stay predictable: hundreds of distinct patterns, each one human-defined, each one adjustable for that company.
