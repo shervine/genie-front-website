@@ -9,6 +9,7 @@ const APPS: Array<{
   logo?: string
   initials?: string
   color?: string
+  icon?: "user"
 }> = [
   { name: "Guesty", logo: "/brands/guesty.png" },
   { name: "Hostaway", logo: "/brands/hostaway.png" },
@@ -16,6 +17,7 @@ const APPS: Array<{
   { name: "TaskRabbit", logo: "/brands/taskrabbit.png" },
   { name: "Amazon", logo: "/brands/amazon.png" },
   { name: "Instacart", mark: "instacart" },
+  { name: "Manager", icon: "user" },
   { name: "DoorDash", mark: "doordash" },
   { name: "Uber", mark: "uber" },
   { name: "Airbnb", mark: "airbnb" },
@@ -71,11 +73,10 @@ const TASK_FROM = new Set([
 ])
 const TASK_TO = new Set(["Jira", "Asana", "Monday.com"])
 const RATING_FROM = new Set(["Guesty", "Hostaway", "Airbnb", "Booking.com", "Vrbo"])
-const RATING_TO = new Set(["Dialpad", "Gmail", "Slack", "WhatsApp", "Twilio"])
 
 const ORBIT_SIGNALS = signalsFor(APPS, 0)
 
-type Mark = "message" | "task" | "money" | "rating"
+type Mark = "message" | "task" | "money" | "rating" | "permission"
 
 type Signal = {
   from: number
@@ -90,8 +91,11 @@ type Signal = {
 
 function nextTarget(apps: Array<{ name: string }>, index: number, step: number) {
   let to = (index + step) % apps.length
-  if (to === index || apps[to]?.name === "Plaid") to = (to + 1) % apps.length
-  if (to === index || apps[to]?.name === "Plaid") to = (to + 1) % apps.length
+  for (let guard = 0; guard < apps.length; guard += 1) {
+    const name = apps[to]?.name
+    if (to !== index && name !== "Plaid" && name !== "Manager") return to
+    to = (to + 1) % apps.length
+  }
   return to
 }
 
@@ -107,6 +111,7 @@ function signalsFor(apps: Array<{ name: string }>, offset: number): Signal[] {
       duration: `${4.4 + (index % 3) * 0.4}s`,
       moneyIn: alwaysMoney,
     }
+    if (app.name === "Manager") return managerFlow(index, offset)
     if (app.name === "Plaid") {
       return [
         inbound,
@@ -200,41 +205,45 @@ function taskFlow(name: string, index: number, offset: number): Signal[] {
   return signals
 }
 
+function managerFlow(index: number, offset: number): Signal[] {
+  const inbound: Array<Mark> = ["message", "task", "permission"]
+  const outbound: Array<Mark> = ["message", "rating", "money"]
+  return [
+    ...inbound.map((mark, step) => ({
+      from: index,
+      kind: "absorb" as const,
+      mark,
+      delay: `${(offset + 0.4 + step * 1.35).toFixed(2)}s`,
+      duration: "4.5s",
+    })),
+    ...outbound.map((mark, step) => ({
+      from: index,
+      kind: "outbound" as const,
+      mark,
+      delay: `${(offset + 0.9 + step * 1.35).toFixed(2)}s`,
+      duration: "4.4s",
+    })),
+  ]
+}
+
 function ratingFlow(name: string, index: number, offset: number): Signal[] {
-  const signals: Signal[] = []
-  if (RATING_FROM.has(name)) {
-    signals.push({
+  if (!RATING_FROM.has(name)) return []
+  return [
+    {
       from: index,
       kind: "absorb",
       mark: "rating",
       delay: `${(offset + 0.55 + (index % 4) * 0.4).toFixed(2)}s`,
       duration: "4.6s",
-    })
-    signals.push({
+    },
+    {
       from: index,
       kind: "absorb",
       mark: "rating",
       delay: `${(offset + 2.4 + (index % 4) * 0.4).toFixed(2)}s`,
       duration: "4.3s",
-    })
-  }
-  if (RATING_TO.has(name)) {
-    signals.push({
-      from: index,
-      kind: "outbound",
-      mark: "rating",
-      delay: `${(offset + 1.35 + (index % 5) * 0.45).toFixed(2)}s`,
-      duration: "4.4s",
-    })
-    signals.push({
-      from: index,
-      kind: "outbound",
-      mark: "rating",
-      delay: `${(offset + 3.1 + (index % 5) * 0.45).toFixed(2)}s`,
-      duration: "4.1s",
-    })
-  }
-  return signals
+    },
+  ]
 }
 
 export function AppStore({ titleAs = "h2" }: { titleAs?: "h1" | "h2" }) {
@@ -253,10 +262,14 @@ export function AppStore({ titleAs = "h2" }: { titleAs?: "h1" | "h2" }) {
           ))}
         </div>
       </OrbitStage>
-      <ul className="mx-auto mt-3 flex w-full flex-nowrap items-center justify-center gap-x-2 text-[11px] leading-none text-ink sm:gap-x-4 sm:text-sm [&_svg]:size-3.5">
+      <ul className="mx-auto mt-3 flex w-full max-w-full flex-nowrap items-center justify-center gap-x-2 overflow-x-auto text-[11px] leading-none text-ink sm:gap-x-4 sm:text-sm [&_svg]:size-3.5">
         <li className="flex items-center gap-1 whitespace-nowrap">
           <CommentIcon />
           Communications
+        </li>
+        <li className="flex items-center gap-1 whitespace-nowrap">
+          <KeyIcon />
+          Permissions
         </li>
         <li className="flex items-center gap-1 whitespace-nowrap">
           <WrenchIcon />
@@ -281,15 +294,15 @@ function Signals({
   signals,
   upright,
 }: {
-  apps: Array<(typeof APPS)[number] & { angle: number }>
+  apps: Array<(typeof APPS)[number] & { angle: number; radius?: number }>
   radius: number
   signals: Signal[]
   upright: string
 }) {
   return (
-    <div className="pointer-events-none absolute inset-0" aria-hidden="true">
+    <div className="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden="true">
       {apps.map((app) => (
-        <Spoke key={app.name} angle={app.angle} radius={radius} />
+        <Spoke key={app.name} angle={app.angle} radius={app.radius ?? radius} />
       ))}
       {signals.map((signal, index) => {
         const source = apps[signal.from]
@@ -302,7 +315,7 @@ function Signals({
             <Travel
               key={`${signal.kind}-${signal.from}-${signal.delay}-${index}`}
               angle={source.angle}
-              radius={radius}
+              radius={source.radius ?? radius}
               className="signal-out"
               delay={signal.delay}
               duration={signal.duration}
@@ -315,7 +328,7 @@ function Signals({
           <span key={`${signal.kind}-${signal.from}-${signal.delay}-${index}`}>
             <Travel
               angle={source.angle}
-              radius={radius}
+              radius={source.radius ?? radius}
               className={signal.kind === "return" ? "signal-return" : "signal-absorb"}
               delay={signal.delay}
               duration={signal.duration}
@@ -325,7 +338,7 @@ function Signals({
             {signal.kind === "redirect" ? (
               <Travel
                 angle={target.angle}
-                radius={radius}
+                radius={target.radius ?? radius}
                 className="signal-out"
                 delay={`calc(${signal.delay} + ${signal.duration} * 0.46)`}
                 duration={signal.duration}
@@ -392,7 +405,29 @@ function SignalMark({ mark }: { mark: Mark }) {
   }
   if (mark === "task") return <WrenchIcon />
   if (mark === "rating") return <StarIcon />
+  if (mark === "permission") return <KeyIcon />
   return <CommentIcon />
+}
+
+function KeyIcon() {
+  return (
+    <svg viewBox="0 0 24 24" className="size-4" aria-hidden="true">
+      <path
+        fill="#d21f1f"
+        fillRule="evenodd"
+        d="M8 3.2a4.8 4.8 0 0 1 4.3 7.1H21.5V13H19v2.6h-2.3V13h-4.4a4.8 4.8 0 1 1-4.3-9.8Zm.1 2.7a2 2 0 1 0 0 4 2 2 0 0 0 0-4Z"
+      />
+    </svg>
+  )
+}
+
+function UserIcon({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 24 24" className={className} aria-hidden="true">
+      <circle cx="12" cy="8" r="3.4" fill="#123848" />
+      <path fill="#123848" d="M5.2 19.4c.7-3.4 3.3-5.3 6.8-5.3s6.1 1.9 6.8 5.3c.15.7-.4 1.3-1.1 1.3H6.3c-.7 0-1.25-.6-1.1-1.3Z" />
+    </svg>
+  )
 }
 
 function CommentIcon() {
@@ -430,8 +465,8 @@ function AppNode({
   upright: string
 }) {
   return (
-    <div className="absolute" style={{ left: app.left, top: app.top }}>
-      <div className="-translate-x-1/2 -translate-y-1/2">
+    <div className="absolute size-0" style={{ left: app.left, top: app.top }}>
+      <div className="absolute -translate-x-1/2 -translate-y-1/2">
         <div className={`${upright} flex flex-col items-center`}>
           <AppGlyph app={app} />
           <span className="sr-only sm:not-sr-only sm:mt-1 sm:block sm:max-w-20 sm:text-center sm:text-[11px] sm:leading-tight sm:text-ink">
@@ -445,17 +480,27 @@ function AppNode({
 
 function place<T extends { name: string }>(items: T[], radius: number) {
   return items.map((item, index) => {
+    const ring = item.name === "Manager" ? 34 : radius
     const angle = (index / items.length) * Math.PI * 2 - Math.PI / 2
     return {
       ...item,
+      radius: ring,
       angle: (angle * 180) / Math.PI,
-      left: `${50 + Math.cos(angle) * radius}%`,
-      top: `${50 + Math.sin(angle) * radius}%`,
+      left: `${50 + Math.cos(angle) * ring}%`,
+      top: `${50 + Math.sin(angle) * ring}%`,
     }
   })
 }
 
 function AppGlyph({ app }: { app: (typeof APPS)[number] }) {
+  if (app.icon === "user") {
+    return (
+      <span className="flex size-20 items-center justify-center rounded-[28px] border border-[#d4af37]/55 bg-white shadow-md sm:size-28">
+        <UserIcon className="size-12 sm:size-16" />
+      </span>
+    )
+  }
+
   if (app.logo) {
     return (
       <span className="flex size-10 items-center justify-center rounded-2xl border border-[#d4af37]/35 bg-white shadow-sm sm:size-14">
