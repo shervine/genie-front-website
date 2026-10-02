@@ -383,17 +383,8 @@ export const STAKEHOLDERS = [
     sees: "Their stay, the property guide, and offers you have allowed.",
   },
   {
-    id: "operators",
-    label: "Operators",
-    line: "Run the portfolio from one conversation.",
-    ask: "Which properties had maintenance issues this week?",
-    answer:
-      "Villa Sol, Cottage 12, and Pier House. Cottage 12 is the one past your escalation window.",
-    sees: "The portfolio they are assigned. Not a different company’s data.",
-  },
-  {
     id: "owners",
-    label: "Property owners",
+    label: "Homeowners",
     line: "Performance, without the whole company attached.",
     ask: "How did my villa do this month?",
     answer:
@@ -426,15 +417,6 @@ export const STAKEHOLDERS = [
     answer:
       "One refund over the $100 line, one cleaner past the complaint threshold, and six late checkouts waiting because that workflow is still on Copilot.",
     sees: "The exception queue for their scope. Routine work stays off their screen.",
-  },
-  {
-    id: "finance",
-    label: "Finance",
-    line: "Expected, received, missing, explained.",
-    ask: "Why was the Booking.com payout short?",
-    answer:
-      "In the sample, $3,200 splits into cancellations, a commission restatement, and one payout that never landed.",
-    sees: "Reservation money: fares, fees, taxes where provided, refunds, deposits, upsells, payouts.",
   },
 ]
 
