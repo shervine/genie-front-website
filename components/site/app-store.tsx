@@ -23,7 +23,7 @@ const APPS: Array<{
   { name: "Gmail", mark: "gmail" },
   { name: "Dialpad", logo: "/brands/dialpad.png" },
   { name: "Twilio", logo: "/brands/twilio.png" },
-  { name: "SMS", initials: "SMS", color: "#2eafd0" },
+  { name: "Plaid", logo: "/brands/plaid.png" },
   { name: "WhatsApp", mark: "whatsapp" },
   { name: "Monday.com", logo: "/brands/monday.png" },
   { name: "Asana", mark: "asana" },
@@ -37,6 +37,19 @@ const APPS: Array<{
   { name: "QuickBooks", logo: "/brands/quickbooks.png" },
   { name: "RemoteLock", logo: "/brands/remotelock.png" },
 ]
+
+const MONEY = new Set(["Plaid", "Stripe", "QuickBooks"])
+const MONEY_SOMETIMES = new Set([
+  "PriceLabs",
+  "Airbnb",
+  "DoorDash",
+  "Amazon",
+  "Expedia",
+  "Booking.com",
+  "Uber",
+  "Instacart",
+  "Vrbo",
+])
 
 const CHATTY = new Set([
   "Guesty",
@@ -60,16 +73,21 @@ type Signal = {
   kind: "absorb" | "return" | "redirect"
   delay: string
   duration: string
+  moneyIn?: boolean
+  moneyOut?: boolean
 }
 
 function signalsFor(apps: Array<{ name: string }>, offset: number): Signal[] {
   return apps.flatMap((app, index) => {
     const outboundTarget = (index + 2 + (index % 3)) % apps.length
+    const alwaysMoney = MONEY.has(app.name)
+    const occasionalMoney = MONEY_SOMETIMES.has(app.name) || index % 6 === 0
     const inbound: Signal = {
       from: index,
       kind: "absorb",
       delay: `${(offset + index * 0.38).toFixed(2)}s`,
       duration: `${4.4 + (index % 3) * 0.4}s`,
+      moneyIn: alwaysMoney,
     }
     const outbound: Signal = {
       from: index,
@@ -77,6 +95,8 @@ function signalsFor(apps: Array<{ name: string }>, offset: number): Signal[] {
       kind: index % 2 === 0 ? "redirect" : "return",
       delay: `${(offset + 0.7 + index * 0.33).toFixed(2)}s`,
       duration: `${4.6 + (index % 3) * 0.35}s`,
+      moneyIn: alwaysMoney,
+      moneyOut: alwaysMoney || occasionalMoney,
     }
     if (!CHATTY.has(app.name)) return [inbound, outbound]
     const extraInbound = [1.1, 2.2].map((step, stepIndex) => ({
@@ -84,6 +104,7 @@ function signalsFor(apps: Array<{ name: string }>, offset: number): Signal[] {
       kind: "absorb" as const,
       delay: `${(offset + index * 0.15 + step).toFixed(2)}s`,
       duration: `${3.4 + stepIndex * 0.3}s`,
+      moneyIn: alwaysMoney,
     }))
     const extraOutbound: Signal[] = [1.4, 2.6].map((step, stepIndex) => ({
       from: index,
@@ -91,6 +112,8 @@ function signalsFor(apps: Array<{ name: string }>, offset: number): Signal[] {
       kind: "redirect" as const,
       delay: `${(offset + index * 0.15 + step).toFixed(2)}s`,
       duration: `${3.6 + stepIndex * 0.25}s`,
+      moneyIn: alwaysMoney,
+      moneyOut: alwaysMoney || (occasionalMoney && stepIndex === 0),
     }))
     return [inbound, outbound, ...extraInbound, ...extraOutbound]
   })
@@ -100,9 +123,9 @@ export function AppStore({ titleAs = "h2" }: { titleAs?: "h1" | "h2" }) {
   return (
     <Section id="app-store" className="py-16 md:py-24">
       <Eyebrow>App store</Eyebrow>
-      <Display as={titleAs} className="mt-4 max-w-4xl">85% auto-resolved. 15% escalated to you.</Display>
+      <Display as={titleAs} className="mt-4 max-w-4xl">5 out of 6 Inquiries Resolved without Manager Review</Display>
       <Lede className="mt-5">
-        Genie has an app store with hundreds of apps for the popular tools and websites an operator uses. Connect the PMS, the channels, the inbox, the task board, and the services a guest can ask for. Genie works across that set.
+        About 85% of inbound inquiries are auto-resolved by a predefined human policy. That is five out of six, finished without a manager. The rest are escalated to you. The apps around Genie are where those inquiries arrive.
       </Lede>
       <div className="orbit-stage relative mx-auto mt-6 aspect-square w-full max-w-[760px]">
         <div className="absolute top-1/2 left-[calc(50%+18px)] z-10 flex -translate-x-1/2 -translate-y-1/2 flex-col items-center">
@@ -112,13 +135,13 @@ export function AppStore({ titleAs = "h2" }: { titleAs?: "h1" | "h2" }) {
           <span className="sr-only">Genie, at the center of the apps</span>
         </div>
         <div className="orbit-left absolute inset-0">
-          <Signals apps={place(INNER_APPS, 24)} radius={24} signals={INNER_SIGNALS} />
+          <Signals apps={place(INNER_APPS, 24)} radius={24} signals={INNER_SIGNALS} upright="orbit-upright-left" />
           {place(INNER_APPS, 24).map((app) => (
             <AppNode key={app.name} app={app} upright="orbit-upright-left" />
           ))}
         </div>
         <div className="orbit-right absolute inset-0">
-          <Signals apps={place(OUTER_APPS, 42)} radius={42} signals={OUTER_SIGNALS} />
+          <Signals apps={place(OUTER_APPS, 42)} radius={42} signals={OUTER_SIGNALS} upright="orbit-upright-right" />
           {place(OUTER_APPS, 42).map((app) => (
             <AppNode key={app.name} app={app} upright="orbit-upright-right" />
           ))}
@@ -135,10 +158,12 @@ function Signals({
   apps,
   radius,
   signals,
+  upright,
 }: {
   apps: Array<(typeof APPS)[number] & { angle: number }>
   radius: number
   signals: Signal[]
+  upright: string
 }) {
   return (
     <div className="pointer-events-none absolute inset-0" aria-hidden="true">
@@ -157,6 +182,8 @@ function Signals({
               className={signal.kind === "return" ? "signal-return" : "signal-absorb"}
               delay={signal.delay}
               duration={signal.duration}
+              money={Boolean(signal.moneyIn) || (signal.kind === "return" && Boolean(signal.moneyOut))}
+              upright={upright}
             />
             {signal.kind === "redirect" ? (
               <Travel
@@ -165,6 +192,8 @@ function Signals({
                 className="signal-out"
                 delay={`calc(${signal.delay} + ${signal.duration} * 0.46)`}
                 duration={signal.duration}
+                money={Boolean(signal.moneyOut)}
+                upright={upright}
               />
             ) : null}
           </span>
@@ -191,20 +220,35 @@ function Travel({
   className,
   delay,
   duration,
+  money = false,
+  upright,
 }: {
   angle: number
   radius: number
   className: string
   delay: string
   duration: string
+  money?: boolean
+  upright: string
 }) {
   return (
     <div className="absolute inset-0" style={{ transform: `rotate(${angle + 90}deg)` }}>
       <div className="absolute bottom-1/2 left-1/2 w-2 -translate-x-1/2" style={{ height: `${radius}%` }}>
         <span
-          className={`absolute left-0 size-[7px] rounded-full ${className}`}
+          className={`absolute left-0 ${money ? "signal-money" : "size-[7px] rounded-full"} ${className}`}
           style={{ animationDelay: delay, animationDuration: duration }}
-        />
+        >
+          {money ? (
+            <span className={`${upright} block`}>
+              <span
+                className="block text-[13px] leading-none font-bold text-black"
+                style={{ transform: `rotate(${-(angle + 90)}deg)` }}
+              >
+                $
+              </span>
+            </span>
+          ) : null}
+        </span>
       </div>
     </div>
   )

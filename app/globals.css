@@ -342,6 +342,14 @@
   animation-name: signal-out;
 }
 
+.signal-money {
+  width: 14px;
+  height: 14px;
+  margin-left: -4px;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
