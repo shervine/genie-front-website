@@ -1,6 +1,81 @@
-import { INTEGRATIONS } from "@/lib/content"
+"use client"
+
+import { useState } from "react"
 import { Display, Eyebrow, Lede, Section } from "@/components/site/section"
 import { cn } from "@/lib/utils"
+
+const ACCESS_LEVELS = [
+  {
+    id: "super-admin",
+    name: "Super Admins",
+    system: "Genie Admin",
+    summary: "The view above every account. They see who is allowed in, and the rules the product itself is running.",
+    sees: ["Every company on Genie", "Roles and permissions", "Platform rules"],
+  },
+  {
+    id: "manager",
+    name: "Managers",
+    system: "Client Admin",
+    summary: "The client’s own admins. Their portfolio’s messages, tasks, and money sit in one place, and they decide who on the team can open what.",
+    sees: ["Company-wide threads", "Tasks and exceptions", "Who has access"],
+  },
+  {
+    id: "landlord",
+    name: "Landlords",
+    system: "Client Landlord",
+    summary: "The leases and buildings they hold. Occupancy, issues, and the conversations that touch those addresses.",
+    sees: ["Their buildings", "Open issues", "Threads about those addresses"],
+  },
+  {
+    id: "operator",
+    name: "Operators",
+    system: "Genie Support",
+    summary: "Genie staff helping that client. They see the live operation they are supporting, so an answer does not wait on an export.",
+    sees: ["The account they support", "Live conversations", "The context of the request"],
+  },
+  {
+    id: "guest",
+    name: "Guests",
+    system: "Client Guest",
+    summary: "Only their stay. The guide, their requests, and the conversation with Genie. The next guest and the owner stay out of it.",
+    sees: ["Their reservation", "Property guide", "Their own thread"],
+  },
+  {
+    id: "cleaner",
+    name: "Cleaners",
+    system: "Client Cleaner",
+    summary: "The turnovers assigned to them. The unit, how to get in, the checklist, and a place to report what they found.",
+    sees: ["Assigned turnovers", "Access for that job", "Checklist and photos"],
+  },
+  {
+    id: "handyman",
+    name: "Handymen",
+    system: "Client Handyman",
+    summary: "The repair in front of them. What broke, which unit, how urgent, and the notes already collected.",
+    sees: ["Their work orders", "Property context", "Priority and notes"],
+  },
+  {
+    id: "support",
+    name: "Support",
+    system: "Client Support",
+    summary: "The client’s own desk. The threads they are assigned, and the reservation facts they need to answer.",
+    sees: ["Assigned conversations", "Stay details", "What Genie already did"],
+  },
+  {
+    id: "vendor",
+    name: "Vendors",
+    system: "Marketplace and client",
+    summary: "One job at a time, from the Genie marketplace or assigned by the client. The address, the window, and the work. Not the rest of the company.",
+    sees: ["That job only", "Arrival window", "Notes required to finish"],
+  },
+  {
+    id: "owner",
+    name: "Home Owners",
+    system: "Client home owner",
+    summary: "Their homes. How the month went, what guests said, and the money and maintenance that concern those listings.",
+    sees: ["Their properties", "Guest feedback", "Money and maintenance"],
+  },
+] as const
 
 export function Integrations({
   showIntro = true,
@@ -9,8 +84,11 @@ export function Integrations({
   showIntro?: boolean
   titleAs?: "h1" | "h2"
 }) {
+  const [id, setId] = useState<(typeof ACCESS_LEVELS)[number]["id"]>(ACCESS_LEVELS[0].id)
+  const level = ACCESS_LEVELS.find((item) => item.id === id) ?? ACCESS_LEVELS[0]
+
   return (
-    <Section id="apps">
+    <Section id="access">
       {showIntro ? (
         <>
           <Eyebrow>Apps</Eyebrow>
@@ -21,30 +99,49 @@ export function Integrations({
         </>
       ) : null}
 
-      <div className={cn("overflow-x-auto rounded-[24px] border border-[#d4af37]/35", showIntro ? "mt-10" : "mt-4")}>
-        <table className="w-full min-w-[760px] text-left text-sm">
-          <caption className="sr-only">Access level for each connection Genie is designed to sit across</caption>
-          <thead className="text-xs tracking-[0.16em] text-mist uppercase">
-            <tr>
-              <th className="px-4 py-3 font-medium">Category</th>
-              <th className="px-4 py-3 font-medium">Examples</th>
-              <th className="px-4 py-3 font-medium">Access level</th>
-            </tr>
-          </thead>
-          <tbody>
-            {INTEGRATIONS.map((item) => (
-              <tr key={item.id} className="border-t border-[#2eafd0]/20 align-top">
-                <td className="px-4 py-3 text-ink">{item.category}</td>
-                <td className="px-4 py-3 text-mist">{item.examples.join(", ")}</td>
-                <td className="px-4 py-3 text-[#0e6f86]">{item.access}</td>
-              </tr>
+      <div className={showIntro ? "mt-16" : ""}>
+        <Eyebrow>Access levels</Eyebrow>
+        <Display as={showIntro ? "h3" : "h2"} className="mt-4 max-w-3xl">
+          One person. One view.
+        </Display>
+        <Lede className="mt-5">
+          Genie recognizes the access level and opens the communication and the data that belong to that person. Choose a level. The others stay closed.
+        </Lede>
+
+        <div className="mt-8 flex flex-wrap gap-2" role="tablist" aria-label="Access levels">
+          {ACCESS_LEVELS.map((item) => {
+            const selected = item.id === level.id
+            return (
+              <button
+                key={item.id}
+                type="button"
+                role="tab"
+                aria-selected={selected}
+                onClick={() => setId(item.id)}
+                className={cn(
+                  "rounded-full px-4 py-2 text-sm",
+                  selected ? "bg-[#e8c56a] text-[#123848]" : "border border-[#2eafd0]/30 text-mist",
+                )}
+              >
+                {item.name}
+              </button>
+            )
+          })}
+        </div>
+
+        <article className="panel mt-4 rounded-[28px] p-6 sm:p-8" role="tabpanel" aria-live="polite">
+          <p className="text-xs tracking-[0.16em] text-glow uppercase">{level.system}</p>
+          <h3 className="mt-2 font-display text-4xl text-ink">{level.name}</h3>
+          <p className="mt-4 max-w-2xl text-base leading-relaxed text-mist">{level.summary}</p>
+          <ul className="mt-6 grid gap-3 sm:grid-cols-3">
+            {level.sees.map((item) => (
+              <li key={item} className="rounded-2xl border border-[#d4af37]/35 bg-white/80 px-4 py-4 text-sm text-ink">
+                {item}
+              </li>
             ))}
-          </tbody>
-        </table>
+          </ul>
+        </article>
       </div>
-      <p className="mt-3 text-xs leading-relaxed text-mist">
-        Access level is the role Genie is designed to recognize. A person should only see the slice that role allows.
-      </p>
     </Section>
   )
 }
