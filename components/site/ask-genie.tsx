@@ -5,7 +5,7 @@ import { PROMPTS } from "@/lib/content"
 import { Display, Eyebrow, Lede, SampleNote, Section, SimBadge } from "@/components/site/section"
 import { cn } from "@/lib/utils"
 
-export function AskGenie({ heading = "Skip the dashboard. Ask." }: { heading?: string }) {
+export function AskGenie({ heading = "Skip the dashboard. Ask Genie." }: { heading?: string }) {
   const [id, setId] = useState(PROMPTS[0].id)
   const [sent, setSent] = useState(false)
   const prompt = PROMPTS.find((item) => item.id === id) ?? PROMPTS[0]
