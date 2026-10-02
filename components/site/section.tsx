@@ -45,7 +45,7 @@ export function Display({
   return (
     <Tag
       className={cn(
-        "mx-auto w-full text-center font-display text-[3rem] leading-[0.98] font-bold tracking-[-0.035em] text-ink md:text-[clamp(2.4rem,5vw,4.4rem)]",
+        "mx-auto w-full text-center font-display text-[3rem] leading-[0.98] font-bold tracking-[-0.035em] text-ink md:text-[clamp(1.92rem,4vw,3.52rem)]",
         className,
       )}
     >

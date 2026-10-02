@@ -11,7 +11,7 @@ export function Hero() {
           <p className="text-[0.72rem] font-bold tracking-[0.22em] text-[#d4af37] uppercase">
             Your wish is my command
           </p>
-          <h1 className="mt-5 font-display text-[4.125rem] leading-[0.9] font-bold tracking-[-0.045em] text-ink md:text-[clamp(3.3rem,7vw,6.1rem)]">
+          <h1 className="mt-5 font-display text-[4.125rem] leading-[0.9] font-bold tracking-[-0.045em] text-ink md:text-[clamp(2.64rem,5.6vw,4.88rem)]">
             Hospitality.
             <span className="text-shimmer mt-1 block italic">On Autopilot.</span>
           </h1>
