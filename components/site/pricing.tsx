@@ -96,15 +96,29 @@ export function Pricing({
                   Portfolios of 2,000 or more are priced in conversation. This figure uses the published 101+ rate and is not an enterprise quote.
                 </p>
               ) : null}
-              <div className="mt-6 rounded-2xl border border-[#d4af37]/35 bg-[#f4fbfe] p-5">
+              <div className="mt-6 rounded-2xl border border-[#d4af37]/35 bg-[#f4fbfe] p-5 text-left">
                 <p className="text-sm font-medium text-ink">Savings Calculator</p>
                 <p className="mt-3 font-display text-4xl text-ink">
-                  {usd(Math.round(monthly * 1.45))}
-                  <span className="text-lg text-mist"> / month</span>
+                  {usd(Math.round(monthly * 1.45) - monthly)}
+                  <span className="text-lg text-mist"> / month net</span>
                 </p>
                 <p className="mt-2 text-sm leading-relaxed text-mist">
-                  Upsell income and staff savings, together, come to about 45% more than the {usd(monthly)} you pay Genie.
+                  What stays after the software cost. Upsell income and staff/time savings run about 45% above what you pay Genie.
                 </p>
+                <dl className="mt-4 divide-y divide-[#d4af37]/30 text-sm">
+                  <div className="flex items-baseline justify-between gap-4 py-2">
+                    <dt className="text-mist">Total cost</dt>
+                    <dd className="font-medium text-ink">{usd(monthly)}</dd>
+                  </div>
+                  <div className="flex items-baseline justify-between gap-4 py-2">
+                    <dt className="text-mist">Upsell income + staff/time savings</dt>
+                    <dd className="font-medium text-ink">{usd(Math.round(monthly * 1.45))}</dd>
+                  </div>
+                  <div className="flex items-baseline justify-between gap-4 py-2">
+                    <dt className="text-ink">Net savings</dt>
+                    <dd className="font-medium text-[#0f7a4a]">{usd(Math.round(monthly * 1.45) - monthly)}</dd>
+                  </div>
+                </dl>
               </div>
             </div>
           ) : (
