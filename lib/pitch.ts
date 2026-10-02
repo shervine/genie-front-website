@@ -37,10 +37,10 @@ export const PITCH_SLIDES: PitchSlide[] = [
     title: "Four results, when the tools are used together.",
     lede: "Genie is the direction those tools run in. Follow it, and the operation is built to produce:",
     bullets: [
-      "Operational excellence across the portfolio.",
       "Guests who feel looked after, not queued.",
       "Average ratings that rise as the loop gets tighter.",
       "Higher income from the listings the operator already has.",
+      "Operational excellence across the portfolio, once the rest is in place.",
     ],
   },
   {

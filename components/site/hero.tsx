@@ -37,7 +37,7 @@ export function Hero() {
             <span className="text-shimmer mt-1 block italic">On Autopilot.</span>
           </h1>
           <p className="mt-6 max-w-xl text-base leading-relaxed text-mist sm:text-lg">
-            Plug the operation into one AI brand. Genie runs communication, tasks, and the money on every reservation, so the portfolio can reach operational excellence, happier guests, higher ratings, and higher income.
+            Plug the operation into one AI brand. Genie runs communication, tasks, and the money on every reservation, so guests are satisfied, ratings rise, income is higher, and operational excellence follows.
           </p>
           <div className="mt-8 flex flex-col gap-3 sm:flex-row">
             <Link href="/meet" className={buttonVariants({ className: "h-12 rounded-full px-6 text-sm" })}>
@@ -54,7 +54,7 @@ export function Hero() {
             </Link>
           </div>
           <div className="mt-8 flex flex-wrap gap-2 text-xs text-ink">
-            {["Operational excellence", "Happier guests", "Higher ratings", "Higher income"].map((item) => (
+            {["Happier guests", "Higher ratings", "Higher income", "Operational excellence"].map((item) => (
               <span key={item} className="rounded-full border border-[#d4af37]/35 bg-white/80 px-3 py-1.5">
                 {item}
               </span>

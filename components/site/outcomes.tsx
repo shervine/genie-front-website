@@ -2,10 +2,6 @@ import { Display, Eyebrow, Lede, Section } from "@/components/site/section"
 
 const OUTCOMES = [
   {
-    title: "Operational excellence",
-    body: "Messages, tasks, and money move as one operation, instead of a day spent jumping between tools.",
-  },
-  {
     title: "Guests who are satisfied",
     body: "The greater share of inbound inquiries is built to resolve on its own, in the tone the operator already chose.",
   },
@@ -17,6 +13,10 @@ const OUTCOMES = [
     title: "Higher income",
     body: "A tighter operation, fewer missed stays, and recovered revenue are how the same portfolio earns more.",
   },
+  {
+    title: "Operational excellence",
+    body: "Messages, tasks, and money move as one operation, instead of a day spent jumping between tools. That is what the portfolio arrives at.",
+  },
 ]
 
 export function Outcomes() {
@@ -25,7 +25,7 @@ export function Outcomes() {
       <Eyebrow>What the operator unlocks</Eyebrow>
       <Display className="mt-4 max-w-3xl">Follow Genie, and the portfolio has a direction.</Display>
       <Lede className="mt-5">
-        The tools matter because they are used together. That is how an operator reaches operational excellence, happier guests, higher ratings, and higher income.
+        The tools matter because they are used together. Guests leave satisfied, ratings rise, income grows, and operational excellence is what the portfolio arrives at.
       </Lede>
       <ol className="mt-10 grid gap-4 sm:grid-cols-2">
         {OUTCOMES.map((item, index) => (
