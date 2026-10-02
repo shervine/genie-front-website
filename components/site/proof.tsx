@@ -12,7 +12,7 @@ export function Proof() {
   return (
     <Section id="proof">
       <Eyebrow>Proof, when it’s real</Eyebrow>
-      <Display className="mt-4 max-w-3xl">We won’t invent an automation rate.</Display>
+      <Display className="mt-4 max-w-3xl">No invented numbers.</Display>
       <Lede className="mt-5">
         When operators are live, this is where verified results belong. Not before.
       </Lede>

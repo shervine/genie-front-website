@@ -17,7 +17,7 @@ export default function ProductPage() {
       <Section className="pb-0">
         <Eyebrow>Product</Eyebrow>
         <Display as="h1" className="mt-4 max-w-4xl">
-          One AI brand for the whole operation.
+          One brand. Whole operation.
         </Display>
         <Lede className="mt-5">
           Plug in the stack you already run. Genie takes guest communication, task coordination, and reservation money, inside an intent tree you can rewrite. Human support sits over the automation.
@@ -29,7 +29,7 @@ export default function ProductPage() {
       <Differentiators />
       <Modules />
       <Stakeholders />
-      <AskGenie heading="Don’t search through dashboards. Ask Genie." />
+      <AskGenie heading="Skip dashboards. Ask Genie." />
     </>
   )
 }

@@ -12,7 +12,7 @@ export function Stakeholders() {
   return (
     <Section id="stakeholders">
       <Eyebrow>One AI for every stakeholder</Eyebrow>
-      <Display className="mt-4 max-w-3xl">Everyone talks to Genie. Genie understands who they are.</Display>
+      <Display className="mt-4 max-w-3xl">One chat. Every role.</Display>
       <Lede className="mt-5">
         Genie coordinates guests, operators, owners, cleaners, maintenance, managers, and finance. The same chat is translated live into up to 50 languages, so each person reads it in their own. Permissions decide what comes back.
       </Lede>

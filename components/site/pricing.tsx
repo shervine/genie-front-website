@@ -25,7 +25,7 @@ export function Pricing({
   return (
     <Section id="pricing">
       <Eyebrow>Pricing</Eyebrow>
-      <Display as={titleAs} className="mt-4 max-w-3xl">Simple pricing. No complicated AI math.</Display>
+      <Display as={titleAs} className="mt-4 max-w-3xl">One price. Per listing.</Display>
       <Lede className="mt-5">
         Monthly, per listing, in USD. Every listing is billed at the rate for the portfolio band you fall into.
       </Lede>

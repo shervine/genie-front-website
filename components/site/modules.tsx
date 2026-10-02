@@ -12,7 +12,7 @@ export function Modules() {
   return (
     <Section id="runs">
       <Eyebrow>What Genie runs</Eyebrow>
-      <Display className="mt-4 max-w-3xl">One layer. The work your stack used to leave for people.</Display>
+      <Display className="mt-4 max-w-3xl">One layer does the work.</Display>
       <Lede className="mt-5">
         Choose a module. Each example is a simulated stay from Harbor & Co., shown so the behavior is concrete.
       </Lede>

@@ -37,7 +37,7 @@ export function Reconciliation() {
   return (
     <Section id="reconciliation">
       <Eyebrow>Financial tracker</Eyebrow>
-      <Display className="mt-4 max-w-3xl">The money you expected, checked against the bank.</Display>
+      <Display className="mt-4 max-w-3xl">Every dollar, bank-checked.</Display>
       <Lede className="mt-5">
         Expected reservation revenue is matched to bank transactions, through a connection such as Plaid, and to card payouts such as Stripe. If a card payment is later disputed, it is flagged so the revenue is not quietly lost. Your accounting system stays your accounting system.
       </Lede>

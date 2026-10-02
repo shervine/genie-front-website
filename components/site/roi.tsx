@@ -48,7 +48,7 @@ export function Roi() {
   return (
     <Section id="scenario" className="pt-0">
       <Eyebrow>Illustrated scenario</Eyebrow>
-      <Display className="mt-4 max-w-3xl">A model you can argue with.</Display>
+      <Display className="mt-4 max-w-3xl">Argue with the numbers.</Display>
       <Lede className="mt-5">
         Change the inputs. The figures move with the assumptions printed underneath them. This is not a forecast, a guarantee, or a customer result.
       </Lede>

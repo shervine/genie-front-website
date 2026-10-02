@@ -85,7 +85,7 @@ export function Integrations({
       {showIntro ? (
         <>
           <Eyebrow>Apps</Eyebrow>
-          <Display as={titleAs} className="mt-4 max-w-3xl">Keep your stack. Add intelligence.</Display>
+          <Display as={titleAs} className="mt-4 max-w-3xl">Keep your stack. Add Genie.</Display>
           <Lede className="mt-5">
             Genie has an app store with hundreds of apps for the tools an operator already runs. The names below are connection targets in that store, not a partner roster, and not a claim that every connector is live.
           </Lede>

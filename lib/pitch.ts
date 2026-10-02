@@ -22,7 +22,7 @@ export const PITCH_SLIDES: PitchSlide[] = [
     id: "problem",
     variant: "content",
     kicker: "The problem",
-    title: "The stack is full. The work still sits with people.",
+    title: "Too many tools. Still manual.",
     bullets: [
       "Messages arrive on Airbnb, Booking.com, Vrbo, email, SMS, and WhatsApp, and someone still has to answer them.",
       "When the fix is physical, the request dies in a thread instead of becoming a task someone owns.",
@@ -34,7 +34,7 @@ export const PITCH_SLIDES: PitchSlide[] = [
     id: "outcomes",
     variant: "content",
     kicker: "The outcome",
-    title: "Four results, when the tools are used together.",
+    title: "Four results. One direction.",
     lede: "Genie is the direction those tools run in. Follow it, and the operation is built to produce:",
     bullets: [
       "Guests who feel looked after, not queued.",
@@ -47,7 +47,7 @@ export const PITCH_SLIDES: PitchSlide[] = [
     id: "product",
     variant: "content",
     kicker: "The product",
-    title: "Plug the operation into one AI brand.",
+    title: "One brand. Whole operation.",
     lede: "Genie sits above the PMS, the channels, and the bank. It automates support, communication, and task management across every stakeholder.",
     bullets: [
       "End to end: the inbound message, the task, the charge, and the record.",
@@ -73,7 +73,7 @@ export const PITCH_SLIDES: PitchSlide[] = [
     id: "tasks",
     variant: "content",
     kicker: "Task coordination",
-    title: "Genie runs the physical world, too.",
+    title: "Genie runs the physical world.",
     lede: "Guests, cleaners, homeowners, and operators share one coordinator.",
     bullets: [
       "If the inquiry needs someone on site, Genie creates the task and watches it.",
@@ -86,7 +86,7 @@ export const PITCH_SLIDES: PitchSlide[] = [
     id: "finance",
     variant: "content",
     kicker: "Financial tracker",
-    title: "Expected revenue, checked against the bank.",
+    title: "Every dollar, bank-checked.",
     bullets: [
       "Every reservation has an expected amount.",
       "Bank transactions, through a connection such as Plaid, confirm the money arrived.",
@@ -110,7 +110,7 @@ export const PITCH_SLIDES: PitchSlide[] = [
     id: "control",
     variant: "content",
     kicker: "Human in the loop",
-    title: "The operator decides the tree. Genie stays inside it.",
+    title: "Humans write it. Genie runs it.",
     lede: "Common hospitality patterns are predefined. Onboarding selects the template that fits. Every branch can be rewritten.",
     bullets: [
       "A new message is read for its intent, then matched to the tree.",
@@ -123,7 +123,7 @@ export const PITCH_SLIDES: PitchSlide[] = [
     id: "close",
     variant: "close",
     kicker: "The company",
-    title: "An AI brand operators can plug into.",
+    title: "Plug into one AI brand.",
     lede: "For professional operators, from 20 to 2,000+ listings. $25, $21, or $18 per listing each month, by portfolio size.",
     bullets: [
       "Early operator, as reported by Superhost Management: 120 listings in Vancouver and Los Angeles. Response completion moved from 35% to over 85% in 35 days. Average rating moved from 4.55 to 4.83 in the first 100 days. 87% of suggested tasks were completed.",

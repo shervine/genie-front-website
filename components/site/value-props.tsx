@@ -40,7 +40,7 @@ export function ValueProps() {
   return (
     <Section id="tools">
       <Eyebrow>The tools</Eyebrow>
-      <Display className="mt-4 max-w-3xl">The set that makes the wish operational.</Display>
+      <Display className="mt-4 max-w-3xl">Tools that grant the wish.</Display>
       <Lede className="mt-5">
         Used together, and followed in the direction Genie sets, these are how an operator runs the company. Human support sits over the automation, so the AI stays controlled and doing what was decided.
       </Lede>
