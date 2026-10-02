@@ -234,6 +234,67 @@
   }
 }
 
+@keyframes signal-absorb {
+  0% {
+    top: 0;
+    opacity: 0;
+  }
+  14% {
+    opacity: 1;
+  }
+  82% {
+    top: calc(100% - 7px);
+    opacity: 1;
+  }
+  100% {
+    top: calc(100% - 7px);
+    opacity: 0;
+  }
+}
+
+@keyframes signal-return {
+  0% {
+    top: 0;
+    opacity: 0;
+    background: #2eafd0;
+    box-shadow: 0 0 10px #2eafd0;
+  }
+  10% {
+    opacity: 1;
+  }
+  42% {
+    top: calc(100% - 7px);
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+    background: #e8c56a;
+    box-shadow: 0 0 10px #c9962e;
+  }
+  58% {
+    top: calc(100% - 7px);
+    opacity: 1;
+  }
+  100% {
+    top: 0;
+    opacity: 0;
+  }
+}
+
+@keyframes signal-out {
+  0% {
+    top: calc(100% - 7px);
+    opacity: 0;
+  }
+  16% {
+    opacity: 1;
+  }
+  100% {
+    top: 0;
+    opacity: 0;
+  }
+}
+
 .speak-bar {
   transform-origin: center;
   animation: speak 0.9s ease-in-out infinite;
@@ -255,10 +316,37 @@
   animation: orbit-left 96s linear infinite;
 }
 
+.signal-absorb {
+  background: #2eafd0;
+  box-shadow: 0 0 10px #2eafd0;
+  animation-name: signal-absorb;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+.signal-return {
+  background: #2eafd0;
+  box-shadow: 0 0 10px #2eafd0;
+  animation-name: signal-return;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+.signal-out {
+  background: #e8c56a;
+  box-shadow: 0 0 10px #c9962e;
+  animation-name: signal-out;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
 .orbit-stage:hover .orbit-left,
 .orbit-stage:hover .orbit-right,
 .orbit-stage:hover .orbit-upright-left,
-.orbit-stage:hover .orbit-upright-right {
+.orbit-stage:hover .orbit-upright-right,
+.orbit-stage:hover .signal-absorb,
+.orbit-stage:hover .signal-return,
+.orbit-stage:hover .signal-out {
   animation-play-state: paused;
 }
 
@@ -273,7 +361,10 @@
   .orbit-left,
   .orbit-right,
   .orbit-upright-left,
-  .orbit-upright-right {
+  .orbit-upright-right,
+  .signal-absorb,
+  .signal-return,
+  .signal-out {
     animation: none !important;
   }
 }

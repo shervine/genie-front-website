@@ -30,6 +30,30 @@ const APPS: Array<{
   { name: "Jira", mark: "jira" },
 ]
 
+const INNER_SIGNALS: Signal[] = [
+  { from: 0, kind: "absorb", delay: "0s", duration: "4.6s" },
+  { from: 2, kind: "return", delay: "1.1s", duration: "6.2s" },
+  { from: 4, to: 6, kind: "redirect", delay: "0.4s", duration: "7s" },
+  { from: 5, kind: "absorb", delay: "2.2s", duration: "5s" },
+  { from: 1, kind: "return", delay: "2.8s", duration: "6.4s" },
+]
+
+const OUTER_SIGNALS: Signal[] = [
+  { from: 0, kind: "absorb", delay: "0.6s", duration: "5.4s" },
+  { from: 3, kind: "return", delay: "1.5s", duration: "6.6s" },
+  { from: 5, to: 9, kind: "redirect", delay: "0.2s", duration: "7.2s" },
+  { from: 8, kind: "absorb", delay: "2.4s", duration: "4.8s" },
+  { from: 11, kind: "return", delay: "3.1s", duration: "6s" },
+]
+
+type Signal = {
+  from: number
+  to?: number
+  kind: "absorb" | "return" | "redirect"
+  delay: string
+  duration: string
+}
+
 export function AppStore({ titleAs = "h2" }: { titleAs?: "h1" | "h2" }) {
   return (
     <Section id="app-store" className="py-16 md:py-24">
@@ -48,20 +72,100 @@ export function AppStore({ titleAs = "h2" }: { titleAs?: "h1" | "h2" }) {
           <span className="sr-only">Genie, at the center of the apps</span>
         </div>
         <div className="orbit-left absolute inset-0">
+          <Signals apps={place(APPS.slice(0, 7), 23)} radius={23} signals={INNER_SIGNALS} />
           {place(APPS.slice(0, 7), 23).map((app) => (
             <AppNode key={app.name} app={app} upright="orbit-upright-left" />
           ))}
         </div>
         <div className="orbit-right absolute inset-0">
+          <Signals apps={place(APPS.slice(7), 39)} radius={39} signals={OUTER_SIGNALS} />
           {place(APPS.slice(7), 39).map((app) => (
             <AppNode key={app.name} app={app} upright="orbit-upright-right" />
           ))}
         </div>
       </div>
       <p className="mt-5 text-xs leading-relaxed text-mist">
-        These are a sample of the shelf: property systems, guest channels, mail and phone, task tools, and the services behind “Hey Genie.” Marks belong to their owners. A tile is a connection Genie is built to offer, not a partnership badge.
+        Every signal comes to Genie first. Genie keeps some, sends some back to the same app, and redirects others to a different app. Marks belong to their owners. A tile is a connection Genie is built to offer, not a partnership badge.
       </p>
     </Section>
+  )
+}
+
+function Signals({
+  apps,
+  radius,
+  signals,
+}: {
+  apps: Array<(typeof APPS)[number] & { angle: number }>
+  radius: number
+  signals: Signal[]
+}) {
+  return (
+    <div className="pointer-events-none absolute inset-0" aria-hidden="true">
+      {signals.map((signal) => {
+        const source = apps[signal.from]
+        const target = signal.to === undefined ? source : apps[signal.to]
+        if (!source || !target) return null
+        return (
+          <span key={`${signal.kind}-${signal.from}-${signal.to ?? "same"}`}>
+            <Spoke angle={source.angle} radius={radius} />
+            {signal.kind === "redirect" ? <Spoke angle={target.angle} radius={radius} /> : null}
+            <Travel
+              angle={source.angle}
+              radius={radius}
+              className={signal.kind === "return" ? "signal-return" : "signal-absorb"}
+              delay={signal.delay}
+              duration={signal.duration}
+            />
+            {signal.kind === "redirect" ? (
+              <Travel
+                angle={target.angle}
+                radius={radius}
+                className="signal-out"
+                delay={`calc(${signal.delay} + ${signal.duration} * 0.46)`}
+                duration={signal.duration}
+              />
+            ) : null}
+          </span>
+        )
+      })}
+    </div>
+  )
+}
+
+function Spoke({ angle, radius }: { angle: number; radius: number }) {
+  return (
+    <div className="absolute inset-0" style={{ transform: `rotate(${angle + 90}deg)` }}>
+      <div
+        className="absolute bottom-1/2 left-1/2 w-px -translate-x-1/2 bg-gradient-to-t from-[#2eafd0]/55 via-[#2eafd0]/20 to-transparent"
+        style={{ height: `${radius}%` }}
+      />
+    </div>
+  )
+}
+
+function Travel({
+  angle,
+  radius,
+  className,
+  delay,
+  duration,
+}: {
+  angle: number
+  radius: number
+  className: string
+  delay: string
+  duration: string
+}) {
+  return (
+    <div className="absolute inset-0" style={{ transform: `rotate(${angle + 90}deg)` }}>
+      <div className="absolute bottom-1/2 left-1/2 w-2 -translate-x-1/2" style={{ height: `${radius}%` }}>
+        <span
+          className={`absolute left-0 size-[7px] rounded-full ${className}`}
+          style={{ animationDelay: delay, animationDuration: duration }}
+        />
+      </div>
+    </div>
   )
 }
 
@@ -91,6 +195,7 @@ function place<T extends { name: string }>(items: T[], radius: number) {
     const angle = (index / items.length) * Math.PI * 2 - Math.PI / 2
     return {
       ...item,
+      angle: (angle * 180) / Math.PI,
       left: `${50 + Math.cos(angle) * radius}%`,
       top: `${50 + Math.sin(angle) * radius}%`,
     }
