@@ -7,7 +7,7 @@ import { Display, Eyebrow, Lede, SampleNote } from "@/components/site/section"
 import { cn } from "@/lib/utils"
 
 export function Lamp({
-  heading = "Goodbye Phone. Hey Genie",
+  heading = "Bye Phone. Hey Genie.",
   lede = "Say “Hey Genie.” A live concierge answers in the room: knowledgeable, connected to your APIs, and ready to act. With the guest’s card on file and their say-so, a wish can become a DoorDash order, an Amazon delivery, or an Instacart run.",
   titleAs = "h2",
 }: {
