@@ -318,6 +318,7 @@ html {
 }
 
 .genie-halo {
+  z-index: 8;
   width: 27.6%;
   background:
     radial-gradient(circle, rgba(255, 243, 204, 0.78) 0 42%, rgba(232, 197, 106, 0.62) 64%, rgba(224, 177, 90, 0.3) 84%, rgba(231, 246, 251, 0) 100%);
@@ -332,6 +333,7 @@ html {
 }
 
 .orbit-stage[data-expanded="true"] .genie-halo {
+  z-index: 15;
   width: 100%;
 }
 

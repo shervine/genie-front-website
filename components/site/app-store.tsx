@@ -313,6 +313,8 @@ export function GenieGraph() {
       <OrbitStage expanded={Boolean(active)}>
         <div className="orbit-right absolute inset-0 z-10">
           <Signals apps={apps} radius={44} signals={ORBIT_SIGNALS} upright="orbit-upright-right" />
+        </div>
+        <div className="orbit-right absolute inset-0 z-20">
           {apps.map((app) => (
             <AppIcon
               key={app.name}
@@ -328,11 +330,11 @@ export function GenieGraph() {
         </div>
         {active ? (
           <div
-            className="pointer-events-none absolute top-[56%] left-1/2 z-30 w-[42%] -translate-x-1/2 text-center sm:top-[58%] sm:w-[34%]"
+            className="pointer-events-none absolute top-[54%] left-1/2 z-30 w-[52%] -translate-x-1/2 rounded-2xl border border-[#d4af37] bg-gradient-to-b from-[#fff8e4] to-white px-4 py-3 text-center shadow-[0_8px_24px_rgba(180,140,40,0.25)] sm:top-[56%] sm:w-[40%]"
             aria-live="polite"
           >
-            <p className="text-[11px] font-medium text-ink sm:text-sm">{active.name}</p>
-            <p className="mt-1 text-[11px] leading-snug text-[#123848] sm:text-xs">{APP_USE[active.name]}</p>
+            <p className="text-base font-bold text-ink sm:text-lg">{active.name}</p>
+            <p className="mt-1 text-sm leading-snug text-[#123848] sm:text-base">{APP_USE[active.name]}</p>
           </div>
         ) : null}
       </OrbitStage>
