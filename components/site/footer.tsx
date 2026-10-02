@@ -15,12 +15,14 @@ export function SiteFooter() {
           </p>
           <p className="mt-4 text-sm text-mist">
             <a className="text-ink underline-offset-4 hover:underline" href="mailto:support@talktogenie.ai">
+              <span aria-hidden="true">✉️ </span>
               support@talktogenie.ai
             </a>
           </p>
-          <p className="mt-2 text-sm text-mist">
+          <p className="mt-1 text-sm text-mist">
             <a className="text-ink underline-offset-4 hover:underline" href="tel:+12367077040">
-              +1 236 707 7040
+              <span aria-hidden="true">📞 </span>
+              +12367077040
             </a>
             {" "}
             to talk to Genie
