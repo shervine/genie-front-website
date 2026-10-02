@@ -5,7 +5,7 @@ import { Roi } from "@/components/site/roi"
 export const metadata: Metadata = {
   title: "Pricing",
   description:
-    "Simple monthly per-listing pricing for TalkToGenie.ai. $25 up to 20 listings, $20 from 21 to 100, and $18 from 101 up.",
+    "Simple monthly per-listing pricing for TalkToGenie.ai, plus the Genie Lamp at $99. The lamp includes the 3D-printed frame and a Google Nest Mini that wakes on Hey Genie.",
 }
 
 export default function PricingPage() {

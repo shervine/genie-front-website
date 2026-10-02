@@ -1,3 +1,5 @@
+export const LAMP_PRICE = 99
+
 export const PRICING_BANDS = [
   {
     id: "starter",

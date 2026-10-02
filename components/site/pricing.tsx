@@ -5,7 +5,7 @@ import { useState } from "react"
 import { buttonVariants } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
-import { bandForListings, PRICING_BANDS, rateForListings, usd } from "@/lib/pricing"
+import { bandForListings, LAMP_PRICE, PRICING_BANDS, rateForListings, usd } from "@/lib/pricing"
 import { Display, Eyebrow, Lede, Section } from "@/components/site/section"
 
 export function Pricing({
@@ -41,6 +41,20 @@ export function Pricing({
           </article>
         ))}
       </div>
+      <article className="mt-4 grid items-center gap-6 rounded-[28px] border border-[#d4af37]/35 bg-white/80 p-6 md:grid-cols-[16rem_1fr]">
+        <div>
+          <p className="text-sm text-mist">Genie Lamp</p>
+          <p className="mt-4 font-display text-5xl text-ink">{usd(LAMP_PRICE)}</p>
+          <p className="mt-2 text-sm text-[#0e6f86]">per lamp</p>
+        </div>
+        <div>
+          <p className="text-ink">A separate price from the monthly software. Put one lamp in each rental unit.</p>
+          <ul className="mt-4 space-y-2 text-sm leading-relaxed text-mist">
+            <li>The 3D-printed lamp frame.</li>
+            <li>A Google Nest Mini inside, preprogrammed to wake when a guest says “Hey Genie.”</li>
+          </ul>
+        </div>
+      </article>
       <div className="mt-4 rounded-[28px] border border-[#d4af37]/35 px-6 py-5">
         <p className="text-ink">2,000+ listings? Talk to us about enterprise pricing.</p>
         <Link href="/meet?intent=demo" className="mt-3 inline-flex text-sm text-[#b8860b] underline-offset-4 hover:underline">
