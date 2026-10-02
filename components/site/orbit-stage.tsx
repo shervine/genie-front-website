@@ -3,12 +3,21 @@
 import { useState, type ReactNode } from "react"
 import { cn } from "@/lib/utils"
 
-export function OrbitStage({ children, className }: { children: ReactNode; className?: string }) {
+export function OrbitStage({
+  children,
+  className,
+  expanded = false,
+}: {
+  children: ReactNode
+  className?: string
+  expanded?: boolean
+}) {
   const [spinning, setSpinning] = useState(false)
   return (
     <div
       className={cn("orbit-stage relative mx-auto aspect-square w-full max-w-[820px]", className)}
       data-spinning={spinning ? "true" : "false"}
+      data-expanded={expanded ? "true" : "false"}
     >
       <div
         aria-hidden="true"

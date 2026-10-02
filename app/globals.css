@@ -318,10 +318,21 @@ html {
 }
 
 .genie-halo {
-  width: 100%;
+  width: 27.6%;
   background:
-    radial-gradient(circle, rgba(255, 243, 204, 0.94) 0 16%, rgba(255, 232, 170, 0.82) 38%, rgba(232, 197, 106, 0.5) 62%, rgba(224, 177, 90, 0.22) 82%, rgba(231, 246, 251, 0) 100%);
-  box-shadow: 0 0 28px 8px rgba(232, 197, 106, 0.35);
+    radial-gradient(circle, rgba(255, 243, 204, 0.78) 0 42%, rgba(232, 197, 106, 0.62) 64%, rgba(224, 177, 90, 0.3) 84%, rgba(231, 246, 251, 0) 100%);
+  box-shadow: 0 0 20.7px 4.6px rgba(232, 197, 106, 0.42);
+  transition: width 0.45s ease;
+}
+
+@media (min-width: 640px) {
+  .genie-halo {
+    width: 23%;
+  }
+}
+
+.orbit-stage[data-expanded="true"] .genie-halo {
+  width: 100%;
 }
 
 .orbit-upright-left {

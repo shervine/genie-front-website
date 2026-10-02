@@ -306,13 +306,11 @@ function ratingFlow(name: string, index: number, offset: number): Signal[] {
 
 export function GenieGraph() {
   const apps = place(APPS, 44)
-  const [hovered, setHovered] = useState<string | null>(null)
   const [pinned, setPinned] = useState<string | null>(null)
-  const activeName = pinned ?? hovered
-  const active = activeName ? apps.find((app) => app.name === activeName) : null
+  const active = pinned ? apps.find((app) => app.name === pinned) : null
   return (
     <div className="min-w-0">
-      <OrbitStage>
+      <OrbitStage expanded={Boolean(active)}>
         <div className="orbit-right absolute inset-0 z-10">
           <Signals apps={apps} radius={44} signals={ORBIT_SIGNALS} upright="orbit-upright-right" />
           {apps.map((app) => (
@@ -320,8 +318,7 @@ export function GenieGraph() {
               key={app.name}
               app={app}
               upright="orbit-upright-right"
-              active={activeName === app.name}
-              onHover={setHovered}
+              active={pinned === app.name}
               onToggle={(name) => setPinned((current) => (current === name ? null : name))}
             />
           ))}
@@ -329,19 +326,15 @@ export function GenieGraph() {
             <AppLabel key={app.name} app={app} upright="orbit-upright-right" />
           ))}
         </div>
-        <div
-          className="pointer-events-none absolute top-[57%] left-1/2 z-30 w-[46%] -translate-x-1/2 text-center sm:top-[58%] sm:w-[38%]"
-          aria-live="polite"
-        >
-          {active ? (
-            <>
-              <p className="text-[11px] font-medium text-ink sm:text-sm">{active.name}</p>
-              <p className="mt-1 text-[11px] leading-snug text-[#123848] sm:text-xs">{APP_USE[active.name]}</p>
-            </>
-          ) : (
-            <p className="text-[11px] leading-snug text-[#3e6574] sm:text-xs">Hover or tap an app. Genie will say how it is used.</p>
-          )}
-        </div>
+        {active ? (
+          <div
+            className="pointer-events-none absolute top-[56%] left-1/2 z-30 w-[42%] -translate-x-1/2 text-center sm:top-[58%] sm:w-[34%]"
+            aria-live="polite"
+          >
+            <p className="text-[11px] font-medium text-ink sm:text-sm">{active.name}</p>
+            <p className="mt-1 text-[11px] leading-snug text-[#123848] sm:text-xs">{APP_USE[active.name]}</p>
+          </div>
+        ) : null}
       </OrbitStage>
       <ul className="mx-auto mt-[33px] flex w-full max-w-full flex-nowrap items-center justify-center gap-x-2 overflow-x-auto text-[11px] leading-none text-ink sm:gap-x-4 sm:text-sm [&_svg]:size-3.5">
         <li className="flex items-center gap-1 whitespace-nowrap">
@@ -586,13 +579,11 @@ function AppIcon({
   app,
   upright,
   active,
-  onHover,
   onToggle,
 }: {
   app: (typeof APPS)[number] & { left: string; top: string }
   upright: string
   active: boolean
-  onHover: (name: string | null) => void
   onToggle: (name: string) => void
 }) {
   return (
@@ -604,10 +595,6 @@ function AppIcon({
             className={`rounded-2xl outline-none focus-visible:ring-2 focus-visible:ring-[#e0b15a] ${active ? "ring-2 ring-[#e0b15a]" : ""}`}
             aria-pressed={active}
             aria-label={`${app.name}. How Genie uses it.`}
-            onMouseEnter={() => onHover(app.name)}
-            onMouseLeave={() => onHover(null)}
-            onFocus={() => onHover(app.name)}
-            onBlur={() => onHover(null)}
             onClick={() => onToggle(app.name)}
           >
             <AppGlyph app={app} />
