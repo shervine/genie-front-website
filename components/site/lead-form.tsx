@@ -112,7 +112,7 @@ export function LeadForm({ titleAs = "h2" }: { titleAs?: "h1" | "h2" }) {
 
         {done ? (
           <div className="panel rounded-[28px] p-8">
-            <p className="text-[0.72rem] font-medium tracking-[0.22em] text-glow uppercase">Abracadabra</p>
+            <p className="text-[0.72rem] font-medium tracking-[0.22em] text-glow uppercase">Abrakadabra</p>
             <p className="mt-3 font-display text-4xl text-ink">Your wish has been received. 🧞‍♂️</p>
             <p className="mt-4 text-mist">
               We’ll reply to {email} about {company}.

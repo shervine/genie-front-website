@@ -74,6 +74,7 @@ const TASK_FROM = new Set([
 ])
 const TASK_TO = new Set(["Jira", "Asana", "Monday.com"])
 const RATING_FROM = new Set(["Guesty", "Hostaway", "Airbnb", "Booking.com", "Vrbo"])
+const PERMISSION_TO = new Set(["Airbnb", "Booking.com", "Vrbo", "TaskRabbit", "Guesty", "Hostaway", "Amazon"])
 
 const ORBIT_SIGNALS = signalsFor(APPS, 0)
 
@@ -133,7 +134,7 @@ function signalsFor(apps: Array<{ name: string }>, offset: number): Signal[] {
       moneyOut: alwaysMoney || occasionalMoney,
     }
     if (!CHATTY.has(app.name)) {
-      return [inbound, outbound, ...taskFlow(app.name, index, offset), ...ratingFlow(app.name, index, offset)]
+      return [inbound, outbound, ...taskFlow(app.name, index, offset), ...ratingFlow(app.name, index, offset), ...permissionFlow(app.name, index, offset)]
     }
     const extraInbound = [1.1, 2.2].map((step, stepIndex) => ({
       from: index,
@@ -158,6 +159,7 @@ function signalsFor(apps: Array<{ name: string }>, offset: number): Signal[] {
       ...extraOutbound,
       ...taskFlow(app.name, index, offset),
       ...ratingFlow(app.name, index, offset),
+      ...permissionFlow(app.name, index, offset),
     ]
   })
 }
@@ -224,6 +226,26 @@ function managerFlow(index: number, offset: number): Signal[] {
       delay: `${(offset + 0.9 + step * 1.35).toFixed(2)}s`,
       duration: "4.4s",
     })),
+  ]
+}
+
+function permissionFlow(name: string, index: number, offset: number): Signal[] {
+  if (!PERMISSION_TO.has(name)) return []
+  return [
+    {
+      from: index,
+      kind: "outbound",
+      mark: "permission",
+      delay: `${(offset + 1.2 + (index % 5) * 0.4).toFixed(2)}s`,
+      duration: "4.4s",
+    },
+    {
+      from: index,
+      kind: "outbound",
+      mark: "permission",
+      delay: `${(offset + 3.05 + (index % 5) * 0.4).toFixed(2)}s`,
+      duration: "4.1s",
+    },
   ]
 }
 

@@ -74,7 +74,7 @@ export const STEPS = [
   {
     n: "03",
     title: "Genie acts only on a match",
-    body: "Genie detects the patterns you already defined. If a message matches one, it follows that policy. If it matches none, Genie does not act. No match, no abracadabra.",
+    body: "Genie detects the patterns you already defined. If a message matches one, it follows that policy. If it matches none, Genie does not act. No match, no abrakadabra.",
   },
 ]
 

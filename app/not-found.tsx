@@ -9,7 +9,7 @@ export default function NotFound() {
       <Display as="h1" className="mt-4">
         This page isn’t on the map.
       </Display>
-      <p className="mt-4 text-mist">Even abracadabra can’t conjure this address. The operating layer is still here, though.</p>
+      <p className="mt-4 text-mist">Even abrakadabra can’t conjure this address. The operating layer is still here, though.</p>
       <div className="mt-8 flex flex-wrap gap-3">
         <Link href="/" className={buttonVariants({ className: "h-11 rounded-full px-5" })}>
           Back home

@@ -1,29 +1,8 @@
-"use client"
-
 import Link from "next/link"
-import { useEffect, useState } from "react"
 import { buttonVariants } from "@/components/ui/button"
 import { GenieGraph } from "@/components/site/app-store"
 
-const POLICIES = [
-  "Refunds under $100 · Autopilot",
-  "Late checkout · Autopilot",
-  "Furniture damage · Owner notified",
-  "Occupied AC · Same-day vendor",
-]
-
 export function Hero() {
-  const [policy, setPolicy] = useState(0)
-
-  useEffect(() => {
-    const media = window.matchMedia("(prefers-reduced-motion: reduce)")
-    if (media.matches) return
-    const id = window.setInterval(() => {
-      setPolicy((value) => (value + 1) % POLICIES.length)
-    }, 2800)
-    return () => window.clearInterval(id)
-  }, [])
-
   return (
     <section className="relative">
       <div className="bg-grid pointer-events-none absolute inset-0" />
@@ -37,7 +16,7 @@ export function Hero() {
             <span className="text-shimmer mt-1 block italic">On Autopilot.</span>
           </h1>
           <p className="mt-6 max-w-xl text-base leading-relaxed text-mist sm:text-lg">
-            Genie is the on-demand concierge. Each guest can ask three million wishes, and Genie grants them 24/7, with the same speed and the same consistency, across messages, tasks, and the money on every stay. Abracadabra, and it’s done.
+            Genie is the on-demand concierge. Each guest can ask three million wishes, and Genie grants them 24/7, with the same speed and the same consistency, across messages, tasks, and the money on every stay. Abrakadabra, and it’s done.
           </p>
           <div className="mt-8 flex flex-row flex-wrap items-center gap-1 sm:gap-3">
             <a
@@ -57,10 +36,7 @@ export function Hero() {
               </span>
             ))}
           </div>
-          <p className="mt-5 text-sm text-mist">
-            For professional operators managing 20 to 2,000+ listings.{" "}
-            <span className="text-ink">{POLICIES[policy]}</span>
-          </p>
+          <p className="mt-5 text-sm text-mist">For professional operators managing multiple properties.</p>
         </div>
 
         <GenieGraph />

@@ -79,7 +79,7 @@ export function Lamp({
                 <p className="text-sm text-[#0e6f86]">“{line.ask}”</p>
                 {phase === "reply" ? (
                   <>
-                    <p className="mt-2 text-[0.68rem] font-medium tracking-[0.22em] text-[#b8860b] uppercase">Abracadabra</p>
+                    <p className="mt-2 text-[0.68rem] font-medium tracking-[0.22em] text-[#b8860b] uppercase">Abrakadabra</p>
                     <p className="mt-1 text-sm leading-relaxed text-ink">{line.reply}</p>
                   </>
                 ) : null}
