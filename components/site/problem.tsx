@@ -26,7 +26,7 @@ export function Problem() {
         The problem isn’t a lack of software. Messages, physical work, and reservation money live in different places, and the rating moves only when someone stitches them together by hand.
       </Lede>
 
-      <div className="mt-10 flex flex-wrap gap-2" onMouseEnter={() => setHeld(true)}>
+      <div className="mt-10 flex flex-wrap justify-center gap-2" onMouseEnter={() => setHeld(true)}>
         <button
           type="button"
           onClick={() => {
