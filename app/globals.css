@@ -318,9 +318,16 @@ html {
 }
 
 .genie-halo {
+  width: 27.6%;
   background:
     radial-gradient(circle, rgba(255, 243, 204, 0.78) 0 42%, rgba(232, 197, 106, 0.62) 64%, rgba(224, 177, 90, 0.3) 84%, rgba(231, 246, 251, 0) 100%);
   box-shadow: 0 0 20.7px 4.6px rgba(232, 197, 106, 0.42);
+}
+
+@media (min-width: 640px) {
+  .genie-halo {
+    width: 23%;
+  }
 }
 
 .orbit-upright-left {
