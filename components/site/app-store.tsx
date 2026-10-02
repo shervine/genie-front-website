@@ -74,13 +74,24 @@ const TASK_FROM = new Set([
   "Guesty",
 ])
 const TASK_TO = new Set(["Jira", "Asana", "Monday.com"])
+const RATING_FROM = new Set([
+  "Guesty",
+  "Hostaway",
+  "Airbnb",
+  "Booking.com",
+  "Vrbo",
+  "Hospitable",
+  "Breezeway",
+  "Turno",
+  "Expedia",
+])
 
 const INNER_APPS = APPS.slice(0, 9)
 const OUTER_APPS = APPS.slice(9)
 const INNER_SIGNALS = signalsFor(INNER_APPS, 0)
 const OUTER_SIGNALS = signalsFor(OUTER_APPS, 0.35)
 
-type Mark = "message" | "task" | "money"
+type Mark = "message" | "task" | "money" | "rating"
 
 type Signal = {
   from: number
@@ -131,7 +142,9 @@ function signalsFor(apps: Array<{ name: string }>, offset: number): Signal[] {
       moneyIn: alwaysMoney,
       moneyOut: alwaysMoney || occasionalMoney,
     }
-    if (!CHATTY.has(app.name)) return [inbound, outbound, ...taskFlow(app.name, index, offset)]
+    if (!CHATTY.has(app.name)) {
+      return [inbound, outbound, ...taskFlow(app.name, index, offset), ...ratingFlow(app.name, index, offset)]
+    }
     const extraInbound = [1.1, 2.2].map((step, stepIndex) => ({
       from: index,
       kind: "absorb" as const,
@@ -148,7 +161,14 @@ function signalsFor(apps: Array<{ name: string }>, offset: number): Signal[] {
       moneyIn: alwaysMoney,
       moneyOut: alwaysMoney || (occasionalMoney && stepIndex === 0),
     }))
-    return [inbound, outbound, ...extraInbound, ...extraOutbound, ...taskFlow(app.name, index, offset)]
+    return [
+      inbound,
+      outbound,
+      ...extraInbound,
+      ...extraOutbound,
+      ...taskFlow(app.name, index, offset),
+      ...ratingFlow(app.name, index, offset),
+    ]
   })
 }
 
@@ -196,6 +216,17 @@ function taskFlow(name: string, index: number, offset: number): Signal[] {
   return signals
 }
 
+function ratingFlow(name: string, index: number, offset: number): Signal[] {
+  if (!RATING_FROM.has(name)) return []
+  return [0, 2.1].map((step) => ({
+    from: index,
+    kind: "absorb" as const,
+    mark: "rating" as const,
+    delay: `${(offset + 0.6 + (index % 4) * 0.45 + step).toFixed(2)}s`,
+    duration: "4.6s",
+  }))
+}
+
 export function AppStore({ titleAs = "h2" }: { titleAs?: "h1" | "h2" }) {
   return (
     <Section id="app-store" className="py-16 md:py-24">
@@ -227,11 +258,15 @@ export function AppStore({ titleAs = "h2" }: { titleAs?: "h1" | "h2" }) {
       <ul className="mx-auto mt-4 flex max-w-xl flex-wrap items-center justify-center gap-x-6 gap-y-2 text-sm text-ink">
         <li className="flex items-center gap-2">
           <CommentIcon />
-          Communication
+          Communications
         </li>
         <li className="flex items-center gap-2">
           <WrenchIcon />
           Tasks
+        </li>
+        <li className="flex items-center gap-2">
+          <StarIcon />
+          Ratings
         </li>
         <li className="flex items-center gap-2">
           <span className="text-base leading-none font-bold text-[#0f7a4a]">$</span>
@@ -358,6 +393,7 @@ function SignalMark({ mark }: { mark: Mark }) {
     return <span className="block text-[13px] leading-none font-bold text-[#0f7a4a]">$</span>
   }
   if (mark === "task") return <WrenchIcon />
+  if (mark === "rating") return <StarIcon />
   return <CommentIcon />
 }
 
@@ -371,11 +407,19 @@ function CommentIcon() {
 
 function WrenchIcon() {
   return (
-    <svg viewBox="0 0 24 24" className="size-3.5" aria-hidden="true">
+    <svg viewBox="0 0 24 24" className="size-5" aria-hidden="true">
       <path
-        fill="#e24a2b"
+        fill="#111"
         d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"
       />
+    </svg>
+  )
+}
+
+function StarIcon() {
+  return (
+    <svg viewBox="0 0 24 24" className="size-4" aria-hidden="true">
+      <path fill="#e0b15a" d="M12 2.4 14.9 8.6l6.7.8-5 4.6 1.4 6.6L12 17.7 6 20.6l1.4-6.6-5-4.6 6.7-.8L12 2.4z" />
     </svg>
   )
 }
