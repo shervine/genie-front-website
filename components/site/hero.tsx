@@ -28,7 +28,7 @@ export function Hero() {
     <section className="relative">
       <div className="bg-grid pointer-events-none absolute inset-0" />
       <div className="relative mx-auto grid w-full max-w-6xl items-center gap-8 px-5 py-8 lg:grid-cols-[0.86fr_1.14fr] lg:gap-10 lg:py-12">
-        <div className="order-2 lg:order-1">
+        <div>
           <p className="text-[0.72rem] font-medium tracking-[0.22em] text-glow uppercase">
             Your wish is my command
           </p>
@@ -63,9 +63,7 @@ export function Hero() {
           </p>
         </div>
 
-        <div className="order-1 lg:order-2">
-          <GenieGraph />
-        </div>
+        <GenieGraph />
       </div>
     </section>
   )
