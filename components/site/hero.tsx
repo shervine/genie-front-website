@@ -19,12 +19,6 @@ export function Hero() {
             Genie is the on-demand concierge. Each guest can ask three million wishes, and Genie grants them 24/7, with a high speed and consistency, across messages, tasks, and the money on every stay. Abrakadabra, and it’s done.
           </p>
           <div className="mt-8 flex flex-row flex-wrap items-center justify-center gap-1 sm:gap-3">
-            <a
-              href="https://genie.tanin.ai/"
-              className="inline-flex h-12 items-center justify-center rounded-full px-4 text-sm text-mist hover:text-ink"
-            >
-              Log in
-            </a>
             <Link href="/meet" className={buttonVariants({ className: "h-12 rounded-full px-6 text-sm" })}>
               Request Demo
             </Link>

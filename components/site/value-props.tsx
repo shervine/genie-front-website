@@ -80,8 +80,8 @@ export function ValueProps() {
             className="flex aspect-square flex-col items-center justify-center rounded-[20px] border border-[#d4af37]/35 bg-white/70 p-1.5 text-center sm:p-3"
           >
             <feature.icon />
-            <h3 className="mt-1 text-sm leading-tight font-bold text-ink sm:mt-2 sm:text-xl">{feature.title}</h3>
-            <p className="mt-1 line-clamp-3 text-[10px] leading-snug text-mist sm:text-xs">{feature.body}</p>
+            <h3 className="mt-1 text-base leading-tight font-bold text-ink sm:mt-2 lg:text-3xl">{feature.title}</h3>
+            <p className="mt-1 line-clamp-4 text-xs leading-snug text-mist lg:text-base">{feature.body}</p>
           </li>
         ))}
       </ol>
