@@ -42,6 +42,12 @@ export function SiteHeader() {
         </nav>
 
         <div className="flex items-center gap-1.5 sm:gap-2">
+          <a
+            href="https://genie.tanin.ai/"
+            className="inline-flex h-10 items-center rounded-full px-2.5 text-sm whitespace-nowrap text-mist hover:text-ink sm:px-3"
+          >
+            Log in
+          </a>
           <Link
             href="/meet"
             className={buttonVariants({
@@ -50,12 +56,6 @@ export function SiteHeader() {
           >
             Request Demo
           </Link>
-          <a
-            href="https://genie.tanin.ai/"
-            className="inline-flex h-10 items-center rounded-full px-2.5 text-sm whitespace-nowrap text-mist hover:text-ink sm:px-3"
-          >
-            Log in
-          </a>
           <button
             type="button"
             className="inline-flex size-10 items-center justify-center rounded-full border border-[#d4af37]/35 text-ink lg:hidden"

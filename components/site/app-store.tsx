@@ -255,7 +255,10 @@ export function GenieGraph() {
         <div className="orbit-right absolute inset-0">
           <Signals apps={apps} radius={44} signals={ORBIT_SIGNALS} upright="orbit-upright-right" />
           {apps.map((app) => (
-            <AppNode key={app.name} app={app} upright="orbit-upright-right" />
+            <AppIcon key={app.name} app={app} upright="orbit-upright-right" />
+          ))}
+          {apps.map((app) => (
+            <AppLabel key={app.name} app={app} upright="orbit-upright-right" />
           ))}
         </div>
       </OrbitStage>
@@ -265,7 +268,7 @@ export function GenieGraph() {
           Communications
         </li>
         <li className="flex items-center gap-1 whitespace-nowrap">
-          <KeyIcon />
+          <LockOpenIcon />
           Permissions
         </li>
         <li className="flex items-center gap-1 whitespace-nowrap">
@@ -417,18 +420,18 @@ function SignalMark({ mark }: { mark: Mark }) {
   }
   if (mark === "task") return <WrenchIcon />
   if (mark === "rating") return <StarIcon />
-  if (mark === "permission") return <KeyIcon />
+  if (mark === "permission") return <LockOpenIcon />
   return <CommentIcon />
 }
 
-function KeyIcon() {
+function LockOpenIcon() {
   return (
     <svg viewBox="0 0 24 24" className="size-4" aria-hidden="true">
       <path
         fill="#d21f1f"
-        fillRule="evenodd"
-        d="M8 3.2a4.8 4.8 0 0 1 4.3 7.1H21.5V13H19v2.6h-2.3V13h-4.4a4.8 4.8 0 1 1-4.3-9.8Zm.1 2.7a2 2 0 1 0 0 4 2 2 0 0 0 0-4Z"
+        d="M8 11V7.6a4 4 0 0 1 7.7-1.5l1.7-1.5A6 6 0 0 0 6 7.6V11H5.2A2.2 2.2 0 0 0 3 13.2v6.6A2.2 2.2 0 0 0 5.2 22h11.6a2.2 2.2 0 0 0 2.2-2.2v-6.6a2.2 2.2 0 0 0-2.2-2.2H8Z"
       />
+      <path fill="#fff" d="M11.1 14.4a1.15 1.15 0 0 1 1.8 0c.15.25.2.45.2.7V18h-2.2v-2.9c0-.25.05-.45.2-.7Z" />
     </svg>
   )
 }
@@ -469,7 +472,7 @@ function StarIcon() {
   )
 }
 
-function AppNode({
+function AppIcon({
   app,
   upright,
 }: {
@@ -477,11 +480,28 @@ function AppNode({
   upright: string
 }) {
   return (
-    <div className="absolute size-0" style={{ left: app.left, top: app.top }}>
+    <div className="absolute z-10 size-0" style={{ left: app.left, top: app.top }}>
       <div className="absolute -translate-x-1/2 -translate-y-1/2">
-        <div className={`${upright} flex flex-col items-center`}>
+        <div className={upright}>
           <AppGlyph app={app} />
-          <span className="sr-only sm:not-sr-only sm:mt-1 sm:block sm:max-w-20 sm:text-center sm:text-[11px] sm:leading-tight sm:text-ink">
+        </div>
+      </div>
+    </div>
+  )
+}
+
+function AppLabel({
+  app,
+  upright,
+}: {
+  app: (typeof APPS)[number] & { left: string; top: string }
+  upright: string
+}) {
+  return (
+    <div className="pointer-events-none absolute z-30 size-0" style={{ left: app.left, top: app.top }}>
+      <div className="absolute top-6 left-0 -translate-x-1/2 sm:top-8">
+        <div className={upright}>
+          <span className="block max-w-24 bg-[#e7f6fb] px-1 text-center text-[10px] leading-tight text-ink sm:text-[11px]">
             {app.name}
           </span>
         </div>
@@ -492,7 +512,7 @@ function AppNode({
 
 function place<T extends { name: string }>(items: T[], radius: number) {
   return items.map((item, index) => {
-    const ring = item.name === "Manager" ? 40 : radius
+    const ring = item.name === "Manager" ? 36 : radius
     const angle = (index / items.length) * Math.PI * 2 - Math.PI / 2
     return {
       ...item,
