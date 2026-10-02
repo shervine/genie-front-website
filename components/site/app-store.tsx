@@ -21,8 +21,8 @@ const APPS: Array<{
   { name: "Amazon", logo: "/brands/amazon.png" },
   { name: "Instacart", mark: "instacart" },
   { name: "Manager", icon: "manager" },
-  { name: "Guest", icon: "guest" },
   { name: "Homeowner", icon: "homeowner" },
+  { name: "Guest", icon: "guest" },
   { name: "DoorDash", mark: "doordash" },
   { name: "Uber", mark: "uber" },
   { name: "Gmail", mark: "gmail" },
@@ -536,23 +536,14 @@ function AppLabel({
   app,
   upright,
 }: {
-  app: (typeof APPS)[number] & { left: string; top: string; angle: number }
+  app: (typeof APPS)[number] & { left: string; top: string }
   upright: string
 }) {
-  const radians = (app.angle * Math.PI) / 180
-  const distance = INNER_RING.has(app.name) ? 44 : 38
   return (
     <div className="pointer-events-none absolute z-30 size-0" style={{ left: app.left, top: app.top }}>
-      <div
-        className="absolute"
-        style={{
-          left: Math.cos(radians) * distance,
-          top: Math.sin(radians) * distance,
-          transform: "translate(-50%, -50%)",
-        }}
-      >
+      <div className="absolute top-6 left-0 -translate-x-1/2 sm:top-8">
         <div className={upright}>
-          <span className="block whitespace-nowrap bg-[#e7f6fb] px-1 text-center text-[10px] leading-tight text-ink sm:text-[11px]">
+          <span className="block max-w-24 bg-[#e7f6fb] px-1 text-center text-[10px] leading-tight text-ink sm:text-[11px]">
             {app.name}
           </span>
         </div>
@@ -563,14 +554,13 @@ function AppLabel({
 
 function place<T extends { name: string }>(items: T[], radius: number) {
   return items.map((item, index) => {
-    const ring = INNER_RING.has(item.name) ? 34 : radius
     const angle = (index / items.length) * Math.PI * 2 - Math.PI / 2
     return {
       ...item,
-      radius: ring,
+      radius,
       angle: (angle * 180) / Math.PI,
-      left: `${50 + Math.cos(angle) * ring}%`,
-      top: `${50 + Math.sin(angle) * ring}%`,
+      left: `${50 + Math.cos(angle) * radius}%`,
+      top: `${50 + Math.sin(angle) * radius}%`,
     }
   })
 }
