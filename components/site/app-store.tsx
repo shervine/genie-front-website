@@ -100,7 +100,7 @@ export function AppStore({ titleAs = "h2" }: { titleAs?: "h1" | "h2" }) {
   return (
     <Section id="app-store" className="py-16 md:py-24">
       <Eyebrow>App store</Eyebrow>
-      <Display as={titleAs} className="mt-4 max-w-4xl">Genie Resolves 85%+ of all Inbound Inquiries</Display>
+      <Display as={titleAs} className="mt-4 max-w-4xl">85% auto-resolved. 15% escalated to you.</Display>
       <Lede className="mt-5">
         Genie has an app store with hundreds of apps for the popular tools and websites an operator uses. Connect the PMS, the channels, the inbox, the task board, and the services a guest can ask for. Genie works across that set.
       </Lede>
