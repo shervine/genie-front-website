@@ -1,5 +1,6 @@
 import Image from "next/image"
 import { BRAND_MARKS } from "@/lib/brand-marks"
+import { OrbitStage } from "@/components/site/orbit-stage"
 import { Display, Eyebrow, Lede, Section } from "@/components/site/section"
 
 const APPS: Array<{
@@ -244,24 +245,14 @@ export function AppStore({ titleAs = "h2" }: { titleAs?: "h1" | "h2" }) {
       <Lede className="mt-5">
         About 85% of inbound inquiries are auto-resolved by a predefined human policy. Genie communicates with each app in two directions: it reads what came in, and it writes the reply, the task, or the update back.
       </Lede>
-      <div className="orbit-stage relative mx-auto mt-6 aspect-square w-full max-w-[820px]">
-        <div
-          aria-hidden="true"
-          className="genie-halo pointer-events-none absolute top-1/2 left-1/2 z-[8] aspect-square w-[24%] -translate-x-1/2 -translate-y-1/2 rounded-full sm:w-[20%]"
-        />
-        <div className="absolute top-1/2 left-[calc(50%+6px)] z-10 flex -translate-x-1/2 -translate-y-1/2 flex-col items-center sm:left-[calc(50%+18px)]">
-          <span className="text-[4.5rem] leading-none drop-shadow-[0_0_28px_rgba(143,215,255,0.45)] sm:text-[6.5rem]" aria-hidden="true">
-            🧞‍♂️
-          </span>
-          <span className="sr-only">Genie, at the center of the apps</span>
-        </div>
+      <OrbitStage>
         <div className="orbit-right absolute inset-0">
           <Signals apps={place(APPS, 44)} radius={44} signals={ORBIT_SIGNALS} upright="orbit-upright-right" />
           {place(APPS, 44).map((app) => (
             <AppNode key={app.name} app={app} upright="orbit-upright-right" />
           ))}
         </div>
-      </div>
+      </OrbitStage>
       <ul className="mx-auto mt-3 flex w-full flex-nowrap items-center justify-center gap-x-2 text-[11px] leading-none text-ink sm:gap-x-4 sm:text-sm [&_svg]:size-3.5">
         <li className="flex items-center gap-1 whitespace-nowrap">
           <CommentIcon />

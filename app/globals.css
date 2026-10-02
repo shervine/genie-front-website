@@ -327,6 +327,17 @@
   animation: orbit-left 96s linear infinite;
 }
 
+/* Apps sit still until Genie is clicked; signals keep flowing regardless. */
+.orbit-stage .orbit-right,
+.orbit-stage .orbit-upright-right {
+  animation-play-state: paused;
+}
+
+.orbit-stage[data-spinning="true"] .orbit-right,
+.orbit-stage[data-spinning="true"] .orbit-upright-right {
+  animation-play-state: running;
+}
+
 .signal-absorb,
 .signal-return,
 .signal-out {
