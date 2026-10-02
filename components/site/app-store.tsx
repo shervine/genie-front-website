@@ -28,10 +28,7 @@ const APPS: Array<{
   { name: "Monday.com", logo: "/brands/monday.png" },
   { name: "Asana", mark: "asana" },
   { name: "Jira", mark: "jira" },
-  { name: "Hospitable", logo: "/brands/hospitable.png" },
-  { name: "Breezeway", logo: "/brands/breezeway.png" },
   { name: "Turno", logo: "/brands/turno.png" },
-  { name: "Expedia", logo: "/brands/expedia.png" },
   { name: "Stripe", logo: "/brands/stripe.png" },
   { name: "Slack", logo: "/brands/slack.png" },
   { name: "QuickBooks", logo: "/brands/quickbooks.png" },
@@ -44,7 +41,6 @@ const MONEY_SOMETIMES = new Set([
   "Airbnb",
   "DoorDash",
   "Amazon",
-  "Expedia",
   "Booking.com",
   "Uber",
   "Instacart",
@@ -58,7 +54,6 @@ const CHATTY = new Set([
   "Booking.com",
   "Gmail",
   "WhatsApp",
-  "Hospitable",
   "Slack",
 ])
 
@@ -80,16 +75,10 @@ const RATING_FROM = new Set([
   "Airbnb",
   "Booking.com",
   "Vrbo",
-  "Hospitable",
-  "Breezeway",
   "Turno",
-  "Expedia",
 ])
 
-const INNER_APPS = APPS.slice(0, 9)
-const OUTER_APPS = APPS.slice(9)
-const INNER_SIGNALS = signalsFor(INNER_APPS, 0)
-const OUTER_SIGNALS = signalsFor(OUTER_APPS, 0.35)
+const ORBIT_SIGNALS = signalsFor(APPS, 0)
 
 type Mark = "message" | "task" | "money" | "rating"
 
@@ -235,22 +224,16 @@ export function AppStore({ titleAs = "h2" }: { titleAs?: "h1" | "h2" }) {
       <Lede className="mt-5">
         About 85% of inbound inquiries are auto-resolved by a predefined human policy. Genie communicates with each app in two directions: it reads what came in, and it writes the reply, the task, or the update back.
       </Lede>
-      <div className="orbit-stage relative mx-auto mt-6 aspect-square w-full max-w-[760px]">
+      <div className="orbit-stage relative mx-auto mt-6 aspect-square w-full max-w-[820px]">
         <div className="absolute top-1/2 left-[calc(50%+18px)] z-10 flex -translate-x-1/2 -translate-y-1/2 flex-col items-center">
           <span className="text-[4.5rem] leading-none drop-shadow-[0_0_28px_rgba(143,215,255,0.45)] sm:text-[6.5rem]" aria-hidden="true">
             🧞‍♂️
           </span>
           <span className="sr-only">Genie, at the center of the apps</span>
         </div>
-        <div className="orbit-left absolute inset-0">
-          <Signals apps={place(INNER_APPS, 24)} radius={24} signals={INNER_SIGNALS} upright="orbit-upright-left" />
-          {place(INNER_APPS, 24).map((app) => (
-            <AppNode key={app.name} app={app} upright="orbit-upright-left" />
-          ))}
-        </div>
         <div className="orbit-right absolute inset-0">
-          <Signals apps={place(OUTER_APPS, 42)} radius={42} signals={OUTER_SIGNALS} upright="orbit-upright-right" />
-          {place(OUTER_APPS, 42).map((app) => (
+          <Signals apps={place(APPS, 44)} radius={44} signals={ORBIT_SIGNALS} upright="orbit-upright-right" />
+          {place(APPS, 44).map((app) => (
             <AppNode key={app.name} app={app} upright="orbit-upright-right" />
           ))}
         </div>
