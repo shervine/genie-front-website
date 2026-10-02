@@ -32,9 +32,10 @@ const APPS: Array<{
   { name: "TaskRabbit", logo: "/brands/taskrabbit.png" },
   { name: "Monday.com", logo: "/brands/monday.png" },
   { name: "Asana", mark: "asana" },
-  { name: "Jira", mark: "jira" },
   { name: "Zapier", logo: "/brands/zapier.png" },
   { name: "Amazon", logo: "/brands/amazon.png" },
+  { name: "DoorDash", mark: "doordash" },
+  { name: "Uber", mark: "uber" },
   { name: "Instacart", mark: "instacart" },
   { name: "PriceLabs", logo: "/brands/pricelabs.png" },
   { name: "Stripe", logo: "/brands/stripe.png" },
@@ -60,9 +61,10 @@ const APP_USE: Record<string, string> = {
   TaskRabbit: "When the work has to leave the team, Genie can dispatch a TaskRabbit job and read the result back.",
   "Monday.com": "Genie writes the task onto the board and reads the status so the guest thread closes only when the work is done.",
   Asana: "Genie creates the task, follows it, and writes the outcome back to the person who asked.",
-  Jira: "Genie files the issue, tracks it, and reports the resolution instead of leaving it in another tool.",
   Zapier: "Genie triggers and receives zaps so the rest of the stack stays in the same loop.",
   Amazon: "A granted wish can become an Amazon order. Genie reads the order and the spend.",
+  DoorDash: "A granted wish can become a DoorDash order. Genie places it and reads the spend back.",
+  Uber: "A granted wish can become an Uber ride. Genie requests it and reads the spend back.",
   Instacart: "A granted wish can become an Instacart run. Genie reads the order and the spend.",
   PriceLabs: "Genie reads pricing signals and can send rate context back when the policy allows a change.",
   Stripe: "Genie reads card payouts and later disputes so a missing or reversed payment is flagged.",
@@ -75,6 +77,8 @@ const MONEY_SOMETIMES = new Set([
   "PriceLabs",
   "Airbnb",
   "Amazon",
+  "DoorDash",
+  "Uber",
   "Booking.com",
   "Instacart",
 ])
@@ -99,7 +103,7 @@ const TASK_FROM = new Set([
   "Hostaway",
   "Guesty",
 ])
-const TASK_TO = new Set(["Jira", "Asana", "Monday.com"])
+const TASK_TO = new Set(["Asana", "Monday.com"])
 const RATING_FROM = new Set(["Guesty", "Hostaway", "Airbnb", "Booking.com"])
 const PERMISSION_TO = new Set(["Airbnb", "Booking.com", "TaskRabbit", "Guesty", "Hostaway", "Amazon"])
 const INNER_RING = new Set(["Managers", "Users", "Homeowners"])
@@ -309,7 +313,7 @@ export function GenieGraph() {
   return (
     <div className="min-w-0">
       <OrbitStage>
-        <div className="orbit-right absolute inset-0">
+        <div className="orbit-right absolute inset-0 z-10">
           <Signals apps={apps} radius={44} signals={ORBIT_SIGNALS} upright="orbit-upright-right" />
           {apps.map((app) => (
             <AppIcon
@@ -324,6 +328,19 @@ export function GenieGraph() {
           {apps.map((app) => (
             <AppLabel key={app.name} app={app} upright="orbit-upright-right" />
           ))}
+        </div>
+        <div
+          className="pointer-events-none absolute top-[57%] left-1/2 z-30 w-[46%] -translate-x-1/2 text-center sm:top-[58%] sm:w-[38%]"
+          aria-live="polite"
+        >
+          {active ? (
+            <>
+              <p className="text-[11px] font-medium text-ink sm:text-sm">{active.name}</p>
+              <p className="mt-1 text-[11px] leading-snug text-[#123848] sm:text-xs">{APP_USE[active.name]}</p>
+            </>
+          ) : (
+            <p className="text-[11px] leading-snug text-[#3e6574] sm:text-xs">Hover or tap an app. Genie will say how it is used.</p>
+          )}
         </div>
       </OrbitStage>
       <ul className="mx-auto mt-[33px] flex w-full max-w-full flex-nowrap items-center justify-center gap-x-2 overflow-x-auto text-[11px] leading-none text-ink sm:gap-x-4 sm:text-sm [&_svg]:size-3.5">
@@ -348,16 +365,6 @@ export function GenieGraph() {
           Financials
         </li>
       </ul>
-      <div className="mx-auto mt-4 min-h-16 max-w-xl text-center" aria-live="polite">
-        {active ? (
-          <>
-            <p className="text-sm font-medium text-ink">{active.name}</p>
-            <p className="mt-1 text-sm leading-relaxed text-mist">{APP_USE[active.name]}</p>
-          </>
-        ) : (
-          <p className="text-sm text-mist">Hover or tap an app to see how Genie uses it.</p>
-        )}
-      </div>
     </div>
   )
 }
