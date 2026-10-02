@@ -26,7 +26,7 @@ const APPS: Array<{
   { name: "Twilio", logo: "/brands/twilio.png" },
   { name: "Managers", icon: "manager" },
   { name: "Homeowners", icon: "homeowner" },
-  { name: "Users", icon: "guest" },
+  { name: "Guests", icon: "guest" },
   { name: "Cleaners", icon: "cleaners" },
   { name: "Handymen", icon: "handymen" },
   { name: "TaskRabbit", logo: "/brands/taskrabbit.png" },
@@ -55,7 +55,7 @@ const APP_USE: Record<string, string> = {
   Twilio: "Genie sends and receives texts, follows the same policy as the other channels, and can deliver a rating by message.",
   Managers: "Managers send communications, tasks, and permissions in. Genie sends communications, ratings, and financials back.",
   Homeowners: "Homeowners send communications, tasks, and permissions in. Genie sends communications, ratings, and financials back, limited to their homes.",
-  Users: "Users exchange communications, tasks, and ratings with Genie. The chat stays on the stay, the job, and the score.",
+  Guests: "Guests send the message, the request, and the rating. Genie replies, opens the task, and follows up, all in that same chat.",
   Cleaners: "Genie assigns the turnover, sends the notes, and closes the task when the cleaner marks the work done.",
   Handymen: "Genie opens the maintenance task, sends the access notes, and watches it until the fix is finished.",
   TaskRabbit: "When the work has to leave the team, Genie can dispatch a TaskRabbit job and read the result back.",
@@ -106,7 +106,7 @@ const TASK_FROM = new Set([
 const TASK_TO = new Set(["Asana", "Monday.com"])
 const RATING_FROM = new Set(["Guesty", "Hostaway", "Airbnb", "Booking.com"])
 const PERMISSION_TO = new Set(["Airbnb", "Booking.com", "TaskRabbit", "Guesty", "Hostaway", "Amazon"])
-const INNER_RING = new Set(["Managers", "Users", "Homeowners"])
+const INNER_RING = new Set(["Managers", "Guests", "Homeowners"])
 
 const ORBIT_SIGNALS = signalsFor(APPS, 0)
 
@@ -148,7 +148,7 @@ function signalsFor(apps: Array<{ name: string }>, offset: number): Signal[] {
     if (app.name === "Managers" || app.name === "Homeowners") {
       return roleFlow(index, offset, ["message", "task", "permission"], ["message", "rating", "money"])
     }
-    if (app.name === "Users") {
+    if (app.name === "Guests") {
       return roleFlow(index, offset, ["message", "task", "rating"], ["message", "task", "rating"])
     }
     if (app.name === "Plaid") {
