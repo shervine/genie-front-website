@@ -315,8 +315,8 @@
 
 .genie-halo {
   background:
-    radial-gradient(circle, rgba(255, 250, 236, 0.82) 0 48%, rgba(255, 236, 196, 0.55) 70%, rgba(244, 220, 150, 0.22) 88%, rgba(231, 246, 251, 0) 100%);
-  box-shadow: 0 0 18px 4px rgba(244, 224, 170, 0.35);
+    radial-gradient(circle, rgba(255, 243, 204, 0.78) 0 42%, rgba(232, 197, 106, 0.62) 64%, rgba(224, 177, 90, 0.3) 84%, rgba(231, 246, 251, 0) 100%);
+  box-shadow: 0 0 18px 4px rgba(232, 197, 106, 0.42);
 }
 
 .orbit-upright-left {

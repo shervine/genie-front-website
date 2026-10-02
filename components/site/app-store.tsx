@@ -227,9 +227,9 @@ export function AppStore({ titleAs = "h2" }: { titleAs?: "h1" | "h2" }) {
       <div className="orbit-stage relative mx-auto mt-6 aspect-square w-full max-w-[820px]">
         <div
           aria-hidden="true"
-          className="genie-halo pointer-events-none absolute top-1/2 left-1/2 z-[8] aspect-square w-[20%] -translate-x-1/2 -translate-y-1/2 rounded-full"
+          className="genie-halo pointer-events-none absolute top-1/2 left-1/2 z-[8] aspect-square w-[24%] -translate-x-1/2 -translate-y-1/2 rounded-full sm:w-[20%]"
         />
-        <div className="absolute top-1/2 left-[calc(50%+18px)] z-10 flex -translate-x-1/2 -translate-y-1/2 flex-col items-center">
+        <div className="absolute top-1/2 left-[calc(50%+6px)] z-10 flex -translate-x-1/2 -translate-y-1/2 flex-col items-center sm:left-[calc(50%+18px)]">
           <span className="text-[4.5rem] leading-none drop-shadow-[0_0_28px_rgba(143,215,255,0.45)] sm:text-[6.5rem]" aria-hidden="true">
             🧞‍♂️
           </span>
