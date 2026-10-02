@@ -123,9 +123,9 @@ export function AppStore({ titleAs = "h2" }: { titleAs?: "h1" | "h2" }) {
   return (
     <Section id="app-store" className="py-16 md:py-24">
       <Eyebrow>App store</Eyebrow>
-      <Display as={titleAs} className="mt-4 max-w-4xl">5 out of 6 Inquiries Resolved without Manager Review</Display>
+      <Display as={titleAs} className="mt-4 max-w-4xl">Genie Can Run All Your Apps</Display>
       <Lede className="mt-5">
-        About 85% of inbound inquiries are auto-resolved by a predefined human policy. That is five out of six, finished without a manager. The rest are escalated to you. The apps around Genie are where those inquiries arrive.
+        About 85% of inbound inquiries are auto-resolved by a predefined human policy. Genie communicates with each app in two directions: it reads what came in, and it writes the reply, the task, or the update back.
       </Lede>
       <div className="orbit-stage relative mx-auto mt-6 aspect-square w-full max-w-[760px]">
         <div className="absolute top-1/2 left-[calc(50%+18px)] z-10 flex -translate-x-1/2 -translate-y-1/2 flex-col items-center">
