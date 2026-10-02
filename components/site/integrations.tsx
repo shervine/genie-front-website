@@ -20,13 +20,6 @@ const ACCESS_LEVELS = [
     sees: ["Company-wide threads", "Tasks and exceptions", "Who has access"],
   },
   {
-    id: "landlord",
-    name: "Landlords",
-    system: "Client Landlord",
-    summary: "The leases and buildings they hold. Occupancy, issues, and the conversations that touch those addresses.",
-    sees: ["Their buildings", "Open issues", "Threads about those addresses"],
-  },
-  {
     id: "operator",
     name: "Operators",
     system: "Genie Support",
