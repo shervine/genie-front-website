@@ -31,11 +31,9 @@ export function CaseStudy({
     <Section id="superhost">
       <Eyebrow>Case study · Superhost Management</Eyebrow>
       <Display as={titleAs} className="mt-4 max-w-4xl">
-        What Superhost reported.
+        A Case Study on an Overwhelmed Operator
       </Display>
-      <Lede className="mt-5">
-        120 listings in Vancouver and Los Angeles. These figures were reported by Superhost Management. TalkToGenie did not invent them.
-      </Lede>
+      <Lede className="mt-5">120 listings in Vancouver and Los Angeles.</Lede>
       <ol className="mt-10 grid gap-4 md:grid-cols-3">
         {RESULTS.map((item) => (
           <li key={item.label} className="rounded-[28px] border border-[#d4af37]/35 bg-white/75 p-6">
