@@ -18,6 +18,13 @@ export function SiteFooter() {
               support@talktogenie.ai
             </a>
           </p>
+          <p className="mt-2 text-sm text-mist">
+            <a className="text-ink underline-offset-4 hover:underline" href="tel:+12367077040">
+              +1 236 707 7040
+            </a>
+            {" "}
+            to talk to Genie
+          </p>
         </div>
         <div className="grid grid-cols-2 gap-3 text-sm">
           {NAV.map((item) => (
