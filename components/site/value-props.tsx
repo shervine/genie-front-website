@@ -61,15 +61,15 @@ export function ValueProps() {
       <figure className="mt-10 overflow-hidden rounded-[28px] border border-[#d4af37]/35 bg-white shadow-[0_24px_80px_rgba(18,56,72,0.08)]">
         <Image
           src="/unified-inbox.jpg"
-          alt="A unified inbox with Airbnb, Booking.com, Vrbo, email, WhatsApp, and SMS in one list. Most threads are marked resolved by Genie. The open thread shows a guest AC issue, Genie’s reply, a same-day maintenance task, and sentiment moving from frustrated to calm."
-          width={1280}
-          height={720}
+          alt="The Genie inbox for Superhost, with guest threads on the left, an open conversation with Alexandra Maclean Kelly about a refund and check-in form, and a recap marked Satisfied beside her booking."
+          width={1920}
+          height={974}
           className="h-auto w-full"
           priority
         />
         <figcaption className="border-t border-[#d4af37]/35 px-5 py-4 text-center text-sm leading-relaxed text-mist">
           <span className="text-ink">Ultra unified inbox. </span>
-          Every channel in one place. Sentiment on the guest. A task when someone has to go to the property. Harbor & Co. is a sample, not a live portfolio.
+          Every channel in one place. The open thread, the task, and the guest recap sit side by side.
         </figcaption>
       </figure>
 
