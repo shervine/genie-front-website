@@ -24,7 +24,7 @@ export function Hero() {
             </Link>
           </div>
           <div className="mt-8 flex flex-wrap justify-center gap-2 text-xs text-ink">
-            {["Happier guests", "Higher ratings", "Higher income", "Operational excellence"].map((item) => (
+            {["Happier guests", "Higher ratings", "Higher income", "Save Time/Money"].map((item) => (
               <span key={item} className="rounded-full border border-[#d4af37]/35 bg-white/80 px-3 py-1.5">
                 {item}
               </span>
