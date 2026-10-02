@@ -14,12 +14,12 @@ export function SiteHeader() {
 
   return (
     <header className="sticky top-0 z-40 border-b border-[#d4af37]/35 bg-[#eef8fc]/90 backdrop-blur-xl">
-      <div className="mx-auto flex h-28 w-full max-w-6xl items-center justify-between gap-4 px-5">
-        <Link href="/" className="flex items-center gap-3 text-sm font-medium tracking-tight text-ink" onClick={() => setOpen(false)}>
-          <span className="text-[3.375rem] leading-none" aria-hidden="true">
+      <div className="mx-auto flex h-20 w-full max-w-6xl items-center justify-between gap-2 px-4 sm:h-28 sm:gap-4 sm:px-5">
+        <Link href="/" className="flex min-w-0 items-center gap-2 text-sm font-medium tracking-tight text-ink sm:gap-3" onClick={() => setOpen(false)}>
+          <span className="shrink-0 text-[2.35rem] leading-none sm:text-[3.375rem]" aria-hidden="true">
             🧞‍♂️
           </span>
-          <span>TalkToGenie.ai</span>
+          <span className="truncate">TalkToGenie.ai</span>
         </Link>
 
         <nav className="hidden items-center gap-1 lg:flex" aria-label="Primary">

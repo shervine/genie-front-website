@@ -56,7 +56,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         >
           Skip to content
         </a>
-        <div className="pointer-events-none fixed inset-0 -z-10">
+        <div className="pointer-events-none fixed inset-0 -z-10 overflow-hidden">
           <div className="absolute inset-0 bg-[#e7f6fb]" />
           <div className="absolute -top-48 left-1/2 h-[560px] w-[920px] -translate-x-1/2 rounded-full bg-[radial-gradient(circle,rgba(126,212,234,0.55),transparent_68%)]" />
           <div className="absolute top-[30%] -right-24 h-80 w-80 rounded-full bg-[radial-gradient(circle,rgba(232,197,106,0.35),transparent_70%)]" />

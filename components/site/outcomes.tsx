@@ -23,7 +23,7 @@ export function Outcomes() {
   return (
     <Section id="outcomes" className="py-16 md:py-20">
       <Eyebrow>What the operator unlocks</Eyebrow>
-      <Display className="mt-4 max-w-3xl">Follow Genie. Ratings rise.</Display>
+      <Display className="mt-4">Follow Genie. Ratings rise.</Display>
       <Lede className="mt-5">
         The tools matter because they are used together. Guests leave satisfied, ratings rise, income grows, and operational excellence is what the portfolio arrives at.
       </Lede>

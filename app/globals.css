@@ -300,6 +300,10 @@
   }
 }
 
+html {
+  overflow-x: clip;
+}
+
 .speak-bar {
   transform-origin: center;
   animation: speak 0.9s ease-in-out infinite;
