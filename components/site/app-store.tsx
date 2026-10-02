@@ -241,7 +241,7 @@ function Travel({
           {money ? (
             <span className={`${upright} block`}>
               <span
-                className="block text-[13px] leading-none font-bold text-black"
+                className="block text-[13px] leading-none font-bold text-[#0f7a4a]"
                 style={{ transform: `rotate(${-(angle + 90)}deg)` }}
               >
                 $
