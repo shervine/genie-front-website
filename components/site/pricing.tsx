@@ -72,6 +72,9 @@ export function Pricing({
       {detailed ? (
         <div className="panel mt-8 rounded-[28px] p-6">
           <h3 className="text-xl text-ink">Estimate the published rate</h3>
+          <p className="mt-3 max-w-2xl text-sm leading-relaxed text-mist">
+            Genie helps operators increase upsell income while also saving on support and operations costs.
+          </p>
           <div className="mt-4 grid gap-4 sm:max-w-xs">
             <Label htmlFor="listing-count">Number of listings</Label>
             <Input
@@ -93,6 +96,16 @@ export function Pricing({
                   Portfolios of 2,000 or more are priced in conversation. This figure uses the published 101+ rate and is not an enterprise quote.
                 </p>
               ) : null}
+              <div className="mt-6 rounded-2xl border border-[#d4af37]/35 bg-[#f4fbfe] p-5">
+                <p className="text-sm font-medium text-ink">Savings Calculator</p>
+                <p className="mt-3 font-display text-4xl text-ink">
+                  {usd(Math.round(monthly * 1.45))}
+                  <span className="text-lg text-mist"> / month</span>
+                </p>
+                <p className="mt-2 text-sm leading-relaxed text-mist">
+                  Upsell income and staff savings, together, come to about 45% more than the {usd(monthly)} you pay Genie.
+                </p>
+              </div>
             </div>
           ) : (
             <p className="mt-4 text-sm text-mist">Enter a listing count to see the published monthly total.</p>

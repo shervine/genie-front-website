@@ -24,8 +24,6 @@ export function SiteFooter() {
               <span aria-hidden="true">📞 </span>
               +12367077040
             </a>
-            {" "}
-            to talk to Genie
           </p>
         </div>
         <div className="grid grid-cols-2 gap-3 text-sm">
