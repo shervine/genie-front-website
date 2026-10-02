@@ -222,9 +222,44 @@
   }
 }
 
+@keyframes orbit-left {
+  to {
+    transform: rotate(-360deg);
+  }
+}
+
+@keyframes orbit-right {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
 .speak-bar {
   transform-origin: center;
   animation: speak 0.9s ease-in-out infinite;
+}
+
+.orbit-left {
+  animation: orbit-left 64s linear infinite;
+}
+
+.orbit-right {
+  animation: orbit-right 96s linear infinite;
+}
+
+.orbit-upright-left {
+  animation: orbit-right 64s linear infinite;
+}
+
+.orbit-upright-right {
+  animation: orbit-left 96s linear infinite;
+}
+
+.orbit-stage:hover .orbit-left,
+.orbit-stage:hover .orbit-right,
+.orbit-stage:hover .orbit-upright-left,
+.orbit-stage:hover .orbit-upright-right {
+  animation-play-state: paused;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -234,7 +269,11 @@
   .marquee-track,
   .pulse-glow,
   .rise,
-  .speak-bar {
+  .speak-bar,
+  .orbit-left,
+  .orbit-right,
+  .orbit-upright-left,
+  .orbit-upright-right {
     animation: none !important;
   }
 }

@@ -1,6 +1,5 @@
 import type { Metadata } from "next"
 import { HowItWorks } from "@/components/site/how-it-works"
-import { PolicyTree } from "@/components/site/policy-tree"
 import { Display, Eyebrow, Lede, Section } from "@/components/site/section"
 
 export const metadata: Metadata = {
@@ -36,7 +35,6 @@ export default function HowItWorksPage() {
         </div>
       </Section>
       <HowItWorks intro={false} />
-      <PolicyTree />
     </>
   )
 }

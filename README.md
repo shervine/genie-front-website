@@ -55,9 +55,9 @@ The sender must be verified in that SES region. Sign-in never sends the password
 Monthly per listing, USD, one rate for the whole portfolio:
 
 - Up to 20 listings: $25
-- 21–100 listings: $20
+- 21–100 listings: $21
 - 101+ listings: $18
 - 2,000+ listings: enterprise conversation
-- Genie Lamp: $99 per lamp, including the 3D-printed frame and a Google Nest Mini preprogrammed for “Hey Genie,” one lamp per rental unit
+- Genie Lamp: $85 per lamp, including the 3D-printed frame and a Google Nest Mini preprogrammed for “Hey Genie,” one lamp per rental unit
 
 The scenario calculator is an illustration with its assumptions printed beside it. It is not a savings guarantee.

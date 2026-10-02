@@ -7,7 +7,6 @@ import { Lamp } from "@/components/site/lamp"
 import { LeadForm } from "@/components/site/lead-form"
 import { Modules } from "@/components/site/modules"
 import { Outcomes } from "@/components/site/outcomes"
-import { PolicyTree } from "@/components/site/policy-tree"
 import { Pricing } from "@/components/site/pricing"
 import { Problem } from "@/components/site/problem"
 import { Proof } from "@/components/site/proof"
@@ -26,7 +25,6 @@ export default function Home() {
       <ValueProps />
       <HowItWorks />
       <Modules />
-      <PolicyTree />
       <AskGenie />
       <Stakeholders />
       <Lamp />

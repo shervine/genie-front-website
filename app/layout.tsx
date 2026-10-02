@@ -28,18 +28,18 @@ export const metadata: Metadata = {
     template: "%s · TalkToGenie.ai",
   },
   description:
-    "Genie is the AI operating layer for hospitality. Unified inbox, task coordination, financial tracking, and an intent tree operators control, aimed at higher ratings and higher income.",
+    "Your wish is my command. Genie is the on-demand concierge for hospitality: three million wishes a guest can ask, granted 24/7 with speed and consistency.",
   openGraph: {
     title: "TalkToGenie.ai — Hospitality. On Autopilot.",
     description:
-      "The AI operating system for hospitality. Policy-controlled autonomy across the stack you already run.",
+      "Your wish is my command. An on-demand concierge that grants a guest’s wishes 24/7, with speed and consistency.",
     siteName: "TalkToGenie.ai",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
     title: "TalkToGenie.ai — Hospitality. On Autopilot.",
-    description: "The autonomous operating layer for hospitality.",
+    description: "Your wish is my command. An on-demand concierge for hospitality, 24/7.",
   },
 }
 

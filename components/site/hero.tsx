@@ -30,27 +30,18 @@ export function Hero() {
       <div className="relative mx-auto grid w-full max-w-6xl items-center gap-10 px-5 py-14 lg:grid-cols-[0.86fr_1.14fr] lg:py-12">
         <div>
           <p className="text-[0.72rem] font-medium tracking-[0.22em] text-glow uppercase">
-            The AI operating system for hospitality
+            Your wish is my command
           </p>
           <h1 className="mt-5 font-display text-[clamp(3.3rem,7vw,6.1rem)] leading-[0.9] font-bold tracking-[-0.045em] text-ink">
             Hospitality.
             <span className="text-shimmer mt-1 block italic">On Autopilot.</span>
           </h1>
           <p className="mt-6 max-w-xl text-base leading-relaxed text-mist sm:text-lg">
-            Plug the operation into one AI brand. Genie runs communication, tasks, and the money on every reservation, so guests are satisfied, ratings rise, income is higher, and operational excellence follows.
+            Genie is the on-demand concierge. Each guest can ask three million wishes, and Genie grants them 24/7, with the same speed and the same consistency, across messages, tasks, and the money on every stay.
           </p>
           <div className="mt-8 flex flex-col gap-3 sm:flex-row">
             <Link href="/meet" className={buttonVariants({ className: "h-12 rounded-full px-6 text-sm" })}>
               Meet Genie
-            </Link>
-            <Link
-              href="/meet?intent=demo"
-              className={buttonVariants({
-                variant: "outline",
-                className: "h-12 rounded-full border-[#2eafd0]/30 bg-white/80 px-6 text-sm text-ink hover:bg-[#fff4d6] hover:text-[#123848]",
-              })}
-            >
-              Book a Demo
             </Link>
           </div>
           <div className="mt-8 flex flex-wrap gap-2 text-xs text-ink">

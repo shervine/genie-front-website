@@ -38,21 +38,25 @@ export function AppStore({ titleAs = "h2" }: { titleAs?: "h1" | "h2" }) {
       <Lede className="mt-5">
         Genie has an app store with hundreds of apps for the popular tools and websites an operator uses. Connect the PMS, the channels, the inbox, the task board, and the services a guest can ask for. Genie works across that set.
       </Lede>
-      <div className="relative mx-auto mt-6 aspect-square w-full max-w-[760px]">
+      <div className="orbit-stage relative mx-auto mt-6 aspect-square w-full max-w-[760px]">
         <div className="absolute top-1/2 left-1/2 size-[46%] -translate-x-1/2 -translate-y-1/2 rounded-full border border-[#d4af37]/40" />
         <div className="absolute top-1/2 left-1/2 size-[72%] -translate-x-1/2 -translate-y-1/2 rounded-full border border-[#2eafd0]/25" />
-        <div className="absolute top-1/2 left-1/2 flex -translate-x-1/2 -translate-y-1/2 flex-col items-center">
+        <div className="absolute top-1/2 left-1/2 z-10 flex -translate-x-1/2 -translate-y-1/2 flex-col items-center">
           <span className="text-[4.5rem] leading-none drop-shadow-[0_0_28px_rgba(143,215,255,0.45)] sm:text-[6.5rem]" aria-hidden="true">
             🧞‍♂️
           </span>
           <span className="sr-only">Genie, at the center of the apps</span>
         </div>
-        {place(APPS.slice(0, 7), 23).map((app) => (
-          <AppNode key={app.name} app={app} />
-        ))}
-        {place(APPS.slice(7), 39).map((app) => (
-          <AppNode key={app.name} app={app} />
-        ))}
+        <div className="orbit-left absolute inset-0">
+          {place(APPS.slice(0, 7), 23).map((app) => (
+            <AppNode key={app.name} app={app} upright="orbit-upright-left" />
+          ))}
+        </div>
+        <div className="orbit-right absolute inset-0">
+          {place(APPS.slice(7), 39).map((app) => (
+            <AppNode key={app.name} app={app} upright="orbit-upright-right" />
+          ))}
+        </div>
       </div>
       <p className="mt-5 text-xs leading-relaxed text-mist">
         These are a sample of the shelf: property systems, guest channels, mail and phone, task tools, and the services behind “Hey Genie.” Marks belong to their owners. A tile is a connection Genie is built to offer, not a partnership badge.
@@ -61,13 +65,23 @@ export function AppStore({ titleAs = "h2" }: { titleAs?: "h1" | "h2" }) {
   )
 }
 
-function AppNode({ app }: { app: (typeof APPS)[number] & { left: string; top: string } }) {
+function AppNode({
+  app,
+  upright,
+}: {
+  app: (typeof APPS)[number] & { left: string; top: string }
+  upright: string
+}) {
   return (
-    <div className="absolute flex -translate-x-1/2 -translate-y-1/2 flex-col items-center" style={{ left: app.left, top: app.top }}>
-      <AppGlyph app={app} />
-      <span className="sr-only sm:not-sr-only sm:mt-1 sm:block sm:max-w-20 sm:text-center sm:text-[11px] sm:leading-tight sm:text-ink">
-        {app.name}
-      </span>
+    <div className="absolute" style={{ left: app.left, top: app.top }}>
+      <div className="-translate-x-1/2 -translate-y-1/2">
+        <div className={`${upright} flex flex-col items-center`}>
+          <AppGlyph app={app} />
+          <span className="sr-only sm:not-sr-only sm:mt-1 sm:block sm:max-w-20 sm:text-center sm:text-[11px] sm:leading-tight sm:text-ink">
+            {app.name}
+          </span>
+        </div>
+      </div>
     </div>
   )
 }

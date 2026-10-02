@@ -5,7 +5,7 @@ import { Section } from "@/components/site/section"
 export const metadata: Metadata = {
   title: "Genie Lamp",
   description:
-    "The Genie Lamp is a physical voice concierge for the property. Guests say Hey Genie. No extra app.",
+    "Your wish is my command. The Genie Lamp is an on-demand concierge in the property. Guests say Hey Genie, any hour, and can keep asking.",
 }
 
 export default function LampPage() {
@@ -14,7 +14,7 @@ export default function LampPage() {
       <Lamp
         titleAs="h1"
         heading="Bye Phone. Hey Genie."
-        lede="Say “Hey Genie.” The lamp is a live concierge: knowledgeable, tied into your APIs, and able to act. With the guest’s card on file and their say-so, a prompt can order from DoorDash, Amazon, or Instacart."
+        lede="Your wish is my command. Say “Hey Genie.” The lamp is an on-demand concierge, awake 24/7. Guests can ask three million wishes, and Genie grants them with the same speed and the same consistency. With the guest’s card on file and their say-so, a prompt can order from DoorDash, Amazon, or Instacart."
       />
       <Section className="pt-0">
         <div className="grid gap-4 md:grid-cols-3">

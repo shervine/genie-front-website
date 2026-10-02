@@ -124,7 +124,7 @@ export const PITCH_SLIDES: PitchSlide[] = [
     variant: "close",
     kicker: "The company",
     title: "An AI brand operators can plug into.",
-    lede: "For professional operators, from 20 to 2,000+ listings. $25, $20, or $18 per listing each month, by portfolio size.",
+    lede: "For professional operators, from 20 to 2,000+ listings. $25, $21, or $18 per listing each month, by portfolio size.",
     bullets: [
       "Early operator, as reported by Superhost Management: 120 listings in Vancouver and Los Angeles. Response completion moved from 35% to over 85% in 35 days. Average rating moved from 4.55 to 4.83 in the first 100 days. 87% of suggested tasks were completed.",
     ],

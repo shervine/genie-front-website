@@ -22,13 +22,7 @@ import {
 } from "@/lib/lead-schema"
 import { Display, Eyebrow, Lede, Section } from "@/components/site/section"
 
-export function LeadForm({
-  intent = "meet",
-  titleAs = "h2",
-}: {
-  intent?: "meet" | "demo"
-  titleAs?: "h1" | "h2"
-}) {
+export function LeadForm({ titleAs = "h2" }: { titleAs?: "h1" | "h2" }) {
   const [firstName, setFirstName] = useState("")
   const [lastName, setLastName] = useState("")
   const [email, setEmail] = useState("")
@@ -62,7 +56,6 @@ export function LeadForm({
       pms,
       automate,
       notes,
-      intent,
       faxNumber,
     }
     const local = validateLead(payload)
@@ -103,14 +96,12 @@ export function LeadForm({
     <Section id="meet">
       <div className="grid items-start gap-10 lg:grid-cols-[0.85fr_1.15fr]">
         <div>
-          <Eyebrow>{intent === "demo" ? "Book a demo" : "Onboarding"}</Eyebrow>
+          <Eyebrow>Onboarding</Eyebrow>
           <Display as={titleAs} className="mt-4">
             Tell me the wish.
           </Display>
           <Lede className="mt-5">
-            {intent === "demo"
-              ? "Tell me how the operation runs. I’ll have the team reply to find a time. A calendar isn’t connected on this page."
-              : "Tell me the shape of the company. I’ll take the wish to the team, and onboarding starts from there."}
+            Tell me the shape of the company. I’ll take the wish to the team, and onboarding starts from there.
           </Lede>
           <ol className="mt-8 space-y-4 text-sm text-mist">
             <li className="text-ink">1. I read how you operate.</li>
@@ -130,11 +121,6 @@ export function LeadForm({
                 ? "Sent to support@talktogenie.ai."
                 : "Email delivery is not configured on this server yet. Write support@talktogenie.ai directly so the wish is not waiting on a missing mail key."}
             </p>
-            {intent === "demo" ? (
-              <p className="mt-3 text-sm text-mist">
-                We’ll follow up to schedule a demo. There isn’t a self-serve calendar on this page.
-              </p>
-            ) : null}
           </div>
         ) : (
           <form onSubmit={onSubmit} className="panel rounded-[28px] p-5 sm:p-7" noValidate>

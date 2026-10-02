@@ -50,7 +50,7 @@ export async function storeRow(row: Record<string, unknown>): Promise<StoreDurab
 
 export function formatLead(lead: StoredLead) {
   return [
-    `Intent: ${lead.intent === "demo" ? "Book a demo" : "Meet Genie"}`,
+    `Intent: Meet Genie`,
     `Name: ${lead.firstName} ${lead.lastName}`,
     `Email: ${lead.email}`,
     `Phone: ${lead.phone}`,
@@ -120,7 +120,7 @@ export async function sendInboxEmail(message: { subject: string; text: string; r
 export async function emailLead(lead: StoredLead) {
   return sendInboxEmail({
     replyTo: lead.email,
-    subject: `${lead.intent === "demo" ? "Demo request" : "Meet Genie"}: ${lead.company} (${lead.listings} listings)`,
+    subject: `Meet Genie: ${lead.company} (${lead.listings} listings)`,
     text: formatLead(lead),
   })
 }

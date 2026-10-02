@@ -57,7 +57,7 @@ export function Pricing({
       </article>
       <div className="mt-4 rounded-[28px] border border-[#d4af37]/35 px-6 py-5">
         <p className="text-ink">2,000+ listings? Talk to us about enterprise pricing.</p>
-        <Link href="/meet?intent=demo" className="mt-3 inline-flex text-sm text-[#b8860b] underline-offset-4 hover:underline">
+        <Link href="/meet" className="mt-3 inline-flex text-sm text-[#b8860b] underline-offset-4 hover:underline">
           Start that conversation
         </Link>
       </div>

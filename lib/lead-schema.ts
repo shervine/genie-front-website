@@ -66,7 +66,7 @@ export type LeadInput = {
   pms: string
   automate: string[]
   notes: string
-  intent: "meet" | "demo"
+  intent: "meet"
 }
 
 export type FieldErrors = Partial<Record<keyof LeadInput, string>>
@@ -118,7 +118,7 @@ export function validateLead(input: unknown):
     pms: clean(source.pms, 120),
     automate: [],
     notes: cleanNote(source.notes, 2000),
-    intent: source.intent === "demo" ? "demo" : "meet",
+    intent: "meet",
   }
 
   if (value.firstName.length < 1) fieldErrors.firstName = "Add a first name."
