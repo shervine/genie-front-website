@@ -12,7 +12,7 @@ export const PRICING_BANDS = [
     id: "growth",
     label: "21–100 listings",
     range: "21–100",
-    price: 21,
+    price: 20,
     detail: "For multi-market teams past the point of manual follow-up.",
   },
   {
@@ -28,14 +28,14 @@ export function rateForListings(listings: number): number | null {
   if (!Number.isFinite(listings) || listings < 1) return null
   const count = Math.floor(listings)
   if (count <= 20) return 25
-  if (count <= 100) return 21
+  if (count <= 100) return 20
   return 18
 }
 
 export function bandForListings(listings: number) {
   const rate = rateForListings(listings)
   if (rate === 25) return PRICING_BANDS[0]
-  if (rate === 21) return PRICING_BANDS[1]
+  if (rate === 20) return PRICING_BANDS[1]
   if (rate === 18) return PRICING_BANDS[2]
   return null
 }

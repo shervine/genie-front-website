@@ -41,7 +41,7 @@ export function Pricing({
           </article>
         ))}
       </div>
-      <article className="mt-4 grid items-center gap-6 rounded-[28px] border border-[#d4af37]/35 bg-white/80 p-6 md:grid-cols-[16rem_1fr]">
+      <article className="mt-16 grid items-center gap-6 rounded-[28px] border border-[#d4af37]/35 bg-white/80 p-6 md:grid-cols-[16rem_1fr]">
         <div>
           <p className="flex items-center gap-2 text-sm text-mist">
             Genie Lamp
