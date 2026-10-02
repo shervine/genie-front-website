@@ -13,6 +13,11 @@ const nextConfig: NextConfig = {
         destination: "/investors",
         permanent: false,
       },
+      {
+        source: "/integrations",
+        destination: "/apps",
+        permanent: false,
+      },
     ]
   },
 };

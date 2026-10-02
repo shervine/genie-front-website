@@ -3,12 +3,12 @@ import { AppStore } from "@/components/site/app-store"
 import { Integrations } from "@/components/site/integrations"
 
 export const metadata: Metadata = {
-  title: "Integrations",
+  title: "Apps",
   description:
     "Genie has an app store with hundreds of apps for the hospitality tools operators already use, from Guesty and Hostaway to Airbnb, WhatsApp, and the task boards the team runs.",
 }
 
-export default function IntegrationsPage() {
+export default function AppsPage() {
   return (
     <>
       <AppStore titleAs="h1" />

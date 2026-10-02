@@ -4,7 +4,7 @@ Marketing site for Genie, the autonomous operating layer for hospitality.
 
 Genie is positioned above an operator’s existing stack. Operators connect the systems they already use, set policies and escalation boundaries, and Genie executes inside those boundaries: guest communication, tasks, upsells, reservation reconciliation, and a physical voice concierge.
 
-Simulated product screens use a fictional portfolio, Harbor & Co. They are not customer results. Integration names are connection targets, not a claim that every connector is live.
+Simulated product screens use a fictional portfolio, Harbor & Co. They are not customer results. App names are connection targets, not a claim that every connector is live.
 
 ## Run locally
 

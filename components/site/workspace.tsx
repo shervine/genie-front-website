@@ -6,8 +6,8 @@ import { cn } from "@/lib/utils"
 
 const APPS = [
   {
-    id: "integrations",
-    label: "Integrations",
+    id: "apps",
+    label: "Apps",
     note: "The connected stack",
   },
   {

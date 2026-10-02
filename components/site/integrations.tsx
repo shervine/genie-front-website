@@ -17,10 +17,10 @@ export function Integrations({
   const positioned = useMemo(() => layoutNodes(), [])
 
   return (
-    <Section id="integrations">
+    <Section id="apps">
       {showIntro ? (
         <>
-          <Eyebrow>Integration-first</Eyebrow>
+          <Eyebrow>Apps</Eyebrow>
           <Display as={titleAs} className="mt-4 max-w-3xl">Keep your stack. Add intelligence.</Display>
           <Lede className="mt-5">
             Genie has an app store with hundreds of apps for the tools an operator already runs. The names below are connection targets in that store, not a partner roster, and not a claim that every connector is live.
