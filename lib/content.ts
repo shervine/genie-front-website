@@ -1,6 +1,6 @@
 export const NAV = [
   { href: "/product", label: "Product" },
-  { href: "/how-it-works", label: "How It Works" },
+  { href: "/how-it-works", label: "Guarantee" },
   { href: "/apps", label: "Apps" },
   { href: "/lamp", label: "Lamp" },
   { href: "/pricing", label: "Pricing" },
@@ -68,13 +68,13 @@ export const STEPS = [
   },
   {
     n: "02",
-    title: "Take the template",
-    body: "Start from a standard intent tree of the patterns hospitality already runs. Change only what your company does differently. That pass is meant to take a few minutes.",
+    title: "Adopt the policy",
+    body: "Every company starts from our standard policy, written by people across hundreds of hospitality patterns. During onboarding, and anytime after, you rewrite the branches so Genie behaves the way your company would.",
   },
   {
     n: "03",
-    title: "Go Autopilot",
-    body: "Genie manages approved communication, workflows, tasks, transactions, and exceptions. People keep the rest.",
+    title: "Genie acts only on a match",
+    body: "Genie detects the patterns you already defined. If a message matches one, it follows that policy. If it matches none, Genie does not act.",
   },
 ]
 

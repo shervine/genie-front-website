@@ -29,10 +29,10 @@ export function HowItWorks({ intro = true }: { intro?: boolean }) {
     <Section id="how-it-works">
       {intro ? (
         <>
-          <Eyebrow>How Genie works</Eyebrow>
-          <Display className="mt-4 max-w-3xl">Connect. Set the rules. Go Autopilot.</Display>
+          <Eyebrow>Guarantee</Eyebrow>
+          <Display className="mt-4 max-w-3xl">Human-defined. Human-reviewed. 100%.</Display>
           <Lede className="mt-5">
-            Connect Genie. Teach it how your company operates. It starts doing the work — inside the boundaries you set.
+            Genie only acts when a message matches a pattern a person already defined. If nothing matches, it does not act. You start from our policy, customize it in onboarding, and keep fine-tuning it so the behavior stays yours.
           </Lede>
         </>
       ) : null}
