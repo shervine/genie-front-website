@@ -255,21 +255,21 @@ export function AppStore({ titleAs = "h2" }: { titleAs?: "h1" | "h2" }) {
           ))}
         </div>
       </div>
-      <ul className="mx-auto mt-4 flex max-w-xl flex-wrap items-center justify-center gap-x-6 gap-y-2 text-sm text-ink">
-        <li className="flex items-center gap-2">
+      <ul className="mx-auto mt-3 flex w-full flex-nowrap items-center justify-center gap-x-2 text-[11px] leading-none text-ink sm:gap-x-4 sm:text-sm [&_svg]:size-3.5">
+        <li className="flex items-center gap-1 whitespace-nowrap">
           <CommentIcon />
           Communications
         </li>
-        <li className="flex items-center gap-2">
+        <li className="flex items-center gap-1 whitespace-nowrap">
           <WrenchIcon />
           Tasks
         </li>
-        <li className="flex items-center gap-2">
+        <li className="flex items-center gap-1 whitespace-nowrap">
           <StarIcon />
           Ratings
         </li>
-        <li className="flex items-center gap-2">
-          <span className="text-base leading-none font-bold text-[#0f7a4a]">$</span>
+        <li className="flex items-center gap-1 whitespace-nowrap">
+          <span className="text-[13px] leading-none font-bold text-[#0f7a4a] sm:text-base">$</span>
           Financials
         </li>
       </ul>
