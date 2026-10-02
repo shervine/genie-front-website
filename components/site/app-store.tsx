@@ -77,9 +77,16 @@ type Signal = {
   moneyOut?: boolean
 }
 
+function nextTarget(apps: Array<{ name: string }>, index: number, step: number) {
+  let to = (index + step) % apps.length
+  if (to === index || apps[to]?.name === "Plaid") to = (to + 1) % apps.length
+  if (to === index || apps[to]?.name === "Plaid") to = (to + 1) % apps.length
+  return to
+}
+
 function signalsFor(apps: Array<{ name: string }>, offset: number): Signal[] {
   return apps.flatMap((app, index) => {
-    const outboundTarget = (index + 2 + (index % 3)) % apps.length
+    const outboundTarget = nextTarget(apps, index, 2 + (index % 3))
     const alwaysMoney = MONEY.has(app.name)
     const occasionalMoney = MONEY_SOMETIMES.has(app.name) || index % 6 === 0
     const inbound: Signal = {
@@ -88,6 +95,16 @@ function signalsFor(apps: Array<{ name: string }>, offset: number): Signal[] {
       delay: `${(offset + index * 0.38).toFixed(2)}s`,
       duration: `${4.4 + (index % 3) * 0.4}s`,
       moneyIn: alwaysMoney,
+    }
+    if (app.name === "Plaid") {
+      return [
+        inbound,
+        {
+          ...inbound,
+          delay: `${(offset + index * 0.38 + 1.7).toFixed(2)}s`,
+          duration: "3.8s",
+        },
+      ]
     }
     const outbound: Signal = {
       from: index,
@@ -108,7 +125,7 @@ function signalsFor(apps: Array<{ name: string }>, offset: number): Signal[] {
     }))
     const extraOutbound: Signal[] = [1.4, 2.6].map((step, stepIndex) => ({
       from: index,
-      to: (index + 1 + stepIndex) % apps.length,
+      to: nextTarget(apps, index, 1 + stepIndex),
       kind: "redirect" as const,
       delay: `${(offset + index * 0.15 + step).toFixed(2)}s`,
       duration: `${3.6 + stepIndex * 0.25}s`,
