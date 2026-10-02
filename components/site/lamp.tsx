@@ -28,11 +28,22 @@ export function Lamp({
   return (
     <section id="lamp" className="relative overflow-hidden py-24 md:py-32">
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(80,150,255,0.16),transparent_62%)]" />
-      <div className="relative mx-auto grid w-full max-w-6xl items-center gap-12 px-5 lg:grid-cols-[0.9fr_1.1fr]">
-        <div>
-          <Eyebrow>The Genie Lamp</Eyebrow>
-          <Display as={titleAs} className="mt-4">{heading}</Display>
-          <Lede className="mt-5">{lede}</Lede>
+      <div className="relative mx-auto grid w-full max-w-6xl grid-cols-1 items-center gap-6 px-5 lg:grid-cols-[0.9fr_1.1fr] lg:gap-12">
+        <div className="contents lg:block">
+          <div>
+            <Eyebrow>The Genie Lamp</Eyebrow>
+            <Display as={titleAs} className="mt-4">{heading}</Display>
+          </div>
+          <Image
+            src="/luxury-queen-beds-aligned-genie.jpg"
+            alt="A small genie rising from the lamp between two queen beds"
+            width={1280}
+            height={720}
+            className="h-auto w-full rounded-[28px] border border-[#d4af37]/35 shadow-[0_24px_60px_rgba(18,56,72,0.12)] lg:hidden"
+            sizes="100vw"
+          />
+          <div>
+          <Lede className="mt-5 lg:mt-5">{lede}</Lede>
           <p className="mt-4 text-sm text-ink">
             One lamp between two queen beds, where the hotel phone used to sit. Another on the kitchen counter of a house. Same trigger. Same concierge.
           </p>
@@ -71,15 +82,16 @@ export function Lamp({
             )}
           </div>
           <SampleNote className="mt-4" />
+          </div>
         </div>
 
-        <div className="flex flex-col gap-4">
+        <div className="contents lg:flex lg:flex-col lg:gap-4">
           <Image
             src="/luxury-queen-beds-aligned-genie.jpg"
             alt="A small genie rising from the lamp between two queen beds"
             width={1280}
             height={720}
-            className="h-auto w-full rounded-[28px] border border-[#d4af37]/35 shadow-[0_24px_60px_rgba(18,56,72,0.12)]"
+            className="hidden h-auto w-full rounded-[28px] border border-[#d4af37]/35 shadow-[0_24px_60px_rgba(18,56,72,0.12)] lg:block"
             sizes="(min-width: 1024px) 640px, 100vw"
           />
           <Image
@@ -87,7 +99,7 @@ export function Lamp({
             alt="A small genie rising from the lamp on a vacation-house kitchen counter"
             width={1280}
             height={720}
-            className="h-auto w-full rounded-[28px] border border-[#d4af37]/35 shadow-[0_24px_60px_rgba(18,56,72,0.12)]"
+            className="order-last h-auto w-full rounded-[28px] border border-[#d4af37]/35 shadow-[0_24px_60px_rgba(18,56,72,0.12)]"
             sizes="(min-width: 1024px) 640px, 100vw"
           />
         </div>

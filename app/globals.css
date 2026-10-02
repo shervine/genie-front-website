@@ -313,6 +313,12 @@
   animation: orbit-right 96s linear infinite;
 }
 
+.genie-halo {
+  background:
+    radial-gradient(circle, rgba(232, 197, 106, 0.42) 0 42%, rgba(232, 197, 106, 0.72) 56%, rgba(201, 150, 46, 0.28) 64%, rgba(231, 246, 251, 0.78) 72%, rgba(231, 246, 251, 0) 82%);
+  box-shadow: 0 0 36px 10px rgba(232, 197, 106, 0.38);
+}
+
 .orbit-upright-left {
   animation: orbit-right 64s linear infinite;
 }
