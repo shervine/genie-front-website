@@ -61,9 +61,9 @@ export function ValueProps() {
       <figure className="mt-10 overflow-hidden rounded-[28px] border border-[#d4af37]/35 bg-white shadow-[0_24px_80px_rgba(18,56,72,0.08)]">
         <Image
           src="/unified-inbox.jpg"
-          alt="The Genie inbox for Superhost, with guest threads on the left, an open conversation with Alexandra Maclean Kelly about a refund and check-in form, and a recap marked Satisfied beside her booking."
+          alt="The Talk to Genie inbox for Superhost Management, with the guest list on the left and Alexandra Maclean Kelly’s thread open, including the refund note and the check-in form."
           width={1920}
-          height={974}
+          height={1271}
           className="h-auto w-full"
           priority
         />
