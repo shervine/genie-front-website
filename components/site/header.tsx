@@ -2,7 +2,7 @@
 
 import Link from "next/link"
 import { usePathname } from "next/navigation"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { Menu, X } from "lucide-react"
 import { buttonVariants } from "@/components/ui/button"
 import { NAV } from "@/lib/content"
@@ -11,9 +11,25 @@ import { cn } from "@/lib/utils"
 export function SiteHeader() {
   const pathname = usePathname()
   const [open, setOpen] = useState(false)
+  const [scrolled, setScrolled] = useState(false)
+  const blended = pathname === "/" && !scrolled && !open
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 24)
+    onScroll()
+    window.addEventListener("scroll", onScroll, { passive: true })
+    return () => window.removeEventListener("scroll", onScroll)
+  }, [])
 
   return (
-    <header className="sticky top-0 z-40 border-b border-[#d4af37]/35 bg-[#eef8fc]/90 backdrop-blur-xl">
+    <header
+      className={cn(
+        "sticky top-0 z-40 border-b transition-[background-color,border-color,box-shadow,backdrop-filter] duration-300",
+        blended
+          ? "border-transparent bg-transparent shadow-none"
+          : "border-[#d4af37]/40 bg-[#f7fcfe] shadow-[0_10px_28px_rgba(18,56,72,0.1)] backdrop-blur-xl",
+      )}
+    >
       <div className="mx-auto flex h-20 w-full max-w-6xl items-center justify-between gap-2 px-4 sm:h-28 sm:gap-4 sm:px-5">
         <Link href="/" className="flex min-w-0 items-center gap-2 text-sm font-medium tracking-tight text-ink sm:gap-3" onClick={() => setOpen(false)}>
           <span className="shrink-0 text-[2.35rem] leading-none sm:text-[3.375rem]" aria-hidden="true">
