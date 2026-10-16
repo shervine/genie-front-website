@@ -1,0 +1,79 @@
+{
+  "app": {
+    "[project]/app/_not-found/page": [
+      "static/media/caa3a2e1cccd8315-s.p.0wgildi0cnwt9.woff2",
+      "static/media/797e433ab948586e-s.p.0r6juujl39pe6.woff2",
+      "static/media/bd57f7e0e988221d-s.p.288io4pd8cae-.woff2",
+      "static/media/3f4e6703fed28c6b-s.p.35dbceu2tstou.woff2"
+    ],
+    "[project]/app/apps/page": [
+      "static/media/caa3a2e1cccd8315-s.p.0wgildi0cnwt9.woff2",
+      "static/media/797e433ab948586e-s.p.0r6juujl39pe6.woff2",
+      "static/media/bd57f7e0e988221d-s.p.288io4pd8cae-.woff2",
+      "static/media/3f4e6703fed28c6b-s.p.35dbceu2tstou.woff2"
+    ],
+    "[project]/app/how-it-works/page": [
+      "static/media/caa3a2e1cccd8315-s.p.0wgildi0cnwt9.woff2",
+      "static/media/797e433ab948586e-s.p.0r6juujl39pe6.woff2",
+      "static/media/bd57f7e0e988221d-s.p.288io4pd8cae-.woff2",
+      "static/media/3f4e6703fed28c6b-s.p.35dbceu2tstou.woff2"
+    ],
+    "[project]/app/investors/page": [
+      "static/media/caa3a2e1cccd8315-s.p.0wgildi0cnwt9.woff2",
+      "static/media/797e433ab948586e-s.p.0r6juujl39pe6.woff2",
+      "static/media/bd57f7e0e988221d-s.p.288io4pd8cae-.woff2",
+      "static/media/3f4e6703fed28c6b-s.p.35dbceu2tstou.woff2"
+    ],
+    "[project]/app/lamp/page": [
+      "static/media/caa3a2e1cccd8315-s.p.0wgildi0cnwt9.woff2",
+      "static/media/797e433ab948586e-s.p.0r6juujl39pe6.woff2",
+      "static/media/bd57f7e0e988221d-s.p.288io4pd8cae-.woff2",
+      "static/media/3f4e6703fed28c6b-s.p.35dbceu2tstou.woff2"
+    ],
+    "[project]/app/meet/page": [
+      "static/media/caa3a2e1cccd8315-s.p.0wgildi0cnwt9.woff2",
+      "static/media/797e433ab948586e-s.p.0r6juujl39pe6.woff2",
+      "static/media/bd57f7e0e988221d-s.p.288io4pd8cae-.woff2",
+      "static/media/3f4e6703fed28c6b-s.p.35dbceu2tstou.woff2"
+    ],
+    "[project]/app/ops/inbox/r7k2m9qx4w/page": [
+      "static/media/caa3a2e1cccd8315-s.p.0wgildi0cnwt9.woff2",
+      "static/media/797e433ab948586e-s.p.0r6juujl39pe6.woff2",
+      "static/media/bd57f7e0e988221d-s.p.288io4pd8cae-.woff2",
+      "static/media/3f4e6703fed28c6b-s.p.35dbceu2tstou.woff2"
+    ],
+    "[project]/app/page": [
+      "static/media/caa3a2e1cccd8315-s.p.0wgildi0cnwt9.woff2",
+      "static/media/797e433ab948586e-s.p.0r6juujl39pe6.woff2",
+      "static/media/bd57f7e0e988221d-s.p.288io4pd8cae-.woff2",
+      "static/media/3f4e6703fed28c6b-s.p.35dbceu2tstou.woff2"
+    ],
+    "[project]/app/pricing/page": [
+      "static/media/caa3a2e1cccd8315-s.p.0wgildi0cnwt9.woff2",
+      "static/media/797e433ab948586e-s.p.0r6juujl39pe6.woff2",
+      "static/media/bd57f7e0e988221d-s.p.288io4pd8cae-.woff2",
+      "static/media/3f4e6703fed28c6b-s.p.35dbceu2tstou.woff2"
+    ],
+    "[project]/app/privacy-policy/page": [
+      "static/media/caa3a2e1cccd8315-s.p.0wgildi0cnwt9.woff2",
+      "static/media/797e433ab948586e-s.p.0r6juujl39pe6.woff2",
+      "static/media/bd57f7e0e988221d-s.p.288io4pd8cae-.woff2",
+      "static/media/3f4e6703fed28c6b-s.p.35dbceu2tstou.woff2"
+    ],
+    "[project]/app/product/page": [
+      "static/media/caa3a2e1cccd8315-s.p.0wgildi0cnwt9.woff2",
+      "static/media/797e433ab948586e-s.p.0r6juujl39pe6.woff2",
+      "static/media/bd57f7e0e988221d-s.p.288io4pd8cae-.woff2",
+      "static/media/3f4e6703fed28c6b-s.p.35dbceu2tstou.woff2"
+    ],
+    "[project]/app/superhost/page": [
+      "static/media/caa3a2e1cccd8315-s.p.0wgildi0cnwt9.woff2",
+      "static/media/797e433ab948586e-s.p.0r6juujl39pe6.woff2",
+      "static/media/bd57f7e0e988221d-s.p.288io4pd8cae-.woff2",
+      "static/media/3f4e6703fed28c6b-s.p.35dbceu2tstou.woff2"
+    ]
+  },
+  "appUsingSizeAdjust": true,
+  "pages": {},
+  "pagesUsingSizeAdjust": false
+}

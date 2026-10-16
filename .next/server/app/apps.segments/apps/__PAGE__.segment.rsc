@@ -1,0 +1,22 @@
+1:"$Sreact.fragment"
+2:I[69365,["/_next/static/chunks/2t4eqoz5e0ydi.js","/_next/static/chunks/37w8lzriab6aa.js","/_next/static/chunks/1s418bvf05fr2.js","/_next/static/chunks/1d0i8nn0y2-eb.js","/_next/static/chunks/3x2-sn69a_c4x.js"],"AppStore"]
+3:I[74004,["/_next/static/chunks/2t4eqoz5e0ydi.js","/_next/static/chunks/37w8lzriab6aa.js","/_next/static/chunks/1s418bvf05fr2.js","/_next/static/chunks/1d0i8nn0y2-eb.js","/_next/static/chunks/3x2-sn69a_c4x.js"],"Integrations"]
+4:I[97367,["/_next/static/chunks/2t4eqoz5e0ydi.js","/_next/static/chunks/37w8lzriab6aa.js","/_next/static/chunks/1s418bvf05fr2.js"],"OutletBoundary"]
+5:"$Sreact.suspense"
+9:I[97367,["/_next/static/chunks/2t4eqoz5e0ydi.js","/_next/static/chunks/37w8lzriab6aa.js","/_next/static/chunks/1s418bvf05fr2.js"],"ViewportBoundary"]
+a:I[97367,["/_next/static/chunks/2t4eqoz5e0ydi.js","/_next/static/chunks/37w8lzriab6aa.js","/_next/static/chunks/1s418bvf05fr2.js"],"MetadataBoundary"]
+b:I[27201,["/_next/static/chunks/2t4eqoz5e0ydi.js","/_next/static/chunks/37w8lzriab6aa.js","/_next/static/chunks/1s418bvf05fr2.js"],"IconMark"]
+d:I[39756,["/_next/static/chunks/2t4eqoz5e0ydi.js","/_next/static/chunks/37w8lzriab6aa.js","/_next/static/chunks/1s418bvf05fr2.js"],"default"]
+e:I[37457,["/_next/static/chunks/2t4eqoz5e0ydi.js","/_next/static/chunks/37w8lzriab6aa.js","/_next/static/chunks/1s418bvf05fr2.js"],"default"]
+8:X
+10:X
+10:C
+0:{"buildId":"rCjQE_2g3twJDQFHK8NiA","data":[{"rsc":["$","$1","c",{"children":[[["$","$L2",null,{"titleAs":"h1"}],["$","$L3",null,{"showIntro":false}]],[["$","script","script-0",{"src":"/_next/static/chunks/1d0i8nn0y2-eb.js","async":true}],["$","script","script-1",{"src":"/_next/static/chunks/3x2-sn69a_c4x.js","async":true}]],["$","$L4",null,{"children":["$","$5",null,{"name":"Next.MetadataOutlet","children":"$@6"}]}]]}],"isPartial":"$@7","staleTime":"$8","varyParams":null},{"rsc":["$","$1","h",{"children":[null,["$","$L9",null,{"children":[["$","meta","0",{"charSet":"utf-8"}],["$","meta","1",{"name":"viewport","content":"width=device-width, initial-scale=1"}]]}],["$","div",null,{"hidden":true,"children":["$","$La",null,{"children":["$","$5",null,{"name":"Next.Metadata","children":[["$","title","0",{"children":"Apps · TalkToGenie.ai"}],["$","meta","1",{"name":"description","content":"Genie has an app store with hundreds of apps for the hospitality tools operators already use, from Guesty and Hostaway to Airbnb, WhatsApp, and the task boards the team runs."}],["$","meta","2",{"property":"og:title","content":"TalkToGenie.ai — Hospitality. On Autopilot."}],["$","meta","3",{"property":"og:description","content":"Your wish is my command. An on-demand concierge that grants a guest’s wishes 24/7, with speed and consistency."}],["$","meta","4",{"property":"og:site_name","content":"TalkToGenie.ai"}],["$","meta","5",{"property":"og:type","content":"website"}],["$","meta","6",{"name":"twitter:card","content":"summary_large_image"}],["$","meta","7",{"name":"twitter:title","content":"TalkToGenie.ai — Hospitality. On Autopilot."}],["$","meta","8",{"name":"twitter:description","content":"Your wish is my command. An on-demand concierge for hospitality, 24/7."}],["$","link","9",{"rel":"icon","href":"/icon.svg?icon.06ylrh4h21jde.svg","sizes":"any","type":"image/svg+xml"}],["$","link","10",{"rel":"apple-touch-icon","href":"/apple-icon.png?apple-icon.10p45m1bddmi0.png","sizes":"180x180","type":"image/png"}],["$","$Lb","11",{}]]}]}]}],["$","meta",null,{"name":"next-size-adjust","content":""}]]}],"isPartial":"$@c","staleTime":"$8","varyParams":null},{"rsc":["$","$1","c",{"children":[null,["$","$Ld",null,{"parallelRouterKey":"children","template":["$","$Le",null,{}]}]]}],"isPartial":"$@f","staleTime":"$8","varyParams":"$10"}],"isUpgradeableISRFallback":false,"a":"$@11","rootVaryParams":null,"needsRuntimeRequest":"$@12"}
+6:null
+12:true
+8:300
+8:C
+11:0
+c:"$undefined"
+f:"$undefined"
+7:"$undefined"

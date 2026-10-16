@@ -1,0 +1,21 @@
+1:"$Sreact.fragment"
+2:I[17394,["/_next/static/chunks/2t4eqoz5e0ydi.js","/_next/static/chunks/37w8lzriab6aa.js","/_next/static/chunks/1s418bvf05fr2.js","/_next/static/chunks/1fz1wl_w5wo0g.js","/_next/static/chunks/419xb7wrbh0ch.js","/_next/static/chunks/04g-_jdqxq53j.js"],"LeadForm"]
+3:I[97367,["/_next/static/chunks/2t4eqoz5e0ydi.js","/_next/static/chunks/37w8lzriab6aa.js","/_next/static/chunks/1s418bvf05fr2.js"],"OutletBoundary"]
+4:"$Sreact.suspense"
+8:I[97367,["/_next/static/chunks/2t4eqoz5e0ydi.js","/_next/static/chunks/37w8lzriab6aa.js","/_next/static/chunks/1s418bvf05fr2.js"],"ViewportBoundary"]
+9:I[97367,["/_next/static/chunks/2t4eqoz5e0ydi.js","/_next/static/chunks/37w8lzriab6aa.js","/_next/static/chunks/1s418bvf05fr2.js"],"MetadataBoundary"]
+a:I[27201,["/_next/static/chunks/2t4eqoz5e0ydi.js","/_next/static/chunks/37w8lzriab6aa.js","/_next/static/chunks/1s418bvf05fr2.js"],"IconMark"]
+c:I[39756,["/_next/static/chunks/2t4eqoz5e0ydi.js","/_next/static/chunks/37w8lzriab6aa.js","/_next/static/chunks/1s418bvf05fr2.js"],"default"]
+d:I[37457,["/_next/static/chunks/2t4eqoz5e0ydi.js","/_next/static/chunks/37w8lzriab6aa.js","/_next/static/chunks/1s418bvf05fr2.js"],"default"]
+7:X
+f:X
+f:C
+0:{"buildId":"rCjQE_2g3twJDQFHK8NiA","data":[{"rsc":["$","$1","c",{"children":[["$","$L2",null,{"titleAs":"h1"}],[["$","script","script-0",{"src":"/_next/static/chunks/1fz1wl_w5wo0g.js","async":true}],["$","script","script-1",{"src":"/_next/static/chunks/419xb7wrbh0ch.js","async":true}],["$","script","script-2",{"src":"/_next/static/chunks/04g-_jdqxq53j.js","async":true}]],["$","$L3",null,{"children":["$","$4",null,{"name":"Next.MetadataOutlet","children":"$@5"}]}]]}],"isPartial":"$@6","staleTime":"$7","varyParams":null},{"rsc":["$","$1","h",{"children":[null,["$","$L8",null,{"children":[["$","meta","0",{"charSet":"utf-8"}],["$","meta","1",{"name":"viewport","content":"width=device-width, initial-scale=1"}]]}],["$","div",null,{"hidden":true,"children":["$","$L9",null,{"children":["$","$4",null,{"name":"Next.Metadata","children":[["$","title","0",{"children":"Sign Up · TalkToGenie.ai"}],["$","meta","1",{"name":"description","content":"Tell TalkToGenie about your portfolio and the work you want Genie to run."}],["$","meta","2",{"property":"og:title","content":"TalkToGenie.ai — Hospitality. On Autopilot."}],["$","meta","3",{"property":"og:description","content":"Your wish is my command. An on-demand concierge that grants a guest’s wishes 24/7, with speed and consistency."}],["$","meta","4",{"property":"og:site_name","content":"TalkToGenie.ai"}],["$","meta","5",{"property":"og:type","content":"website"}],["$","meta","6",{"name":"twitter:card","content":"summary_large_image"}],["$","meta","7",{"name":"twitter:title","content":"TalkToGenie.ai — Hospitality. On Autopilot."}],["$","meta","8",{"name":"twitter:description","content":"Your wish is my command. An on-demand concierge for hospitality, 24/7."}],["$","link","9",{"rel":"icon","href":"/icon.svg?icon.06ylrh4h21jde.svg","sizes":"any","type":"image/svg+xml"}],["$","link","10",{"rel":"apple-touch-icon","href":"/apple-icon.png?apple-icon.10p45m1bddmi0.png","sizes":"180x180","type":"image/png"}],["$","$La","11",{}]]}]}]}],["$","meta",null,{"name":"next-size-adjust","content":""}]]}],"isPartial":"$@b","staleTime":"$7","varyParams":null},{"rsc":["$","$1","c",{"children":[null,["$","$Lc",null,{"parallelRouterKey":"children","template":["$","$Ld",null,{}]}]]}],"isPartial":"$@e","staleTime":"$7","varyParams":"$f"}],"isUpgradeableISRFallback":false,"a":"$@10","rootVaryParams":null,"needsRuntimeRequest":"$@11"}
+5:null
+11:true
+7:300
+7:C
+10:0
+b:"$undefined"
+e:"$undefined"
+6:"$undefined"
